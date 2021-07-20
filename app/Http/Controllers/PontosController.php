@@ -2,10 +2,11 @@
 
 namespace App\Http\Controllers;
 
-use App\Ponto;
+use App\Models\Ponto;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Hash;
 use Auth;
 use App\Http\Controllers\Redirect;
 use Illuminate\Contracts\Encryption\DecryptException;

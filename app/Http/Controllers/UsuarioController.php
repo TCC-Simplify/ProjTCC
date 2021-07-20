@@ -2,12 +2,13 @@
  
 namespace App\Http\Controllers;
 
-use App\User;
+use App\Models\User;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use DB;
 use App\Http\Controllers\Redirect;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Encryption\DecryptException;
 
 class UsuarioController extends Controller
@@ -74,11 +75,11 @@ class UsuarioController extends Controller
              'dt_nasc' =>  $request['dt_nasc'],
              'funcao' =>  $request['funcao'],
              'permissao' =>   $checkbox,
-             'password' => bcrypt( $senha ),
+             'password' => Hash::make( $senha ),
              'ativo'=> 's',
              'empresa'=> $id,
              'aux' => 0,
-             'equipe' => null
+             'equipe' => 0
          ]);
  
          return redirect('/users');
@@ -162,7 +163,7 @@ class UsuarioController extends Controller
 
 
 
-        if($request['password'] == $senha_empresa || bcrypt($request['password']) == $senha_usuario){
+        if($request['password'] == $senha_empresa || Hash::make($request['password']) == $senha_usuario){
             User::find($id)->update([
                 'ativo' => 'n'
             ]);
@@ -178,7 +179,7 @@ class UsuarioController extends Controller
     {
         $senha_empresa = session()->get('senha_empresa');
         $senha_usuario = DB::table('users')->where('id', $id)->value('password');
-        if($request['password'] == $senha_empresa || bcrypt($request['password']) == $senha_usuario){
+        if($request['password'] == $senha_empresa || Hash::make($request['password']) == $senha_usuario){
             User::find($id)->update([
                 'name' =>  $request['name'],
                 'dt_nasc' =>  $request['dt_nasc'],

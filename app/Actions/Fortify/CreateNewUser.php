@@ -13,6 +13,13 @@ class CreateNewUser implements CreatesNewUsers
     use PasswordValidationRules;
 
     /**
+     * Where to redirect users after registration.
+     *
+     * @var string
+     */
+    protected $redirectTo = '/hom';
+
+    /**
      * Validate and create a newly registered user.
      *
      * @param  array  $input
@@ -27,10 +34,20 @@ class CreateNewUser implements CreatesNewUsers
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
 
+        $id = session()->get('id_empresa');
+
         return User::create([
             'name' => $input['name'],
             'email' => $input['email'],
+            'cpf' => $input['cpf'],
+            'dt_nasc' => $input['dt_nasc'],
+            'funcao' => $input['funcao'],
+            'permissao' => $input['permissao'],
             'password' => Hash::make($input['password']),
+            'ativo'=> 's', 
+            'empresa' => $id,
+            'aux' => 1,
+            'equipe' => 0
         ]);
     }
 }

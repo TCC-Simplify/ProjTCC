@@ -184,7 +184,7 @@
                     <br>
                     <h5>Realize o gerenciamento dos seus funcionários, com nosso sistema de ponto, organização das tarefas, overview de cada funcionário e de sua produtividade, mural de avisos e um chat para a comunicação de toda a empresa.</h5>
                     <div class="cad-but">
-                        <a href="{{ url('/register')}}"><button class="btn-cad">Cadastre-se &#8594;</button></a>
+                        <a href="{{ url('/cadastro')}}"><button class="btn-cad">Cadastre-se &#8594;</button></a>
                     </div>
                 </div>
             </div>
@@ -196,7 +196,7 @@
             <br>
             <h5>O Simplify ajuda você, empresário, a gerenciar sua empresa com eficiência e facilidade, reduzindo os custos e o tempo dos processos e tendo uma equipe mais automatizada.</h5>
             <div class="comeca-but">
-                <a href="{{ url('/register')}}"><button class="btn-comecar">Começar &#8594;</button></a>
+                <a href="{{ url('/cadastro')}}"><button class="btn-comecar">Começar &#8594;</button></a>
             </div>
             <img src="{{ url('/imgs/welcome/foto2.png') }}" alt="Trabalhadores com computador"  width="1000px" class="img2">
         </div>

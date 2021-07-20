@@ -3,6 +3,10 @@
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
+use App\Http\Controllers\LogController;
+use App\Http\Controllers\EmpresaController;
+use App\Http\Controllers\UsuarioController;
+use App\Http\Controllers\PontosController;
 
 /*
 |--------------------------------------------------------------------------
@@ -15,17 +19,20 @@ use Inertia\Inertia;
 |
 */
 
-Route::get('/', function () {
+/*Route::get('/', function () {
     return Inertia::render('Welcome', [
         'canLogin' => Route::has('login'),
         'canRegister' => Route::has('register'),
         'laravelVersion' => Application::VERSION,
         'phpVersion' => PHP_VERSION,
     ]);
-});
+});*/
 
-Route::get('/welcome', function () {
-    return view('welcome');
+Route::get('/', function () {
+    return view('welcome', [
+        'canLogin' => Route::has('login'),
+        'canRegister' => Route::has('register'),
+    ]);
 });
 
 Route::get('/emails', function () {
@@ -41,62 +48,67 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/chat', function () {
 })->name('chat');
 
 
-Route::get('/log', 'LogController@index');
-Route::post('/log/muda_senha', 'LogController@muda');
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/log', [LogController::class, 'index']);
+Route::middleware(['auth:sanctum', 'verified'])->post('/log/muda_senha', [LogController::class, 'muda']);
 
 //rotas usuario
-Route::get('/cadastro_user',function(){
+Route::middleware(['auth:sanctum', 'verified'])->get('/hom',function(){
+    return view('home_register');
+});
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/cadastro_user',function(){
     return view('users/cad_users');
 });
-Route::post('/cad_user', 'UsuarioController@create');
-Route::get('/users', 'UsuarioController@index');
-Route::get('/users_des', 'UsuarioController@mostra');
+Route::middleware(['auth:sanctum', 'verified'])->post('/cad_user', [UsuarioController::class, 'create']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/users', [UsuarioController::class, 'index']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/users_des', [UsuarioController::class, 'mostra']);
 
-Route::get('/pag_user', 'UsuarioController@show');
+Route::middleware(['auth:sanctum', 'verified'])->get('/pag_user', [UsuarioController::class, 'show']);
 
-Route::get('/alt_user/{id}', 'UsuarioController@edit');
-Route::get('/del_user/{id}', 'UsuarioController@del');
-Route::get('/rea_user/{id}', 'UsuarioController@reativa');
+Route::middleware(['auth:sanctum', 'verified'])->get('/alt_user/{id}', [UsuarioController::class, 'edit']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/del_user/{id}', [UsuarioController::class, 'del']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/rea_user/{id}', [UsuarioController::class, 'reativa']);
 
-Route::post('/update_user/{id}', 'UsuarioController@update');
-Route::post('/delete_user/{id}', 'UsuarioController@delete');
+Route::middleware(['auth:sanctum', 'verified'])->post('/update_user/{id}', [UsuarioController::class, 'update']);
+Route::middleware(['auth:sanctum', 'verified'])->post('/delete_user/{id}', [UsuarioController::class, 'delete']);
 
 //Rotas Empresa
-Route::get('/empresa', 'EmpresaController@show');
-Route::get('/cadastro', 'EmpresaController@create');
-Route::post('/cadastro_empresa', 'EmpresaController@store');
+Route::middleware(['auth:sanctum', 'verified'])->get('/empresa', [EmpresaController::class, 'show']);
+Route::get('/cadastro', [EmpresaController::class, 'create']);
+Route::post('/cadastro_empresa', [EmpresaController::class, 'store']);
 
-Route::get('/editar_empresa/{id}', 'EmpresaController@edit');
-Route::get('/del_empresa/{id}', 'EmpresaController@mostra');
+Route::middleware(['auth:sanctum', 'verified'])->get('/editar_empresa/{id}', [EmpresaController::class, 'edit']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/del_empresa/{id}', [EmpresaController::class, 'mostra']);
 
-Route::post('/update_empresa/{id}', 'EmpresaController@update');
-Route::post('/delete_empresa/{id}', 'EmpresaController@delete');
+Route::middleware(['auth:sanctum', 'verified'])->post('/update_empresa/{id}', [EmpresaController::class, 'update']);
+Route::middleware(['auth:sanctum', 'verified'])->post('/delete_empresa/{id}', [EmpresaController::class, 'delete']);
 
 //Rotas Equipe
-Route::get('/equipes', 'EmpresaController@equipe_show_all');
-Route::get('/form_criar_equipe', 'EmpresaController@equipe_create_form');
-Route::post('/criar_equipe', 'EmpresaController@equipe_create');
-Route::post('/deletar_equipe', 'EmpresaController@equipe_delete');
+Route::middleware(['auth:sanctum', 'verified'])->get('/equipes', [EmpresaController::class, 'equipe_show_all']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/form_criar_equipe', [EmpresaController::class, 'equipe_create_form']);
+Route::middleware(['auth:sanctum', 'verified'])->post('/criar_equipe', [EmpresaController::class, 'equipe_create']);
+Route::middleware(['auth:sanctum', 'verified'])->post('/deletar_equipe', [EmpresaController::class, 'equipe_delete']);
 
-Route::get('/equipe/{nome}', 'EmpresaController@equipe_show');
-Route::get('/equipe/add/{nome}', 'EmpresaController@equipe_add_form');
-Route::post('/equipe/add/processing/{nome}', 'EmpresaController@equipe_add');
+Route::middleware(['auth:sanctum', 'verified'])->get('/equipe/{nome}', [EmpresaController::class, 'equipe_show']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/equipe/add/{nome}', [EmpresaController::class, 'equipe_add_form']);
+Route::middleware(['auth:sanctum', 'verified'])->post('/equipe/add/processing/{nome}', [EmpresaController::class, 'equipe_add']);
 
-Route::post('/equipe/delete', 'EmpresaController@equipe_remove');
+Route::middleware(['auth:sanctum', 'verified'])->post('/equipe/delete', [EmpresaController::class, 'equipe_remove']);
 
 //rotas zaneta
-Route::get('/area_ponto', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/area_ponto', function () {
     return view('users/area_ponto');
 });
-Route::post('/ponto', 'PontosController@create');
+Route::middleware(['auth:sanctum', 'verified'])->post('/ponto', [PontosController::class, 'create']);
 
 //Mural
-Route::get('/mural', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/mural', function () {
     return view('controle/mural');
 });
 
 //Atividades
-Route::get('/atividades', function () {
+Route::middleware(['auth:sanctum', 'verified'])->get('/atividades', function () {
     return view('controle/atividades');
 });
 

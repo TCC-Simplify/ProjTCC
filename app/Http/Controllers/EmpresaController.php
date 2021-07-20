@@ -3,9 +3,10 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\User;
-use App\Empresa;
-use App\Equipes;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
+use App\Models\Empresa;
+use App\Models\Equipes;
 use DB;
 use Illuminate\Support\Facades\Validator;
 
@@ -74,7 +75,7 @@ class EmpresaController extends Controller
             'numero' =>  $request['numero'],
             'complemento' =>  $request['complemento'],
             'estado' =>  $request['estado'],
-            'senha' => bcrypt($request['senha']),
+            'senha' => Hash::make($request['senha']),
             'ativo'=> 's'
         ]);
 

@@ -3,7 +3,8 @@
 namespace App\Http\Controllers;
 
 use Auth;
-use App\User;
+use App\Models\User;
+use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Encryption\DecryptException;
 use DB;
 
@@ -59,7 +60,7 @@ class LogController extends Controller
     {
         User::find(Auth::user()->id)->update([
             'aux' =>  1,
-            'password' => bcrypt($request['senha'])
+            'password' => Hash::make($request['senha'])
         ]);
 
         return view('users/area_ponto');
