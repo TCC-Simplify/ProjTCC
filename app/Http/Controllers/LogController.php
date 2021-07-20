@@ -40,7 +40,7 @@ class LogController extends Controller
         $aux = Auth::user()->aux;
         $senha_empresa = DB::table('empresas')->where('id', Auth::user()->empresa)->value('senha');
         session()->put('id_empresa', Auth::user()->empresa);
-        //session()->put('senha_empresa', decrypt($senha_empresa));
+        session()->put('senha_empresa', $senha_empresa);
 
         if($aux == 1){
             return view('users/area_ponto');

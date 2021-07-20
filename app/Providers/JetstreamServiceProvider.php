@@ -32,6 +32,13 @@ class JetstreamServiceProvider extends ServiceProvider
             return view('auth.login');
         });
 
+
+        // register new LoginResponse
+        $this->app->singleton(
+            \Laravel\Fortify\Contracts\LoginResponse::class,
+            \App\Http\Responses\LoginResponse::class
+        );
+
         Jetstream::deleteUsersUsing(DeleteUser::class);
     }
 

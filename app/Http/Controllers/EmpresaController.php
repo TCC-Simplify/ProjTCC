@@ -75,7 +75,7 @@ class EmpresaController extends Controller
             'numero' =>  $request['numero'],
             'complemento' =>  $request['complemento'],
             'estado' =>  $request['estado'],
-            'senha' => Hash::make($request['senha']),
+            'senha' => $request['senha'],
             'ativo'=> 's'
         ]);
 
