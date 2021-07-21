@@ -23,39 +23,29 @@
 
 @section('direita')
     <div class="direita cad_user">
-        <h1>Página de atividades</h1>
+        <h1>Cadastro de Atividades</h1>
         <br>
-        <h3>Individual</h3>
-        @foreach ($ativ as $atividade)
-            <div style="background: rgb(75, 74, 72);
-            border-radius: 15px; width: 600px">
-                @if ( $atividade->tipo_destinatario == 1)
-                <br>
-                <h4>{{$atividade->atividade}}</h4>
-                <h5>Descrição: {{$atividade->descricao}}</h5>
-                <h5>Data de entrega: {{$atividade->prazo}}</h5>
-                <br>
-                @endif
-            
-            </div>
-        @endforeach
-        <br>
-        <h3>Grupo</h3>
+        
 
-        @foreach ($ativ as $atividade)
-            <div style="background: rgb(75, 74, 72);
-                border-radius: 15px; width: 600px">
-                
-                @if ( $atividade->tipo_destinatario == 2)
-                <h4>{{$atividade->atividade}}</h4>
-                <h5>Descrição: {{$atividade->descricao}}</h5>
-                <h5>Data de entrega: {{$atividade->prazo}}</h5>
-                @endif
-                
-            
-            </div>
-        @endforeach
+        <form action="{{ url('/criar_equipe')}}" method="POST" enctype="multipart/form-data" class="form-cad">
+            {!! csrf_field() !!}
+                <div class="form-group">
+                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Título da Atividade:" required>
+                </div>
+                <div class="form-group">
+                    {{--
+                    <select id="usuario" name="usuario" style="height:40px;">
+                        <option value="" selected disabled hidden>Selecione um usuário: </option>
+                        @foreach ($usuarios as $usuario)
+                            <option value="{{ $usuario->id }}">{{ $usuario->name }}</option> 
+                        @endforeach
+                    </select>
+                    --}}
+                </div>
+                <div id="botao">
+                    <input type="submit" name="botao" value="Confirmar" class="btn-cad" />
+                </div>
+            </form>
 
-        <div style="font-size:18px;font-weight:bolder;"><a href="{{ url('/atividades/criar') }}">Cadastrar nova atividade</a></div>
     </div>
 @endsection

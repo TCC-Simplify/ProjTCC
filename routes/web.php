@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\AtividadesController;
 use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
@@ -108,7 +109,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/mural', function () {
 });
 
 //Atividades
-Route::middleware(['auth:sanctum', 'verified'])->get('/atividades', function () {
-    return view('controle/atividades');
-});
+Route::middleware(['auth:sanctum', 'verified'])->get('/atividades{id?}', [AtividadesController::class, 'atividade_show']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/atividades/criar', [AtividadesController::class, 'atividade_criar']);
 
