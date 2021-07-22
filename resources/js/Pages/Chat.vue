@@ -1,10 +1,10 @@
 <template>
-    <app-layout>
+    <!--<app-layout>
         <template #header>
             <h2 class="font-semibold text-xl text-gray-800 leading-tight">
                 Chat
             </h2>
-        </template>
+        </template>-->
 
         <div class="py-12">
             <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
@@ -12,44 +12,13 @@
                     <!--Listagem de users-->
                     <div class="w-3/12 bg-gray-200 bg-opacity-25 border-r border-gray-200 overflow-y-scroll">
                         <ul>
-                            <li class="p-6 text-lg text-gray-600 leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200">
+                            <li 
+                                v-for = "user in users" :key="user.id"
+                                @click="() => {loadMessages(user.id)}"
+                                class="p-6 text-lg text-gray-600 leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200">
+                                
                                 <p class="flex item-center">
-                                    Pietra Karoline
-                                    <span class="ml-2 mt-2.5 w-2 h-2 bg-blue-400 rounded-full"></span>
-                                </p>
-                            </li>
-
-                            <li class="p-6 text-lg text-gray-600 leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200">
-                                <p class="flex item-center">
-                                    Melissa Cristiny
-                                    <span class="ml-2 mt-2.5 w-2 h-2 bg-blue-400 rounded-full"></span>
-                                </p>
-                            </li>
-
-                            <li class="p-6 text-lg text-gray-600 leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200">
-                                <p class="flex item-center">
-                                    Melissa Cristiny
-                                    <span class="ml-2 mt-2.5 w-2 h-2 bg-blue-400 rounded-full"></span>
-                                </p>
-                            </li>
-
-                            <li class="p-6 text-lg text-gray-600 leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200">
-                                <p class="flex item-center">
-                                    Melissa Cristiny
-                                    <span class="ml-2 mt-2.5 w-2 h-2 bg-blue-400 rounded-full"></span>
-                                </p>
-                            </li>
-
-                            <li class="p-6 text-lg text-gray-600 leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200">
-                                <p class="flex item-center">
-                                    Melissa Cristiny
-                                    <span class="ml-2 mt-2.5 w-2 h-2 bg-blue-400 rounded-full"></span>
-                                </p>
-                            </li>
-
-                            <li class="p-6 text-lg text-gray-600 leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200">
-                                <p class="flex item-center">
-                                    Melissa Cristiny
+                                    {{ user.name }}
                                     <span class="ml-2 mt-2.5 w-2 h-2 bg-blue-400 rounded-full"></span>
                                 </p>
                             </li>
@@ -61,53 +30,17 @@
 
                         <!--Mensagens-->
                         <div class="w-full p-6 flex flex-col overflow-y-scroll">
-                            <div class="w-full mb-3 text-right">
-                                <p class="inline-block p-2 rounded-md bg-green-400 bg-opacity-25 messageFromMe" style="max-width: 75%;">
-                                    Oi!!
+                            <div 
+                                v-for="message in messages" :key="message.id"
+                                :class="(message.from == auth.user.id) ? 'text-right' : ' ' "
+                                class="w-full mb-3">
+                                
+                                <p 
+                                    :class="(message.from == auth.user.id) ? 'bg-green-400' : 'bg-gray-500' "
+                                    class="inline-block p-2 rounded-md bg-opacity-25 messageFromMe" style="max-width: 75%;">
+                                    {{ message.content }}
                                 </p>
-                                <span class="block mt-1 text-xs text-gray-500">19/07/2021 21:15</span>
-                            </div>
-
-                            <div class="w-full mb-3">
-                                <p class="inline-block p-2 rounded-md bg-gray-500 bg-opacity-25 messageToMe" style="max-width: 75%;">
-                                    Olá!!
-                                </p>
-                                <span class="block mt-1 text-xs text-gray-500">19/07/2021 21:15</span>
-                            </div>
-
-                            <div class="w-full mb-3">
-                                <p class="inline-block p-2 rounded-md bg-gray-500 bg-opacity-25 messageToMe" style="max-width: 75%;">
-                                    Olá!!
-                                </p>
-                                <span class="block mt-1 text-xs text-gray-500">19/07/2021 21:15</span>
-                            </div>
-
-                            <div class="w-full mb-3">
-                                <p class="inline-block p-2 rounded-md bg-gray-500 bg-opacity-25 messageToMe" style="max-width: 75%;">
-                                    Olá!!
-                                </p>
-                                <span class="block mt-1 text-xs text-gray-500">19/07/2021 21:15</span>
-                            </div>
-
-                            <div class="w-full mb-3">
-                                <p class="inline-block p-2 rounded-md bg-gray-500 bg-opacity-25 messageToMe" style="max-width: 75%;">
-                                    Olá!!
-                                </p>
-                                <span class="block mt-1 text-xs text-gray-500">19/07/2021 21:15</span>
-                            </div>
-
-                            <div class="w-full mb-3">
-                                <p class="inline-block p-2 rounded-md bg-gray-500 bg-opacity-25 messageToMe" style="max-width: 75%;">
-                                    Olá!!
-                                </p>
-                                <span class="block mt-1 text-xs text-gray-500">19/07/2021 21:15</span>
-                            </div>
-
-                            <div class="w-full mb-3">
-                                <p class="inline-block p-2 rounded-md bg-gray-500 bg-opacity-25 messageToMe" style="max-width: 75%;">
-                                    Olá!!
-                                </p>
-                                <span class="block mt-1 text-xs text-gray-500">19/07/2021 21:15</span>
+                                <span class="block mt-1 text-xs text-gray-500"> {{ formatDate(message.created_at) }}</span>
                             </div>
                         </div>
                         <div class="w-full bg-gray-200 bg-opacity-25 p-6 border-t border-gray-200">
@@ -122,25 +55,42 @@
                 </div>
             </div>
         </div>
-    </app-layout>
+    <!--</app-layout>-->
 </template>
 
 <script>
-    import AppLayout from '@/Layouts/AppLayout'
+    /*import AppLayout from '@/Layouts/AppLayout'*/
+    import moment from "moment";
 
     export default {
         components: {
-            AppLayout,
+            //AppLayout,
+            moment
         },
         data(){
             return {
-                users: []
+                users: [],
+                messages: [],
             }
+        },
+        methods: {
+            loadMessages: function(userId){
+                axios.get(`api/messages/${userId}`).then(response => {
+                    this.messages = response.data.messages
+                    console.log(response)
+                })
+            },
+            formatDate: function (date) {
+                return moment(date).format("DD/MM/YYYY HH:mm");
+            },
         },
         mounted(){
             axios.get('api/users').then(response => {
-                console.log(response);
+                this.users = response.data.users
             })
+        },
+        props: {
+            auth: Object,
         }
     }
 </script>
