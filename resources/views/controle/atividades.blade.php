@@ -6,7 +6,7 @@
         <a href="{{ url('/empresa') }}">Empresa</a>
         <a href="{{ url('/mural') }}" style="color: rgb(38, 109, 82);">Controle</a>
         <a class="log" href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" onmouseover="getElementById('descricao').style.display='block'" onmouseout="getElementById('descricao').style.display='none'"><i class="fas fa-sign-out-alt"></i></a>
-        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;"> {{-- ap inves de url, poderia ser usado route('mural') --}}
             {{ csrf_field() }}
         </form>
         <!--<div id="descricao" name="descricao">Sair</div>-->
@@ -207,6 +207,6 @@
             @endforeach
             <div style="font-size:18px;font-weight:bolder;"><a href="{{ url('/atividades') }}">Voltar</a></div>
         @endif
-        <div style="font-size:18px;font-weight:bolder;"><a href="{{ url('/atividades/criar') }}">Cadastrar nova atividade</a></div>
+        <div style="font-size:18px;font-weight:bolder;"><a href="{{ url('/atividades/criar_form') }}">Cadastrar nova atividade</a></div>
     </div>
 @endsection
