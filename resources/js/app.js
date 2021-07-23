@@ -5,9 +5,12 @@ import { createApp, h } from 'vue';
 import { App as InertiaApp, plugin as InertiaPlugin } from '@inertiajs/inertia-vue3';
 import { InertiaProgress } from '@inertiajs/progress';
 import moment from 'moment';
+import store from './store'
 
 
 const el = document.getElementById('app');
+
+//store.dispatch('userStateAction')
 
 createApp({
     render: () =>
