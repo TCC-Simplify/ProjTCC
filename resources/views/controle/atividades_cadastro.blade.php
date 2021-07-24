@@ -30,7 +30,7 @@
         <form action="{{ url('/atividades/criar')}}" method="POST" enctype="multipart/form-data" class="form-cad">
             {!! csrf_field() !!} {{-- usado para imprimir html --}}
                 <div class="form-group">
-                    <input type="text" class="form-control" id="nome" name="nome" placeholder="Título da Atividade:" required>
+                    <input type="text" class="form-control" id="atividade" name="atividade" placeholder="Título da Atividade:" required>
                 </div>
 
                 <div class="form-group">
@@ -52,30 +52,27 @@
                 </div>
                 
 
-{{-- 
+ 
                 <script>
-                    function mostra()
+                    // função para mostrar os usuários---------------------------------------------------------
+                    function mostra_individual()
                     {
-                        var individual = document.getElementsByClassName("individual");
-                        var grupo = document.getElementById("grupo");
-                        var mostra_indiv = document.getElementsByClassName("indiv")
-                        
-                        
-                        
-                            mostra_indiv.classList = "mostra";
-                            // mostra_indiv.classList("mostra");
-                        
-                        if(valor == 2)
-                        {
-                            
-                            individual.classList
-                        }
+                        var individual = document.getElementById("ativ_ind");
+                        var grupo = document.getElementById("ativ_grupo");
+
+                        individual.classList.remove('mostra');
+                        grupo.classList.add('mostra');
                     }
+                    // função para mostrar as equipes---------------------------------------------------------
                     function mostra_grupo()
                     {
+                        var individual = document.getElementById("ativ_ind");
+                        var grupo = document.getElementById("ativ_grupo");
 
+                        individual.classList.add('mostra');
+                        grupo.classList.remove('mostra');
                     }
-                </script> --}}
+                </script> 
 
 
 
@@ -83,47 +80,44 @@
                 <div class="form-group">
                     <label>Selecione qual o tipo da atividade:</label>
                     <br>
-                    <input type="radio" name="tipo_destinatario" id="individual" class="individual" value="1" onselect="mostra();">
+                    <input type="radio" name="tipo_destinatario" id="individual" value="1" onfocus="mostra_individual()" checked>
                     <label for="individual">Individual</label>
                     
-                    <input type="radio" name="tipo_destinatario" id="grupo" value="2">
+                    <input type="radio" name="tipo_destinatario" id="grupo" value="2" onfocus="mostra_grupo()">
                     <label for="grupo">Grupo</label>
                 </div>
-
-
-                
- 
-                {{-- <style>
+                <style>
 
                     .mostra
                     {
                         display: none;
                     }
 
-                </style> --}}
+                </style> 
 
 
-
-                <div class="form-group" id="ativ">
+                {{-- ============================== Mostrando todos os usuários ============================== --}}
+                <div class="form-group" id="ativ_ind">
                     <select id="destinatario" name="destinatario" style="height:40px;" class="indiv">
-                        <option value="" selected disabled hidden>Selecione usuário ou equipe: </option>
+                        <option value="" selected disabled hidden>Selecione o usuário: </option>
                         @foreach ($users as $user)
                             <option value="{{$user->id}}">{{$user->name}}</option>
                         @endforeach
                     </select>
                 </div>
-                <div class="form-group">
-                    {{--
-                    <select id="usuario" name="usuario" style="height:40px;">
-                        <option value="" selected disabled hidden>Selecione um usuário: </option>
-                        @foreach ($usuarios as $usuario)
-                            <option value="{{ $usuario->id }}">{{ $usuario->name }}</option> 
+
+                {{-- ============================== Mostrando todos as equipes ============================== --}}
+                <div class="form-group mostra" id="ativ_grupo">
+                    <select id="destinatario" name="destinatario" style="height:40px;" class="indiv">
+                        <option value="" selected disabled hidden>Selecione a equipe: </option>
+                        @foreach ($equipes as $equipe)
+                            <option value="{{$equipe->id}}">{{$equipe->equipe}}</option>
                         @endforeach
                     </select>
-                    --}}
                 </div>
+
                 <div id="botao">
-                    <input type="submit" name="botao" value="Confirmar" class="btn-cad" />
+                    <input type="submit" name="finalizacao" value="Confirmar" class="btn-cad" />
                 </div>
             </form>
 

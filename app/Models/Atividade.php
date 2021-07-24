@@ -10,4 +10,8 @@ class Atividade extends Model
     use HasFactory;
 
     protected $table = 'atividades';
+    
+    protected $fillable = [
+        'atividade', 'descricao', 'prazo', 'finalizacao', 'dificuldade', 'tipo_destinatario', 'destinatario'
+    ];
 }

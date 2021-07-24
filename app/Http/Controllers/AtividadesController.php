@@ -8,9 +8,19 @@ use App\Models\User;
 use App\Models\Equipes;
 use App\Models\Empresa;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\DB;
 
 class AtividadesController extends Controller
 {
+
+    // protected $at;    
+
+    // public function __construct(Atividade $at)
+    // {
+    //     $this->at = $at;
+    // }
+
+
     public function atividade_show($id = null, Atividade $atividade, User $user, Equipes $equipe)
     {
         if($id == null)
@@ -41,17 +51,28 @@ class AtividadesController extends Controller
     }
     
 
-    public function atividade_criar(Request $request)
+    public function atividade_criar(Request $request, Atividade $atividade)
     {
-        
+        // $this->atividade->
+        // dd($request->all());
+        // dd($request->only(['nome', 'destinatario']));
+        // dd($request->except(['_token']));
+        // dd($request->input('nome'));
+        $dataForm = $request->except(['_token','botao']);
+        $insert = $atividade->insert($dataForm);
+        if($insert)
+        {
+            return redirect('/atividades');
+        }
+
     }
 
-    public function atividade_criar_form(User $user, Atividade $atividade)
+    public function atividade_criar_form(User $user, Atividade $atividade, Equipes $equipe)
     {
         $id_empresa = session()->get('id_empresa');
         $users = $user->all()->where('empresa',$id_empresa);
-        $id_users = $user->id;
+        $equipes = $equipe->all()->where('empresa',$id_empresa);
         
-        return view('controle.atividades_cadastro', compact('users'));
+        return view('controle.atividades_cadastro', compact('users', 'equipes'));
     }
 }
