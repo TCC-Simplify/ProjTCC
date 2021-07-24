@@ -8,6 +8,9 @@ use App\Models\Message;
 use Illuminate\Http\Request;
 use Auth;
 use Symfony\Component\HttpFoundation\Response;
+use Illuminate\Support\Facades;
+
+use App\Events\Chat\SendMessage;
 
 class MessageController extends Controller
 {
@@ -59,6 +62,8 @@ class MessageController extends Controller
         $message->to = $request->to;
         $message->content = filter_var($request->content, FILTER_SANITIZE_STRIPPED);
         $message->save();
+
+        SendMessage::dispatch($message, $request->to);
     }
 
     /**

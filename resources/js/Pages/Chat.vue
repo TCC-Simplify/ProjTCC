@@ -20,7 +20,7 @@
                                 
                                 <p class="flex item-center">
                                     {{ user.name }}
-                                    <span class="ml-2 mt-2.5 w-2 h-2 bg-blue-400 rounded-full"></span>
+                                    <span v-if="user.notification" class="ml-2 mt-2.5 w-2 h-2 bg-blue-400 rounded-full"></span>
                                 </p>
                             </li>
                         </ul>
@@ -62,11 +62,12 @@
 <script>
     /*import AppLayout from '@/Layouts/AppLayout'*/
     import moment from "moment";
+    import Vue from 'vue';
 
     export default {
         components: {
             //AppLayout,
-            moment
+            moment,
         },
         data(){
             return {
@@ -121,6 +122,13 @@
         mounted(){
             axios.get('api/users').then(response => {
                 this.users = response.data.users
+            })
+
+            Echo.private(`user.${this.auth.user.id}`).listen('.SendMessage', async (e) => {
+                if(this.userActive && this.userActive.id === e.message.from){
+                    await this.messages.push(e.message)
+                    this.scrollToBottom()
+                }
             })
         },
         props: {
