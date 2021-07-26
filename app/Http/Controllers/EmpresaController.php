@@ -64,7 +64,10 @@ class EmpresaController extends Controller
            ->withInput();
 
        }*/
-        
+       $request->validate([
+        'cnpj' => 'required|cnpj',
+        // outras validações aqui
+    ]);
         Empresa::create([
             'nome' =>  $request['nome'],
             'cnpj' => $request['cnpj'],
