@@ -14,8 +14,8 @@
 
     <style>
     html, body {
-                background-color: grey; 
-            }
+        background-color: grey; 
+    }
         
     </style>
   </head>
@@ -44,11 +44,7 @@
           <div class="modal-body">
             <div class="form-group">
                 <label for="exampleInputEmail1">Nome Completo: </label>
-                <br><input type="text" name="fnome" value="nome funcionario" disabled>    
-              </div>
-              <div class="form-group">
-                <label for="exampleInputPassword1">Empresa: </label>
-                <br><input type="text" name="Enome" value="nome da empresa" disabled>
+                <br><input type="text" name="fnome" value="{{ Auth::user()->name }}" disabled>    
               </div>
               <div class="form-group">
                 <label for="horario">Horário: </label>
@@ -58,9 +54,7 @@
                 <label for="formMotivo">Motivo:</label>
                 <select class="form-control" id="formMotivo" name="motivo">
                   <option value="1">Entrada</option>
-                  <option value="2">Intervalo</option>
-                  <option value="3">Saida</option>
-                  <option value="4">Fim de expediente</option>
+                  <option value="2">Volta de intervalo</option>
                 </select>
               </div>
 

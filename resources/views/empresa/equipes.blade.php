@@ -21,23 +21,29 @@
 @endsection
 
 @section('direita')
-    <div class="direita cad_user">
-        <h1>Lista de Equipes</h1>
-        <div class="form-cad">
-            @foreach ($equipes as $equipe)
-            <div class="form-group">
-            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome:" value="{{ $equipe->equipe }}" required>
-            <div style="font-size:18px;font-weight:bolder;">
-            <form method="post" action="{{ url('/deletar_equipe') }}">{!! csrf_field() !!}
-                <a href="{{ url('/equipe', $equipe->equipe) }}" style="color:white;text-decoration:none;">Ver</a>&nbsp;&nbsp;
-                <input type="hidden" name="equipe" value="{{ $equipe->id }}">
-                <input type="submit" name="submit" value="Excluir" style="height:55px;background:none;border:none;
-                color:white;font-size:18px;margin:0;padding:0;">
-            </form>
-            </div>
-            </div>
-            @endforeach
-            <div style="font-size:18px;font-weight:bolder;"><a href="{{ url('/form_criar_equipe') }}">Cadastrar nova equipe</a></div>
+    <div class="direita m-users">
+        <div class="header">
+            <a href="{{ url('/form_criar_equipe') }}" class="ir"><p>Nova Equipe &#8594;</p></a>   
         </div>
+        <h1>Equipes</h1>
+        <table class="table table-striped">
+            <thead>
+                <th>Nome</th>
+                <th>Controle</th>
+            </thead>
+
+            @foreach ($equipes as $equipe)
+                <tbody>
+                    <td>{{ $equipe->equipe }}</td>
+                    <td>
+                        <form method="post" action="{{ url('/deletar_equipe') }}">{!! csrf_field() !!}
+                            <a href="{{ url('/equipe', $equipe->equipe) }}" style="color:white;text-decoration:none;"><i class="fas fa-eye ed"></i></a>&nbsp;&nbsp;
+                            <input type="hidden" name="equipe" value="{{ $equipe->id }}">
+                            <button type="submit" name="submit" class="de" style="border: none; background-color: transparent; cursor: pointer; outline:none;"><i class="fas fa-trash-alt"></i></button>
+                        </form>
+                    </td>
+                </tbody>
+            @endforeach
+        </table>
     </div>
 @endsection

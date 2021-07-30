@@ -21,7 +21,7 @@
 @endsection
 
 @section('direita')
-    <div class="direita cad_user">
+    <div class="direita m-users">
         <h1>{{ $nome }}</h1>
         </br>
         <h3>Dados das Atividades</h3>
@@ -29,24 +29,27 @@
         <p>Aqui estarão dados e estatísticas sobre as atividades atribuídas à equipe.</p>
         <p>Área de atividades ainda está em desenvolvimento.</p>
         </br>
-        <h3>Lista de Usuários</h3>
-        <div class="form-cad">
-            <div class="form-group">
-                @php ($counter = count($usuarios))
-                @foreach($usuarios as $usuario)
-                    <input type="text" class="form-control" value="{{ $usuario->name }}" required>
-                    @php($counter++)
-                    @if($counter-1 != 1)
-                    <form method="post" action="{{ url('/equipe/delete') }}">{!! csrf_field() !!}
-                        <input type="hidden" name="usuario" value="{{ $usuario->id }}">
-                        <input type="submit" name="submit" value="Remover" style="height:55px;background:none;border:none;
-                        color:white;font-size:18px;font-weight:bolder;margin:0;padding:0;">
-                    </form>
-                    @endif
-                @endforeach
-                </br></br>
-                <a href="{{ url('/equipe/add', $nome) }}" style="font-size:18px;font-weight:bolder;">Adicionar Novo Usuário</a>
-            </div>
+        <div class="header">
+            <a href="{{ url('/equipe/add', $nome) }}" class="ir"><p>Add usuário &#8594;</p></a>   
         </div>
+        <h1>Lista de Usuários</h1>
+        <table class="table table-striped">
+            <thead>
+                <th>Nome</th>
+                <th>Controle</th>
+            </thead>
+
+            @foreach($usuarios as $usuario)
+                <tbody>
+                    <td>{{ $usuario->name }}</td>
+                    <td>
+                        <form method="post" action="{{ url('/equipe/delete') }}">{!! csrf_field() !!}
+                            <input type="hidden" name="usuario" value="{{ $usuario->id }}">
+                            <button type="submit" name="submit" class="de" style="border: none; background-color: transparent; cursor: pointer; outline:none;"><i class="fas fa-user-times"></i></button>
+                        </form>
+                    </td>
+                </tbody>
+            @endforeach
+        </table>
     </div>
 @endsection

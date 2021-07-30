@@ -28,7 +28,7 @@
             <a href="{{ url()->previous() }}" class="volt"><p>&#8592;  Voltar</p></a>   
         </div>
 
-        <h1>Exibindo usuários</h1>
+        <h1>Usuários desativados</h1>
 
         <table class="table table-striped table-red">
             <thead>

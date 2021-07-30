@@ -27,10 +27,10 @@
         <div class="header">
             <a href="{{ url('/users_des') }}" class="ir"><p>Usuários desativados &#8594;</p></a>   
         </div>
+ 
+        <h1>Usuários cadastrados</h1>
 
-        <h1>Exibindo usuários</h1>
-
-        <table class="table table-striped table-red">
+        <table class="table table-striped">
             <thead>
                 <th>Nome</th>
                 <th>Setor</th>

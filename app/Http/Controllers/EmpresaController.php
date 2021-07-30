@@ -10,8 +10,6 @@ use App\Models\Equipes;
 use DB;
 use Illuminate\Support\Facades\Validator;
 
-
-
 class EmpresaController extends Controller
 {
    /**
@@ -233,6 +231,8 @@ class EmpresaController extends Controller
     }
 
     public function equipe_create(Request $request){
+        $users = count($request['users']);
+        $vuser = $request['users'];
 
         $id_empresa = session()->get('id_empresa');
         Equipes::create([
@@ -242,9 +242,12 @@ class EmpresaController extends Controller
             'empresa' =>  $id_empresa,
         ]);
         $id_equipe = DB::table('equipes')->where('equipe', $request['nome'])->value('id');
-        User::find($request['usuario'])->update([
-            'equipe' => $id_equipe
-        ]);
+
+        for($i=0; $i < $users; $i++){
+            User::find($vuser[$i])->update([
+                'equipe' => $id_equipe
+            ]);
+        }
 
         return redirect('/equipes');
     }
@@ -254,7 +257,7 @@ class EmpresaController extends Controller
             'ativo' => 'n'
         ]);
         User::where('equipe', $request['equipe'])->update([
-            'equipe' => null
+            'equipe' => 0
         ]);
         
         return redirect()->back();
@@ -278,7 +281,7 @@ class EmpresaController extends Controller
 
     public function equipe_remove(Request $request){
         User::find($request['usuario'])->update([
-            'equipe' => null
+            'equipe' => 0
         ]);
 
         return redirect()->back();

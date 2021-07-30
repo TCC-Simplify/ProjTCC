@@ -28,13 +28,19 @@
             <div class="form-group">
                 <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome da Equipe:" required>
             </div>
-            <div class="form-group">
+            <!--<div class="form-group">
                 <select id="usuario" name="usuario" style="height:40px;">
                     <option value="" selected disabled hidden>Selecione um usuário: </option>
                     @foreach ($usuarios as $usuario)
                         <option value="{{ $usuario->id }}">{{ $usuario->name }}</option> 
                     @endforeach
                 </select>
+            </div>-->
+            <br><h3>Selecione os participantes</h3> <br>
+            <div class="form-group" style="text-align: left;">
+                @foreach ($usuarios as $usuario)
+                    <input type="checkbox" name="users[]" value="{{ $usuario->id }}">&nbsp;&nbsp;{{ $usuario->name }} <br>
+                @endforeach
             </div>
             <div id="botao">
                 <input type="submit" name="botao" value="Confirmar" class="btn-cad" />
