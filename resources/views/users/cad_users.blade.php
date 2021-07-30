@@ -48,6 +48,11 @@
             <div class="form-group">
 
                 <input type="text" class="form-control cad-tam" name="cpf" id="cpf" placeholder="CPF:" value="{{ $users->cpf ?? old('cpf') }}">
+                @if ($errors->has('cpf'))
+                        <span class="help-block">
+                            <strong>{{ $errors->first('cpf') }}</strong>
+                        </span>
+                 @endif
             </div>
 
             <div class="form-group">

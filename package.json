@@ -29,6 +29,9 @@
     },
     "dependencies": {
         "emoji-vue": "^0.2.4",
+        "inputmask": "^5.0.6",
+        "jquery-mask-plugin": "^1.14.16",
+        "jquery.maskedinput": "^1.4.1",
         "moment": "^2.29.1",
         "vuex": "^3.6.2"
     }

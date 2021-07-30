@@ -64,10 +64,16 @@ class EmpresaController extends Controller
            ->withInput();
 
        }*/
-       $request->validate([
-        'cnpj' => 'required|cnpj',
-        // outras validações aqui
-    ]);
+       try{
+
+        $dados = $request->validate([
+            'cnpj' => 'required|cnpj',
+            // outras validações aqui
+        ]);
+
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            dd($e->errors());
+        }
         Empresa::create([
             'nome' =>  $request['nome'],
             'cnpj' => $request['cnpj'],

@@ -68,10 +68,16 @@ class UsuarioController extends Controller
             $checkbox = 3;
         }
 
-        $request->validate([
-            'cpf' => 'required|cpf',
-            // outras validações aqui
-        ]);
+        try{
+
+            $dados = $request->validate([
+                'cpf' => 'required|cpf',
+                // outras validações aqui
+            ]);
+    
+        } catch (\Illuminate\Validation\ValidationException $e) {
+            dd($e->errors());
+        }
         User::create([
              'name' =>  $request['name'],
              'email' =>  $request['email'],
