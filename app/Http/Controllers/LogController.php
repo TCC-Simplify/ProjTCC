@@ -63,6 +63,12 @@ class LogController extends Controller
             'password' => Hash::make($request['senha'])
         ]);
 
+        $request->session()->forget('password_hash_web');
+
+        // login the user back with his new updated credentials
+        $user = Auth::user();
+        Auth::guard('web')->login($user);
+
         return view('users/area_ponto');
         
     }

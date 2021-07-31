@@ -7,7 +7,7 @@
         <template #description>
             Ensure your account is using a long, random password to stay secure.
         </template>
-
+ 
         <template #form>
             <div class="col-span-6 sm:col-span-4">
                 <jet-label for="current_password" value="Current Password" />
