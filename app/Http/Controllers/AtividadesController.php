@@ -49,6 +49,35 @@ class AtividadesController extends Controller
         }
         return view('controle.atividades');
     }
+
+    public function atividade_funcs_show($id = null, Atividade $atividade, User $user, Equipes $equipe)
+    {
+        if($id == null)
+        {
+            $id_empresa = session()->get('id_empresa');
+            $ativ = $atividade->all();
+            $users = $user->all()->where('empresa',$id_empresa);
+            $equipes = $equipe->all();
+            $permissao = Auth::user()->permissao;
+            $id_user = Auth::user()->id;
+            
+
+            return view('controle.atividades_funcs', compact('ativ', 'id', 'permissao','id_user', 'users', 'equipes', 'id_empresa'));
+        }
+        else
+        {
+            $id_empresa = session()->get('id_empresa');
+            $ativ = $atividade->all();
+            $users = $user->all()->where('empresa',$id_empresa);
+            $equipes = $equipe->all();
+            $permissao = Auth::user()->permissao;
+            $id_user = Auth::user()->id;
+            
+
+            return view('controle.atividades_funcs', compact('ativ', 'id', 'permissao','id_user', 'users', 'equipes', 'id_empresa'));
+        }
+        return view('controle.atividades_funcs');
+    }
     
 
     public function atividade_criar(Request $request, Atividade $atividade)

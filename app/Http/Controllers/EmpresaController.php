@@ -271,10 +271,15 @@ class EmpresaController extends Controller
     }
 
     public function equipe_add(Request $request, $nome){
+        $users = count($request['users']);
+        $vuser = $request['users'];
+
         $id_equipe = DB::table('equipes')->where('equipe', $nome)->value('id');
-        User::find($request['usuario'])->update([
-            'equipe' => $id_equipe
-        ]);
+        for($i=0; $i < $users; $i++){
+            User::find($vuser[$i])->update([
+                'equipe' => $id_equipe
+            ]);
+        }
 
         return redirect('/equipe/'.$nome);
     }

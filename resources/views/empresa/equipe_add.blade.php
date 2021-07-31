@@ -25,13 +25,10 @@
         <h1>Adicionar Usuário</h1>
         <form action="{{ url('/equipe/add/processing', $nome)}}" method="POST" enctype="multipart/form-data" class="form-cad">
         {!! csrf_field() !!}
-            <div class="form-group">
-                <select id="usuario" name="usuario" style="height:40px;">
-                    <option value="" selected disabled hidden>Selecione um usuário: </option>
-                    @foreach ($usuarios as $usuario)
-                        <option value="{{ $usuario->id }}">{{ $usuario->name }}</option> 
-                    @endforeach
-                </select>
+            <div class="form-group" style="text-align: left;">
+                @foreach ($usuarios as $usuario)
+                    <input type="checkbox" name="users[]" value="{{ $usuario->id }}">&nbsp;&nbsp;{{ $usuario->name }} <br>
+                @endforeach
             </div>
             <div id="botao">
                 <input type="submit" name="botao" value="Confirmar" class="btn-cad" />

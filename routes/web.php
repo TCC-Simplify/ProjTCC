@@ -110,6 +110,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/mural', function () {
 
 //Atividades
 Route::middleware(['auth:sanctum', 'verified'])->get('/atividades{id?}', [AtividadesController::class, 'atividade_show']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/atividades/funcs{id?}', [AtividadesController::class, 'atividade_funcs_show']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/atividades/criar_form', [AtividadesController::class, 'atividade_criar_form']);
 Route::middleware(['auth:sanctum', 'verified'])->post('/atividades/criar', [AtividadesController::class, 'atividade_criar']);
 

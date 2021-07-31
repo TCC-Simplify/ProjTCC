@@ -40,7 +40,7 @@
             <h3>Individuais</h3>
             <div class="cards">
                 @foreach ($ativ as $atividade)
-                        @if ( $atividade->tipo_destinatario == 1 && $atividade->destinatario == $id_user && $atividade->finalizacao == "Confirmar")
+                        @if ( $atividade->tipo_destinatario == 1 && $atividade->finalizacao == "Confirmar" && $atividade->destinatario != $id_user)
                                 <div class="card">
                                     <a href="atividades{{$atividade->id}}">
                                         {{$id;}}
@@ -54,6 +54,13 @@
                                             ?>></span>
                                         </div>
                                         <br>
+                                        <p>Destinatário: 
+                                            @foreach ($users as $user)
+                                                @if ($user->id == $atividade->destinatario)
+                                                    {{$user->name}}
+                                                @endif
+                                            @endforeach
+                                        </p>
                                         <p>Descrição: {{$atividade->descricao}}</p>
                                         <p>Data de entrega: {{$atividade->prazo}}</p>
                                         <br>
@@ -67,9 +74,9 @@
             <h3>Em grupo</h3>
             <div class="cards">
                 @foreach ($ativ as $atividade)
-                    @if ( $atividade->tipo_destinatario == 2 && $atividade->destinatario == $id_user && $atividade->finalizacao == "Confirmar")
+                    @if ( $atividade->tipo_destinatario == 2 && $atividade->finalizacao == "Confirmar" && $atividade->destinatario != $id_user)
                         <div class="card">
-                            <a href="atividades{{$atividade->id}}">
+                            <a href="atividades/funcs{{$atividade->id}}">
                                 {{$id;}}
                                 <br>
                                 <div class="nome">
@@ -102,7 +109,7 @@
             @foreach ($ativ as $atividade)
                 @if ($id == $atividade->id)
                     <div class="header">
-                        <a href="{{ url('/atividades') }}" class="ir"><p>Voltar</p></a>   
+                        <a href="{{ url('/atividades/funcs') }}" class="ir"><p>Voltar</p></a>   
                     </div>
                     <h1>Detalhes da Atividade</h1>
 
