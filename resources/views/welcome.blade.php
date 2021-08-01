@@ -57,7 +57,9 @@
             <div class="comeca-but">
                 <a href="{{ url('/cadastro')}}"><button id="btn_comecar">Começar</button></a>
             </div>
-            <img src="{{ url('/imgs/welcome/foto2.svg') }}" alt="Mulheres trabalhando" id="img2">
+            <div id="escuro-imagem">
+                <img src="{{ url('/imgs/welcome/foto2.svg') }}" alt="Mulheres trabalhando" id="img2">
+            </div>
         </div>
         <div class="sombrab"></div>
 
