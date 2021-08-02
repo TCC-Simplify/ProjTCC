@@ -1,3 +1,4 @@
+//FUNÇÕES MOSTRAR SENHA PARA PÁGINA DE CADASTRO DE EMPRESA
 function mostrarSenha(){
 	var tipo = document.getElementById("senha");
 	var botao = document.getElementById("botao");
@@ -22,7 +23,6 @@ function mostrarSenha2(){
 		botao2.style.color = "white";
 	}
 }
-
 $(document).ready(function()
 {	
 	$("#cnpj").mask("99.999.999/9999-99");

@@ -77,7 +77,7 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/delete_user/{id}', [Usua
 //Rotas Empresa
 Route::middleware(['auth:sanctum', 'verified'])->get('/empresa', [EmpresaController::class, 'show']);
 Route::get('/cadastro', [EmpresaController::class, 'create']);
-Route::post('/cadastro_empresa', [EmpresaController::class, 'store']);
+Route::post('/cadastro_empresa', [EmpresaController::class, 'store']); //cadastro empresa -> cadastro adm
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/editar_empresa/{id}', [EmpresaController::class, 'edit']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/del_empresa/{id}', [EmpresaController::class, 'mostra']);
