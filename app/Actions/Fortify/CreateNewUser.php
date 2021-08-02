@@ -27,16 +27,16 @@ class CreateNewUser implements CreatesNewUsers
             'password' => $this->passwordRules(),
             'terms' => Jetstream::hasTermsAndPrivacyPolicyFeature() ? ['required', 'accepted'] : '',
         ])->validate();
-        try{
+        /*try{
 
-            $dados = $request->validate([
+            $dados = $input->validate([
                 'cpf' => 'required|cpf',
                 // outras validações aqui
             ]);
     
         } catch (\Illuminate\Validation\ValidationException $e) {
             dd($e->errors());
-        }
+        }*/
 
         $id = session()->get('id_empresa');
 
