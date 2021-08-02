@@ -54,26 +54,13 @@ body {
     color: rgb(58, 141, 109);
 }
 
-.etapas{
-    display: flex;
-    justify-content: space-around;
-}
+
  
-.etapas h4{
-    margin-top: 15px;
-}
 
 
-#botao{ text-align: center }
+
+
 .btn-enviar {
-    align-items: center;
-    align-content: center;
-    width: 200px;
-    height: 50px;
-    border-radius: 4px;
-    color: #fff;
-    background-color: rgb(95, 185, 151);
-    cursor: pointer;
 }
 
 .btn-enviar:hover, .btn-email:hover{

@@ -1,0 +1,195 @@
+* {
+    font-weight: 100;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+    color: #fff;
+}
+body {
+    background: linear-gradient(90deg, #edf2f4, #4a00e0);
+    background-repeat: no-repeat;
+}
+
+#fundo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+    min-width: 100vw;
+}
+
+#navbar{
+    background-color: #fff;
+    position: fixed;
+    width: 100%;
+    color: white;
+    padding: 10px;
+    z-index: 1;
+}
+
+#nav-logo {
+    position: relative;
+    float: left;
+}
+#nav-logo img {
+    width: 200px;
+}
+
+#nav-link {
+    position: relative;
+    float: right;
+    margin-top: 1.5vh;
+}
+
+#nav-link a {
+    color: rgb(0, 0, 0);
+    margin: 0px;
+    padding: 10px 25px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+.etapas{
+    display: flex;
+    justify-content: space-around;
+}
+
+.etapas h4{
+    margin-top: 15px;
+}
+
+#container {
+    background: #212529;
+    width: 50vw;
+    min-height: 70vh;
+    padding: 2rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
+
+#header {
+    display: flex;
+}
+
+#header a {
+    margin-left: auto;
+    text-decoration: none;
+    font-size: 17px;
+    color: #edf2f4;
+    padding: 1rem;
+}
+
+#header a:hover {
+    color: #e0aaff;
+}
+
+#botao {
+    width: 100%;
+    margin-top: 3%;
+    text-align: center;
+}
+
+#botao input {
+    align-items: center;
+    align-content: center;
+    width: 20%;
+    height: 50px;
+    border-radius: 4px;
+    color: #fff;
+    background-color: rgb(95, 185, 151);
+    cursor: pointer;
+}
+
+/* CONFIGURAÇÕES DOS INPUTS */
+.label-float {
+    position: relative;
+    padding-top: 13px;
+}
+
+.label-float input{
+    border: 1px solid lightgrey;
+    border-radius: 5px;
+    outline: none;
+    padding: 12px 15px;
+    font-size: 18px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -webkit-appearance:none;
+    font-weight: 200;
+    background: #212529;
+}
+
+.label-float input:focus{
+    border: 2px solid #3951b2;
+}
+
+.label-float input::placeholder{
+    color:transparent;
+}
+
+.label-float label{
+    pointer-events: none;
+    position: absolute;
+    top: calc(50% - 8px);
+    left: 15px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    background-color: white;
+    padding: 3px;
+    box-sizing: border-box;
+    font-weight: 400;
+    background: #212529;
+}
+
+
+.label-float input:focus + label,
+.label-float input:not(:placeholder-shown) + label{
+    font-size: 15px;
+    top: 0;
+    color: #FFF;
+}
+
+/* CONFIGURAÇÕES PARA DIMENSIONAR OS TAMANHOS DOS INPUTS */
+.filled {
+    display: flex;
+}
+.input-longo input {
+    width: 100%;
+}
+.input-setenta {
+    width: 75%;
+}
+.input-vinte {
+    width: 25%;
+}
+.input-cinquenta {
+    width: 50%;
+}
+.input-trinta {
+    width: 33%;
+}
+#cep, #uf, #cidade, #bairro, #endereco , #num, #compl, #senha, #senha2{
+    width: 100%;
+}
+.fas, .fa-eye, .ver{
+    margin: 3px 7px;
+    background: #212529;
+}
+
+input:-webkit-autofill,
+input:-webkit-autofill:hover, 
+input:-webkit-autofill:focus, 
+input:-webkit-autofill:active
+textarea:-webkit-autofill,
+select:-webkit-autofill {
+    -webkit-text-fill-color: #FFF;
+    -webkit-box-shadow: 0 0 0px 1000px #212529 inset;
+}
