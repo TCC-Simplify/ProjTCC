@@ -16,7 +16,7 @@
 @section('opcoes')
     <div class="opcoes empresa">
         <div class="a"><a href="{{ url('/empresa') }}"><i class="fas fa-city es"></i></a></div>
-        <div class="a"><a href="{{ url('/equipes') }}"><i class="fas fa-users"></i></a></div>
+        <div class="a"><a href="{{ url('/equipes') }}" <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>><i class="fas fa-users"></i></a></div>
     </div>
 @endsection
 
@@ -25,36 +25,36 @@
         <h1>Dados da empresa</h1>
         <div class="form-cad">
             <div class="form-group">
-            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome:" value="{{ $empresa->nome }}" required>
+            <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome:" value="{{ $empresa->nome }}" required disabled>
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="CNPJ:" value="{{ $empresa->cnpj }}" required>
+                <input type="text" class="form-control" name="cnpj" id="cnpj" placeholder="CNPJ:" value="{{ $empresa->cnpj }}" required disabled>
             </div>
             
             <div class="form-group">
-                <input type="text" class="form-control" name="cep" placeholder="CEP:" id="cep" value="{{ $empresa->cep }}" required>
+                <input type="text" class="form-control" name="cep" placeholder="CEP:" id="cep" value="{{ $empresa->cep }}" required disabled>
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" name="estado" placeholder="Estado:" id="uf" value="{{ $empresa->estado }}" required>
+                <input type="text" class="form-control" name="estado" placeholder="Estado:" id="uf" value="{{ $empresa->estado }}" required disabled>
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade:" value="{{ $empresa->cidade }}" required>
+                <input type="text" class="form-control" name="cidade" id="cidade" placeholder="Cidade:" value="{{ $empresa->cidade }}" required disabled>
             </div>
 
             <div class="form-group">
-                <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro:" value="{{ $empresa->bairro }}" required>
+                <input type="text" class="form-control" name="bairro" id="bairro" placeholder="Bairro:" value="{{ $empresa->bairro }}" required disabled>
             </div>
             
             <div class="form-group">
-                <input type="text" class="form-control" name="rua" id="endereco" placeholder="Rua:" value="{{ $empresa->rua }}" required>
+                <input type="text" class="form-control" name="rua" id="endereco" placeholder="Rua:" value="{{ $empresa->rua }}" required disabled>
             </div>
 
 
             <div class="form-group">
-                <input type="text" class="form-control" name="numero" placeholder="N°:" value="{{ $empresa->numero }}" required>
+                <input type="text" class="form-control" name="numero" placeholder="N°:" value="{{ $empresa->numero }}" required disabled>
             </div>
 
             <div class="form-group">

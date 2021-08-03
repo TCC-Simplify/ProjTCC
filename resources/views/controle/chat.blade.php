@@ -23,6 +23,8 @@
 
 @section('direita')
     <div class="direita">
-        
+        <chat></chat>
+
+        <script src="{{ mix('js/app.js') }}"></script>
     </div>
 @endsection

@@ -6,17 +6,24 @@
             </h2>
         </template>-->
 
-        <div class="py-12">
-            <div class="max-w-7xl mx-auto sm:px-6 lg:px-8">
-                <div class="bg-white overflow-hidden shadow-xl sm:rounded-lg flex" style="min-height:700px; max-height:700px;">
+        <div>
+            <div >
+                <div class="bg-white overflow-hidden shadow-xl flex" style="min-height:100vh; max-height:100vh;">
                     <!--Listagem de users-->
-                    <div class="w-3/12 bg-gray-200 bg-opacity-25 border-r border-gray-200 overflow-y-scroll">
+                    <div class="w-3/12 bg-gray-200 bg-opacity-25 border-r border-gray-200 overflow-y-auto" 
+                    style="
+                        background-color: rgb(95, 185, 151);
+                        color: white;
+                    ">
                         <ul>
+                            <li>
+                                <a href="{{ url('/') }}"><img v-bind:src="'/imgs/logo_simplify.png'" alt="Logo Simplify" style="width: 50%; margin: auto; margin-top: 5%; margin-bottom: 2%;"></a>
+                            </li>
                             <li 
                                 v-for = "user in users" :key="user.id"
                                 @click="() => {loadMessages(user.id)}"
                                 :class="(userActive && userActive.id == user.id) ? 'bg-gray-200 bg-opacity-50' : ''"
-                                class="p-6 text-lg text-gray-600 leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200">
+                                class="p-6 text-lg leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200">
                                 
                                 <p class="flex item-center">
                                     {{ user.name }}
@@ -27,10 +34,14 @@
                     </div>
 
                     <!--Caixa de mensagens-->
-                    <div class="w-9/12 flex flex-col justify-between">
+                    <div class="w-9/12 flex flex-col justify-between"
+                    style="
+                        background-color: rgb(37, 37, 44);
+                        color: white;
+                    ">
 
                         <!--Mensagens-->
-                        <div class="w-full p-6 flex flex-col overflow-y-scroll">
+                        <div class="w-full p-6 flex flex-col overflow-y-auto">
                             <div 
                                 v-for="message in messages" :key="message.id"
                                 :class="(message.from == auth.user.id) ? 'text-right' : ' ' "

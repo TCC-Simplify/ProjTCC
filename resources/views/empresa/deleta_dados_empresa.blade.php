@@ -16,6 +16,7 @@
 @section('opcoes')
     <div class="opcoes empresa">
         <div class="a"><a href="{{ url('/empresa') }}"><i class="fas fa-city es"></i></a></div>
+        <div class="a"><a href="{{ url('/equipes') }}" <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>><i class="fas fa-users"></i></a></div>
     </div>
 @endsection
 

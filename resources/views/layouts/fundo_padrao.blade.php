@@ -171,7 +171,7 @@
         <div class="cima"></div>
         <div class="navbar fixed-top bg-light">
             <div class="logo">
-                <a href="{{ url('/') }}"><img src="{{ url('/imgs/logo_simplify.png') }}" alt="Logo Simplify"  width="250px"></a>
+                <a href="{{ url('/mural') }}"><img src="{{ url('/imgs/logo_simplify.png') }}" alt="Logo Simplify"  width="250px"></a>
             </div>
 
             <div class="links">

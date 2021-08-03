@@ -18,14 +18,22 @@
         <div class="a"><a href="{{ url('/pag_user') }}"><i class="fas fa-user"></i></a></div>
         <div class="a" <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>><a href="{{ url('/cadastro_user') }}"><i class="fas fa-user-plus"></i></a></div>
         <div class="a" <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>><a href="{{ url('/users') }}"><i class="fas fa-users es"></i></a></div>
-        <div class="a"><a href="{{ url('') }}"><i class="fas fa-chart-area"></i></a></div>
+        <div class="a"><a href="{{ url('/overview') }}"><i class="fas fa-chart-area"></i></a></div>
     </div>
 @endsection
 
 @section('direita')
     <div class="direita m-users">
+        <?php
+            $aux=0;
+            foreach ($todos as $user){
+                if($user->ativo == 'n'){
+                    $aux=1;
+                }
+            }
+        ?>
         <div class="header">
-            <a href="{{ url('/users_des') }}" class="ir"><p>Usuários desativados &#8594;</p></a>   
+            <a href="{{ url('/users_des') }}" class="ir" <?php if($aux == 0) echo 'style="display: none;"'?>><p>Usuários desativados &#8594;</p></a>   
         </div>
  
         <h1>Usuários cadastrados</h1>
@@ -39,7 +47,7 @@
             </thead>
 
             @foreach($todos as $user)
-                @if($user->ativo == 's')
+                @if($user->ativo == 's' && $user->id != Auth::user()->id)
                     <tbody>
                         <td>{{ $user->name }}</td>
                         <td>{{ $user->funcao }}</td>

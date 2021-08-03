@@ -114,3 +114,7 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/atividades/funcs{id?}', [
 Route::middleware(['auth:sanctum', 'verified'])->get('/atividades/criar_form', [AtividadesController::class, 'atividade_criar_form']);
 Route::middleware(['auth:sanctum', 'verified'])->post('/atividades/criar', [AtividadesController::class, 'atividade_criar']);
 
+//overview
+Route::middleware(['auth:sanctum', 'verified'])->get('/overview', function () {
+    return view('users/overview');
+});

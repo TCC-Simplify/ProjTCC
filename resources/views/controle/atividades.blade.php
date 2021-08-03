@@ -30,7 +30,7 @@
             </div>
             @if(Auth::user()->permissao == 2 || Auth::user()->permissao == 1)
                 <div class="hed">
-                    <a href="/atividades" class="m"><p>Minhas</p></a>
+                    <a href="/atividades" class="m" style="color: green; font-weight: bold;"><p>Minhas</p></a>
                     <a href="/atividades/funcs" class="f"><p>Meus funcionários</p></a>
                 </div>
                 <br>

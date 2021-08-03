@@ -83,8 +83,8 @@
                     <input type="radio" name="tipo_destinatario" id="individual" value="1" onfocus="mostra_individual()" checked>
                     <label for="individual">Individual</label>
                     
-                    <input type="radio" name="tipo_destinatario" id="grupo" value="2" onfocus="mostra_grupo()">
-                    <label for="grupo">Grupo</label>
+                    <input type="radio" name="tipo_destinatario" id="grupo" value="2" onfocus="mostra_grupo()" <?php if(Auth::user()->equipe == 0) echo "hidden"?>>
+                    <label for="grupo" <?php if(Auth::user()->equipe == 0) echo "hidden"?>>Grupo</label>
                 </div>
                 <style>
 
@@ -97,28 +97,51 @@
 
 
                 {{-- ============================== Mostrando todos os usuários ============================== --}}
-                <div class="form-group" id="ativ_ind">
-                    <select id="destinatario" name="destinatario" style="height:40px;" class="indiv">
-                        <option value="" selected disabled hidden>Selecione o usuário: </option>
-                        @foreach ($users as $user)
-                            <option value="{{$user->id}}">{{$user->name}}</option>
-                        @endforeach
-                    </select>
-                </div>
+                @if(Auth::user()->permissao == 3)
+                    <div class="form-group" id="ativ_ind">
+                        <select id="destinatario" name="destinatario" style="height:40px;" class="indiv">
+                            @foreach ($users as $user)
+                                @if(Auth::user()->id == $user->id)
+                                    <option value="{{$user->id}}" selected>{{$user->name}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                @else
+                    <div class="form-group" id="ativ_ind">
+                        <select id="destinatario" name="destinatario" style="height:40px;" class="indiv">
+                            <option value="" selected disabled hidden>Selecione o usuário: </option>
+                            @foreach ($users as $user)
+                                <option value="{{$user->id}}">{{$user->name}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endif
 
                 {{-- ============================== Mostrando todos as equipes ============================== --}}
-                <div class="form-group mostra" id="ativ_grupo">
-                    <select id="destinatario" name="destinatario" style="height:40px;" class="indiv">
-                        <option value="" selected disabled hidden>Selecione a equipe: </option>
-                        @foreach ($equipes as $equipe)
-                            <option value="{{$equipe->id}}">{{$equipe->equipe}}</option>
-                        @endforeach
-                    </select>
-                </div>
-
-                <div id="botao">
-                    <input type="submit" name="finalizacao" value="Confirmar" class="btn-cad" />
-                </div>
+                @if(Auth::user()->permissao == 3)
+                    <div class="form-group mostra" id="ativ_grupo">
+                        <select id="destinatario" name="destinatario" style="height:40px;" class="indiv">
+                            @foreach ($equipes as $equipe)
+                                @if(Auth::user()->equipe == $equipe->id)
+                                    <option value="{{$equipe->id}}" selected>{{$equipe->equipe}}</option>
+                                @endif
+                            @endforeach
+                        </select>
+                    </div>
+                @else
+                    <div class="form-group mostra" id="ativ_grupo">
+                        <select id="destinatario" name="destinatario" style="height:40px;" class="indiv">
+                            <option value="" selected disabled hidden>Selecione a equipe: </option>
+                            @foreach ($equipes as $equipe)
+                                <option value="{{$equipe->id}}">{{$equipe->equipe}}</option>
+                            @endforeach
+                        </select>
+                    </div>
+                @endif
+                    <div id="botao">
+                        <input type="submit" name="finalizacao" value="Confirmar" class="btn-cad" />
+                    </div>
             </form>
 
     </div>

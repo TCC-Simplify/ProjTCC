@@ -31,7 +31,7 @@
             @if(Auth::user()->permissao == 2 || Auth::user()->permissao == 1)
                 <div class="hed">
                     <a href="/atividades" class="m"><p>Minhas</p></a>
-                    <a href="/atividades/funcs" class="f"><p>Meus funcionários</p></a>
+                    <a href="/atividades/funcs" class="f" style="color: green; font-weight: bold;"><p>Meus funcionários</p></a>
                 </div>
                 <br>
             @endif
@@ -42,7 +42,7 @@
                 @foreach ($ativ as $atividade)
                         @if ( $atividade->tipo_destinatario == 1 && $atividade->finalizacao == "Confirmar" && $atividade->destinatario != $id_user)
                                 <div class="card">
-                                    <a href="atividades{{$atividade->id}}">
+                                <a href="funcs{{$atividade->id}}">
                                         {{$id;}}
                                         <br>
                                         <div class="nome">
@@ -76,7 +76,7 @@
                 @foreach ($ativ as $atividade)
                     @if ( $atividade->tipo_destinatario == 2 && $atividade->finalizacao == "Confirmar" && $atividade->destinatario != $id_user)
                         <div class="card">
-                            <a href="atividades/funcs{{$atividade->id}}">
+                            <a href="funcs{{$atividade->id}}">
                                 {{$id;}}
                                 <br>
                                 <div class="nome">
