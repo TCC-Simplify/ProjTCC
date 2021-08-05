@@ -30,6 +30,7 @@
                                     <span v-if="user.notification" class="ml-2 mt-2.5 w-2 h-2 bg-blue-400 rounded-full"></span>
                                 </p>
                             </li>
+                            
                         </ul>
                     </div>
 
@@ -55,7 +56,10 @@
                                 <span class="block mt-1 text-xs text-gray-500"> {{ formatDate(message.created_at) }}</span>
                             </div>
                         </div>
-                        <div v-if="userActive" class=" teste w-full bg-gray-200 bg-opacity-25 p-6 border-t border-gray-200">
+                        <div v-if="userActive" class=" teste w-full bg-gray-200 bg-opacity-25 p-6 border-t border-gray-200"
+                        style="
+                            color: black;
+                        ">
                             <form v-on:submit.prevent="sendMessage">
                                 <div class="flex rounded-md overflow-hidden border border-gray-300">
                                     <input v-model="message" type="text" class="flex-1 px-4 py-2 text-sm focus:outline-none">

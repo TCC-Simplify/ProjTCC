@@ -23285,7 +23285,10 @@ var _hoisted_8 = {
 };
 var _hoisted_9 = {
   key: 0,
-  "class": " teste w-full bg-gray-200 bg-opacity-25 p-6 border-t border-gray-200"
+  "class": " teste w-full bg-gray-200 bg-opacity-25 p-6 border-t border-gray-200",
+  style: {
+    "color": "black"
+  }
 };
 var _hoisted_10 = {
   "class": "flex rounded-md overflow-hidden border border-gray-300"
