@@ -143,7 +143,7 @@
                         </p>
                         <br>
                         <div class="final">
-                            <center><a href=""><button class="btn-fim">Finalizar atividade</button></a></center>
+                            <center><a href="{{ url('/atividades/marcar_concluido', $atividade->id) }}"><button class="btn-fim">Finalizar atividade</button></a></center>
                         </div>
                     </div> 
                 @endif

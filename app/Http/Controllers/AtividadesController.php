@@ -28,7 +28,7 @@ class AtividadesController extends Controller
             $id_empresa = session()->get('id_empresa');
             $ativ = $atividade->all();
             $users = $user->all()->where('empresa',$id_empresa);
-            $equipes = $equipe->all();
+            $equipes = $equipe->all()->where('ativo','s');
             $permissao = Auth::user()->permissao;
             $id_user = Auth::user()->id;
             
@@ -103,5 +103,14 @@ class AtividadesController extends Controller
         $equipes = $equipe->all()->where('empresa',$id_empresa);
         
         return view('controle.atividades_cadastro', compact('users', 'equipes'));
+    }
+
+
+    public function marcar_concluido($id)
+    {
+        Atividade::find($id)->update([
+            'finalizacao' => 'sim'
+        ]);
+        return redirect('/atividades');
     }
 }
