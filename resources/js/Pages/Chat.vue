@@ -77,7 +77,7 @@
 <script>
     /*import AppLayout from '@/Layouts/AppLayout'*/
     import moment from "moment";
-    import Vue from 'vue';
+    import Vue from 'vue'
 
     export default {
         components: {
@@ -140,12 +140,26 @@
             })
 
             Echo.private(`user.${this.auth.user.id}`).listen('.SendMessage', async (e) => {
+               
                 if(this.userActive && this.userActive.id === e.message.from){
                     await this.messages.push(e.message)
                     this.scrollToBottom()
+                } else {
+                    const user = this.auth.users.filter((user) => {
+                        if (auth.user.id === e.message.from) {
+                            return user
+                        }
+                    })
+
+
+                    if (user) {
+                        Vue.set(user[0], 'notification', true)  
+                    }
                 }
+
+                console.log(e)
             })
-        },
+        }
         props: {
             auth: Object,
         }
