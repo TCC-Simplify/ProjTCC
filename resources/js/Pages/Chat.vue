@@ -27,7 +27,7 @@
                                 
                                 <p class="flex item-center">
                                     {{ user.name }}
-                                    <span v-if="user.notification" class="ml-2 mt-2.5 w-2 h-2 bg-blue-400 rounded-full"></span>
+                                    <span v-if="user.notification" class="ml-2 w-2 h-2 bg-blue-500 rounded-full"></span>
                                 </p>
                             </li>
                             
@@ -56,6 +56,8 @@
                                 <span class="block mt-1 text-xs text-gray-500"> {{ formatDate(message.created_at) }}</span>
                             </div>
                         </div>
+
+                        <!--form-->
                         <div v-if="userActive" class=" teste w-full bg-gray-200 bg-opacity-25 p-6 border-t border-gray-200"
                         style="
                             color: black;
@@ -75,9 +77,9 @@
 </template>
 
 <script>
+    import Vue from 'vue'
     /*import AppLayout from '@/Layouts/AppLayout'*/
     import moment from "moment";
-    import Vue from 'vue'
 
     export default {
         components: {
@@ -99,7 +101,9 @@
                 }
             },
 
-            loadMessages: async function(userId){
+            loadMessages: async function(userId) {
+
+
                 axios.get(`api/users/${userId}`).then(response => {
                     this.userActive = response.data.user
                 })
@@ -107,6 +111,16 @@
                 await axios.get(`api/messages/${userId}`).then(response => {
                     this.messages = response.data.messages
                 })
+
+                const user = this.users.filter((user) => {
+                    if (user.id === userId) {
+                        return user
+                    }
+                })
+
+                if (user) {
+                    Vue.set(user[0], 'notification', false)
+                }
 
                 this.scrollToBottom()
             },
@@ -135,6 +149,8 @@
             },
         },
         mounted(){
+
+
             axios.get('api/users').then(response => {
                 this.users = response.data.users
             })
@@ -145,23 +161,21 @@
                     await this.messages.push(e.message)
                     this.scrollToBottom()
                 } else {
-                    const user = this.auth.users.filter((user) => {
-                        if (auth.user.id === e.message.from) {
+                    const user = this.users.filter((user) =>{
+                        if (user.id === e.messagem.from) {
                             return user
                         }
                     })
 
-
                     if (user) {
-                        Vue.set(user[0], 'notification', true)  
+                        Vue.set(user[0], 'notification', true)
                     }
                 }
-
                 console.log(e)
             })
-        }
+        },
         props: {
             auth: Object,
-        }
+        } 
     }
 </script>
