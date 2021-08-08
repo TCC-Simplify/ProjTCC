@@ -76,7 +76,8 @@ class UsuarioController extends Controller
             ]);
     
         } catch (\Illuminate\Validation\ValidationException $e) {
-            dd($e->errors());
+            $e->errors();
+            return redirect()->back();
         }
         User::create([
              'name' =>  $request['name'],

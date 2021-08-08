@@ -25,12 +25,16 @@ class EmpresaController extends Controller
     {
         $this->empresa = $empresa;
     }
+
+    
     
     public function index()
     {
         //
     }
-
+    
+    
+    
     /**
      * Show the form for creating a new resource.
      *
@@ -49,13 +53,13 @@ class EmpresaController extends Controller
      */
     public function store(Request $request)
     {     
-        $mensagens= [
+        /*$mensagens= [
             'nome.required'=> 'o nome é obrigatorio!',
             'cnpj.required'=> 'o CNPJ é obrigatorio',
             'senha.min'=> 'A senha deve ter no mínimo 8 caracteres'
         ];
         
-       /*$validate= validator($request, $this->empresa->rules, $mensagens);
+       $validate= validator($request, $this->empresa->rules, $mensagens);
        if($validate->fails()){
            return redirect()->back()
            ->withErrors($validate)
@@ -70,7 +74,10 @@ class EmpresaController extends Controller
         ]);
 
         } catch (\Illuminate\Validation\ValidationException $e) {
-            dd($e->errors());
+            $e->errors();
+            return redirect()->back();
+            
+            
         }
         Empresa::create([
             'nome' =>  $request['nome'],
