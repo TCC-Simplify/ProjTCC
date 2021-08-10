@@ -8,6 +8,7 @@ use App\Http\Controllers\LogController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PontosController;
+use App\Http\Controllers\FullCalendarController;
 
 /*
 |--------------------------------------------------------------------------
@@ -119,3 +120,7 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/atividades/criar', [Ativ
 Route::middleware(['auth:sanctum', 'verified'])->get('/overview', function () {
     return view('users/overview');
 });
+
+Route::get('full-calender', [FullCalendarController::class, 'index']);
+
+Route::post('full-calender/action', [FullCalendarController::class, 'action']);
