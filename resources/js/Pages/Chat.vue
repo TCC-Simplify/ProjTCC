@@ -17,7 +17,10 @@
                     ">
                         <ul>
                             <li>
-                                <a href="{{ url('/') }}"><img v-bind:src="'/imgs/logo_simplify.png'" alt="Logo Simplify" style="width: 50%; margin: auto; margin-top: 5%; margin-bottom: 2%;"></a>
+                                <a href="/mural"><p style="width: 50%; font-size:50px; margin-top: 5%; margin-left: 5%; color: black;">&#8592;</p></a>
+                            </li>
+                            <li>
+                                <a href="{{ url('/') }}"><img v-bind:src="'/imgs/logo_simplify.png'" alt="Logo Simplify" style="width: 50%; margin: auto; margin-bottom: 2%;"></a>
                             </li>
                             <li 
                                 v-for = "user in users" :key="user.id"
@@ -27,10 +30,12 @@
                                 
                                 <p class="flex item-center">
                                     {{ user.name }}
-                                    <span v-if="user.notification" class="ml-2 w-2 h-2 bg-blue-500 rounded-full"></span>
+                                    <span v-if="user.notification" class="ml-2 mt-2.5 w-2 h-2 bg-white rounded-full"></span>
                                 </p>
                             </li>
-                            
+                            <li>
+                               <p style="width: 50%; font-size:25px ; margin-top: 10%; font-weight: bold; margin-bottom: 2%; margin-left: 5%; color: black;">Equipes</p>
+                            </li>
                         </ul>
                     </div>
 
@@ -119,7 +124,7 @@
                 })
 
                 if (user) {
-                    Vue.set(user[0], 'notification', false)
+                    user[0].notification = false;
                 }
 
                 this.scrollToBottom()
@@ -162,13 +167,13 @@
                     this.scrollToBottom()
                 } else {
                     const user = this.users.filter((user) =>{
-                        if (user.id === e.messagem.from) {
+                        if (user.id === e.message.from) {
                             return user
                         }
                     })
 
                     if (user) {
-                        Vue.set(user[0], 'notification', true)
+                        user[0].notification = true;
                     }
                 }
                 console.log(e)
