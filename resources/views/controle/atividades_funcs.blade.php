@@ -4,7 +4,7 @@
     <div class="links">
         <a href="{{ url('/pag_user') }}">Usuários</a>
         <a href="{{ url('/empresa') }}">Empresa</a>
-        <a href="{{ url('/mural') }}" style="color: rgb(38, 109, 82);">Controle</a>
+        <a href="{{ url('/atividades') }}" style="color: rgb(38, 109, 82);">Controle</a>
         <a class="log" href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" onmouseover="getElementById('descricao').style.display='block'" onmouseout="getElementById('descricao').style.display='none'"><i class="fas fa-sign-out-alt"></i></a>
         <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;"> {{-- ap inves de url, poderia ser usado route('mural') --}}
             {{ csrf_field() }}

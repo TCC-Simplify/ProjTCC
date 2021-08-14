@@ -104,10 +104,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/area_ponto', function () 
 });
 Route::middleware(['auth:sanctum', 'verified'])->post('/ponto', [PontosController::class, 'create']);
 
-//Mural
+/*Mural
 Route::middleware(['auth:sanctum', 'verified'])->get('/mural', function () {
     return view('controle/mural');
-});
+});*/
 
 //Atividades
 Route::middleware(['auth:sanctum', 'verified'])->get('/atividades{id?}', [AtividadesController::class, 'atividade_show']);
@@ -121,6 +121,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/overview', function () {
     return view('users/overview');
 });
 
-Route::get('full-calender', [FullCalendarController::class, 'index']);
+Route::get('/mural', [FullCalendarController::class, 'index']);
 
 Route::post('full-calender/action', [FullCalendarController::class, 'action']);
