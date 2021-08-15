@@ -29,6 +29,6 @@ class PontosController extends Controller
               'motivo' =>  $request['motivo']
         ]);
   
-        return redirect('/mural');
+        return redirect('/atividades');
       }
 }

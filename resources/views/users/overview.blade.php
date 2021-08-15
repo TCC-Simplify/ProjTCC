@@ -23,9 +23,75 @@
 @endsection
 
 @section('direita')
-    <div class="direita cad_user">
-        <h1>Página de overview</h1>
-        <br>
-        <p>Aqui estarão disponível os gráficos com desempenhos de todos os funcionários e um placar com os que realizaram mais atividades difíceis.</p>
+    <div class="direita overview">
+        <h1>Overview das atividades</h1>
+
+        <div class="container">
+            <div class="lin">
+                <div class="posi">1</div>
+                <div class="nome">Dayna Caroline Domiciano do Prado</div>
+                <div class="ativ">
+                    <div class="title">Atividades realizadas</div>
+                    <div class="mod">
+                        <div class="dificil">
+                            <span class="span" style="background-color: rgb(228, 74, 74);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            6
+                        </div>
+                        <div class="medio">
+                            <span class="span" style="background-color: rgb(250, 250, 100);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            5
+                        </div>
+                        <div class="facil">
+                            <span class="span" style="background-color: rgb(83, 194, 83);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            2
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lin">
+                <div class="posi">2</div>
+                <div class="nome">Gabriel</div>
+                <div class="ativ">
+                    <div class="title">Atividades realizadas</div>
+                    <div class="mod">
+                        <div class="dificil">
+                            <span class="span" style="background-color: rgb(228, 74, 74);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            5
+                        </div>
+                        <div class="medio">
+                            <span class="span" style="background-color: rgb(250, 250, 100);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            4
+                        </div>
+                        <div class="facil">
+                            <span class="span" style="background-color: rgb(83, 194, 83);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            2
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <div class="lin">
+                <div class="posi">3</div>
+                <div class="nome">Isabela</div>
+                <div class="ativ">
+                    <div class="title">Atividades realizadas</div>
+                    <div class="mod">
+                        <div class="dificil">
+                            <span class="span" style="background-color: rgb(228, 74, 74);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            4
+                        </div>
+                        <div class="medio">
+                            <span class="span" style="background-color: rgb(250, 250, 100);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            1
+                        </div>
+                        <div class="facil">
+                            <span class="span" style="background-color: rgb(83, 194, 83);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
+                            2
+                        </div>
+                    </div>
+                </div>
+            </div>
+        </div>
     </div>
 @endsection
