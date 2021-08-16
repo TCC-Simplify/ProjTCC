@@ -34,6 +34,17 @@ class MessageController extends Controller
             }
         )->orderBy('created_at', 'ASC')->get();
 
+        Message::where(
+            function ($query) use ($userFrom, $userTo){
+                $query->where([
+                    'from' => $userTo,
+                    'to' => $userFrom
+                ]);
+            }
+        )->Update([
+            'visto' => false
+        ]);
+
         return response()->json([
             'messages' => $messages
         ], Response::HTTP_OK);
@@ -61,6 +72,7 @@ class MessageController extends Controller
         $message->from = Auth::user()->id;
         $message->to = $request->to;
         $message->content = filter_var($request->content, FILTER_SANITIZE_STRIPPED);
+        $message->visto = true;
         $message->save();
 
         SendMessage::dispatch($message, $request->to);

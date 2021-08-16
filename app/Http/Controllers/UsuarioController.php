@@ -68,7 +68,7 @@ class UsuarioController extends Controller
             $checkbox = 3;
         }
 
-        try{
+        /*try{
 
             $dados = $request->validate([
                 'cpf' => 'required|cpf',
@@ -78,7 +78,7 @@ class UsuarioController extends Controller
         } catch (\Illuminate\Validation\ValidationException $e) {
             $e->errors();
             return redirect()->back();
-        }
+        }*/
         User::create([
              'name' =>  $request['name'],
              'email' =>  $request['email'],

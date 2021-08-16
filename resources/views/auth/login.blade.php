@@ -80,7 +80,7 @@
                 </button>
                 <div class="links">
                     <div class="link1">
-                        <a href="{{ url('/password/reset') }}">
+                        <a href="{{ url('/forgot-password') }}">
                             Esqueceu sua senha?
                         </a>
                     </div>

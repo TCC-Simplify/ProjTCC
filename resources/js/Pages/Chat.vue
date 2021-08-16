@@ -17,10 +17,13 @@
                     ">
                         <ul>
                             <li>
-                                <a href="/mural"><p style="width: 50%; font-size:50px; margin-top: 5%; margin-left: 5%; color: black;">&#8592;</p></a>
+                                <a href="/atividades"><p style="width: 50%; font-size:50px; margin-top: 5%; margin-left: 5%; color: black;">&#8592;</p></a>
                             </li>
                             <li>
                                 <a href="{{ url('/') }}"><img v-bind:src="'/imgs/logo_simplify.png'" alt="Logo Simplify" style="width: 50%; margin: auto; margin-bottom: 2%;"></a>
+                            </li>
+                            <li>
+                               <p style="width: 50%; font-size:25px ; margin-top: 10%; font-weight: bold; margin-bottom: 2%; margin-left: 5%; color: black;">Individuais</p>
                             </li>
                             <li 
                                 v-for = "user in users" :key="user.id"
