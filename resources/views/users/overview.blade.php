@@ -19,6 +19,7 @@
         <div class="a" <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>><a href="{{ url('/cadastro_user') }}"><i class="fas fa-user-plus"></i></a></div>
         <div class="a" <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>><a href="{{ url('/users') }}"><i class="fas fa-users"></i></a></div>
         <div class="a"><a href="{{ url('/overview') }}"><i class="fas fa-chart-area es"></i></a></div>
+        <div class="a"><a href="{{ url('/dados_ponto') }}"><i class="fas fa-chart-area"></i></a></div>
     </div>
 @endsection
 

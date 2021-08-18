@@ -17,6 +17,7 @@ class CreatePontosTable extends Migration
             $table->id();
             $table->foreignId('users')->unsigned();
             $table->integer('motivo');
+            $table->integer('entrada_id')->nullable();
             $table->timestamps();
         });
     }

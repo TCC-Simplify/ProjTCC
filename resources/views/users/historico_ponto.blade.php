@@ -31,12 +31,12 @@
 
 
     <!-- Modal -->
-    <form class="modal fade" action="{{ url('/ponto')}}" method="POST" enctype="multipart/form-data" id="modalPonto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <form class="modal fade" action="{{ url('/dados_ponto')}}" method="get" enctype="multipart/form-data" id="modalPonto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
       {{ csrf_field() }}  
       <div class="modal-dialog" role="document">
         <div class="modal-content">
           <div class="modal-header">
-            <h5 class="modal-title" id="exampleModalLabel">Registrar Horário</h5>
+            <h5 class="modal-title" id="exampleModalLabel">Histórico de Pontos</h5>
           </div>
           <div class="modal-body">
             <div class="form-group">
@@ -44,21 +44,27 @@
                 <br><input type="text" name="fnome" value="{{ Auth::user()->name }}" disabled>    
               </div>
               <div class="form-group">
-                <label for="horario">Horário: </label>
-                <h2 id="hora"></h2>
-              </div>
-              <div class="form-group">
-                <label for="formMotivo">Motivo:</label>
-                <select class="form-control" id="formMotivo" name="motivo">
-                  <option value="1">Entrada</option>
-                  <option value="2">Volta de intervalo</option>
-                </select>
+                <label for="historico">Histórico: </label></br>
+                    @foreach ($hist as $linha)
+                        <a href=""><label style="color:blue;">Justificar</label> &nbsp;</a>
+                        <label>{{ $linha->created_at }}</label>&nbsp;
+                        @if ($linha->motivo == 1)
+                        <label>Entrada</label>
+                        @endif
+                        @if ($linha->motivo == 2)
+                        <label>Volta de Intervalo</label>
+                        @endif
+                        @if ($linha->motivo == 3)
+                        <label>Saída</label>
+                        @endif
+                        </br>
+                    @endforeach
               </div>
 
 
           </div>
           <div class="modal-footer">
-            <button type="submit" class="btn btn-primary">Confirmar</button>
+            <button type="submit" class="btn btn-primary">Voltar</button>
           </div>
         </div>
       </div>

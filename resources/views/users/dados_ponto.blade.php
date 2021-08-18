@@ -15,19 +15,29 @@
 
 @section('opcoes')
     <div class="opcoes users">
-        <div class="a"><a href="{{ url('/pag_user') }}"><i class="fas fa-user es"></i></a></div>
+        <div class="a"><a href="{{ url('/pag_user') }}"><i class="fas fa-user"></i></a></div>
         <div class="a" <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>><a href="{{ url('/cadastro_user') }}"><i class="fas fa-user-plus"></i></a></div>
         <div class="a" <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>><a href="{{ url('/users') }}"><i class="fas fa-users"></i></a></div>
         <div class="a"><a href="{{ url('/overview') }}"><i class="fas fa-chart-area"></i></a></div>
-        <div class="a"><a href="{{ url('/dados_ponto') }}"><i class="fas fa-chart-area"></i></a></div>
+        <div class="a"><a href="{{ url('/dados_ponto') }}"><i class="fas fa-chart-area es"></i></a></div>
     </div>
 @endsection
 
 @section('direita')
     <div class="direita cad_user">
-        <h1>Página do usuário</h1>
+        <h1>Dados do Ponto</h1>
+        <br><br>
+        <h3>Último ponto registrado: {{$ponto->created_at}}</h3>
+        <h3>{{$status}}</h3>
         <br>
-        <p>Aqui estará disponível a parte de desempenho do usuário, além da alteração e desativação da própria conta.</p>
-        <p>Ainda não feito por que não existe a parte atividades ainda...</p>
+        <div id="botao">
+            <form action="{{ url('/saida_ponto') }}" method="POST" enctype="multipart/form-data" class="form-cad">
+            {!! csrf_field() !!}
+            @if ($status == 'Entrada')
+                <input type="submit" name="botao" value="Encerrar Ponto" style="padding-left:25px;padding-right:25px;margin-right:60px;background-color:rgb(38, 109, 82);color:white;"/>
+            @endif
+                <a href="{{ url('/historico_ponto') }}"><input type="button" name="botao" value="Histórico de Pontos" style="background-color:rgb(38, 109, 82);color:white;"/></a>
+            </form>   
+        </div>
     </div>
 @endsection 

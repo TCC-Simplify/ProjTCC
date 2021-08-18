@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Hash;
 use Auth;
+use DB;
 use App\Http\Controllers\Redirect;
 use Illuminate\Contracts\Encryption\DecryptException;
 
@@ -26,9 +27,47 @@ class PontosController extends Controller
       {        
         Ponto::create([
               'users' =>  Auth::user()->id,
-              'motivo' =>  $request['motivo']
+              'motivo' =>  $request['motivo'],
+              'entrada_id' => null
         ]);
   
         return redirect('/atividades');
       }
+
+      public function show()
+      {        
+        $ponto = DB::table('pontos')->where('users', Auth::user()->id)->orderBy('created_at', 'desc')->first();
+        $status = '';
+        if($ponto->entrada_id == null)
+          $status = 'Entrada';
+        else
+          $status = 'Saída';
+
+        return view('users/dados_ponto', compact('ponto', 'status'));
+      }
+
+      public function saida()
+      {        
+
+        $saida = DB::table('pontos')->where('users', Auth::user()->id)->orderBy('created_at', 'desc')->first();
+        $saida= json_decode( json_encode($saida->id), true);
+        Ponto::create(
+          [
+            'users' =>  Auth::user()->id,
+            'motivo' =>  3,
+            'entrada_id' => $saida
+          ]
+        );
+
+        return redirect('/dados_ponto');
+      }
+
+      public function historico()
+      {        
+
+        $hist = Ponto::all()->where('users', Auth::user()->id);
+
+        return view('users/historico_ponto', compact('hist'));
+      }
+
 }

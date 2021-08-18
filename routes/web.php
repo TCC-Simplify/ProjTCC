@@ -98,11 +98,15 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/equipe/add/processing/{n
 
 Route::middleware(['auth:sanctum', 'verified'])->post('/equipe/delete', [EmpresaController::class, 'equipe_remove']);
 
-//rotas zaneta
+//Ponto
 Route::middleware(['auth:sanctum', 'verified'])->get('/area_ponto', function () {
     return view('users/area_ponto');
 });
 Route::middleware(['auth:sanctum', 'verified'])->post('/ponto', [PontosController::class, 'create']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/dados_ponto', [PontosController::class, 'show']);
+Route::middleware(['auth:sanctum', 'verified'])->post('/saida_ponto', [PontosController::class, 'saida']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/historico_ponto', [PontosController::class, 'historico']);
+
 
 /*Mural
 Route::middleware(['auth:sanctum', 'verified'])->get('/mural', function () {

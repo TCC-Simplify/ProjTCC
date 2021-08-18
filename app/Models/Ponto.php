@@ -10,6 +10,6 @@ class Ponto extends Model
     use HasFactory;
 
     protected $fillable = [
-        'users', 'motivo'
+        'users', 'motivo', 'entrada_id'
     ];
 }
