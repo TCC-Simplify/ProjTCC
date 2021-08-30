@@ -10,6 +10,7 @@ use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PontosController;
 use App\Http\Controllers\FullCalendarController;
+use App\Http\Controllers\JustificativaController;
 
 /*
 |--------------------------------------------------------------------------
@@ -136,3 +137,11 @@ Route::get('logout', function ()
 
     return Redirect::to('/');
 })->name('logout');
+
+//rotas zaneta
+
+Route::get('/justificativa', function () {
+    return view('controle/justificativa');
+});
+Route::middleware(['auth:sanctum', 'verified'])->post('/justificativa', [JustificativaController::class, 'create']);
+

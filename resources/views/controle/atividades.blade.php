@@ -18,6 +18,7 @@
         <div class="a"><a href="{{ url('/mural') }}"><i class="fas fa-calendar-alt"></i></a></div>
         <div class="a"><a href="{{ url('/atividades') }}"><i class="fas fa-list-ul es"></i></a></div>
         <div class="a"><a href="{{ url('/chat') }}"><i class="fas fa-comments"></i></a></div>
+        <div class="a"><a href="{{ url('/justificativa') }}"><i class="fas fa-info"></i></a></div>
     </div>
 @endsection
 

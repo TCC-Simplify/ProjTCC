@@ -5,7 +5,9 @@ namespace App\Models;
 use Illuminate\Database\Eloquent\Factories\HasFactory;
 use Illuminate\Database\Eloquent\Model;
 
-class Justificativas extends Model
+class Justificativa extends Model
 {
-    use HasFactory;
+    protected $fillable = [
+        'users', 'justificativa', 'tipo'
+    ];
 }
