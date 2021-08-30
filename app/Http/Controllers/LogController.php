@@ -39,23 +39,24 @@ class LogController extends Controller
     {
         $aux = Auth::user()->aux;
 
-        $ldate = date('Y-m-d');
-        $ponto_bd = DB::table('pontos')->where([['users', Auth::user()->empresa],['created_at', 'LIKE', '%'.$ldate.'%']])->value('id');
-        $ref = DB::table('pontos')->where([['users', Auth::user()->empresa], ['entrada_id', null]])->orderBy('created_at', 'desc')->first();
-        if($ref){    
-            $ref= json_decode( json_encode($ref->id), true);
-            $saida_bd = DB::table('pontos')->where([['users', Auth::user()->empresa],['entrada_id', $ref]])->value('id');
-        }
+        // $ldate = date('Y-m-d');
+        // $ponto_bd = DB::table('pontos')->where([['users', Auth::user()->empresa],['created_at', 'LIKE', '%'.$ldate.'%']])->value('id');
+        // $ref = DB::table('pontos')->where([['users', Auth::user()->empresa], ['entrada_id', null]])->orderBy('created_at', 'desc')->first();
+        // if($ref){    
+        //     $ref= json_decode( json_encode($ref->id), true);
+        //     $saida_bd = DB::table('pontos')->where([['users', Auth::user()->empresa],['entrada_id', $ref]])->value('id');
+        // }
+        $ponto_bd = DB::table('pontos')->where([['users', Auth::user()->id]])->orderBy('created_at', 'desc')->first();
 
         $senha_empresa = DB::table('empresas')->where('id', Auth::user()->empresa)->value('senha');
         session()->put('id_empresa', Auth::user()->empresa);
         session()->put('senha_empresa', $senha_empresa);
 
-        if($aux == 1 && (!$ponto_bd || $saida_bd)){
+        if($aux == 1 && ($ponto_bd == null || $ponto_bd->entrada_id != null)){
             return view('users/area_ponto');
         }else if($aux == 0){
             return view('users/muda_senha');
-        }else if($aux == 1 && ($ponto_bd || !$saida_bd)){
+        }else if($aux == 1 && ($ponto_bd != null || $ponto_bd->entrada_id == null)){
             return redirect('/atividades');
         }
     }

@@ -27,45 +27,41 @@
     <div class="direita overview">
         <h1>Overview das atividades</h1>
 
-        <div class="container">
-        <?php $pos = 1; $red = 0; $yellow = 0; $green = 0; ?>
-        @foreach($users as $user)
-            @foreach($atividades as $linha)
-                @if ($linha->tipo_destinatario == 1 && $linha->destinatario == $user->id)
-                    @if ($linha->dificuldade == 1) <?php $green++; ?>
-                    @elseif ($linha->dificuldade == 2) <?php $yellow++; ?>
-                    @elseif ($linha->dificuldade == 3) <?php $red++; ?>
-                    @endif
-                @elseif ($linha->tipo_destinatario == 2 && $linha->destinatario == $user->equipe)
-                    @if ($linha->dificuldade == 1) <?php $green++; ?>
-                    @elseif ($linha->dificuldade == 2) <?php $yellow++; ?>
-                    @elseif ($linha->dificuldade == 3) <?php $red++; ?>
-                    @endif
-                @endif
-            @endforeach
-                <div class="lin">
-                    <div class="posi">{{ $pos }}</div>
-                    <div class="nome"><a href="{{ url('/overview', $user->id)}}">{{ $user->name}}</a></div>
-                    <div class="ativ">
-                        <div class="title">Atividades realizadas</div>
+        <h3>Individuais</h3>
+        @foreach($atividade_user as $linha)
+        <div class="card" style="background-color:rgb(38, 109, 82);">
+            <div class="nome">{{ $linha->atividade }}</div>
+            <div class="nome" style="font-size:95%;">Responsável: {{ $nome }}</div>
+            <div class="nome" style="font-size:95%;">Descrição: {{ $linha->descricao }}</div>
+            <div class="nome" style="font-size:95%;">Prazo: {{ $linha->prazo }}</div>
+        </div>
+        @endforeach
+        </br><h3>Em equipe</h3>
+        @foreach($atividade_equipe as $linha)
+            <div class="card" style="background-color:rgb(38, 109, 82);">
+                <div class="nome">{{ $linha->atividade }}</div>
+                <div class="nome" style="font-size:95%;">Responsável: {{ $nome_equipe }}</div>
+                <div class="nome" style="font-size:95%;">Descrição: {{ $linha->descricao }}</div>
+                <div class="nome" style="font-size:95%;">Prazo: {{ $linha->prazo }}</div>
+            </div>
+        @endforeach
+@endsection
+
+<!-- <div class="ativ">
+                        <div class="title">Dificuldade</div>
                         <div class="mod">
+                            @if ($linha->dificuldade == 3)
                             <div class="dificil">
                                 <span class="span" style="background-color: rgb(228, 74, 74);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                {{ $red }}
                             </div>
+                            @elseif ($linha->dificuldade == 2)
                             <div class="medio">
                                 <span class="span" style="background-color: rgb(250, 250, 100);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                {{ $yellow }}
                             </div>
+                            @elseif ($linha->dificuldade == 1)
                             <div class="facil">
                                 <span class="span" style="background-color: rgb(83, 194, 83);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                                {{ $green }}
                             </div>
+                            @endif
                         </div>
-                    </div>
-                </div>
-                <?php $pos++; $red = 0; $yellow = 0; $green = 0;?>
-            @endforeach
-        </div>
-    </div>
-@endsection
+                    </div> -->

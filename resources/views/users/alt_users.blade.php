@@ -6,7 +6,7 @@
         <a href="{{ url('/empresa') }}">Empresa</a>
         <a href="{{ url('/atividades') }}">Controle</a>
         <a class="log" href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" onmouseover="getElementById('descricao').style.display='block'" onmouseout="getElementById('descricao').style.display='none'"><i class="fas fa-sign-out-alt"></i></a>
-        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+        <form id="logout-form" action="{{ url('/ponto_confirma') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
         </form>
        <!--<div id="descricao" name="descricao">Sair</div>-->
@@ -19,6 +19,7 @@
         <div class="a" <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>><a href="{{ url('/cadastro_user') }}"><i class="fas fa-user-plus"></i></a></div>
         <div class="a" <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>><a href="{{ url('/users') }}"><i class="fas fa-users es"></i></a></div>
         <div class="a"><a href="{{ url('/overview') }}"><i class="fas fa-chart-area"></i></a></div>
+        <div class="a"><a href="{{ url('/dados_ponto') }}"><i class="fas fa-user-clock"></i></a></div>
     </div>
 @endsection
 

@@ -70,4 +70,13 @@ class PontosController extends Controller
         return view('users/historico_ponto', compact('hist'));
       }
 
+      public function confirma()
+      {        
+        $confirma = DB::table('pontos')->where('users', Auth::user()->id)->orderBy('created_at', 'desc')->first();
+        if($confirma->entrada_id == null)
+          return view('users/ponto_confirma');  
+        else
+          return redirect('/logout');
+      }
+
 }

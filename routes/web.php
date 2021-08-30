@@ -5,6 +5,7 @@ use Illuminate\Foundation\Application;
 use Illuminate\Support\Facades\Route;
 use Inertia\Inertia;
 use App\Http\Controllers\LogController;
+use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PontosController;
@@ -106,7 +107,7 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/ponto', [PontosControlle
 Route::middleware(['auth:sanctum', 'verified'])->get('/dados_ponto', [PontosController::class, 'show']);
 Route::middleware(['auth:sanctum', 'verified'])->post('/saida_ponto', [PontosController::class, 'saida']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/historico_ponto', [PontosController::class, 'historico']);
-
+Route::middleware(['auth:sanctum', 'verified'])->post('/ponto_confirma', [PontosController::class, 'confirma']);
 
 /*Mural
 Route::middleware(['auth:sanctum', 'verified'])->get('/mural', function () {
@@ -121,10 +122,17 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/atividades/criar_form', [
 Route::middleware(['auth:sanctum', 'verified'])->post('/atividades/criar', [AtividadesController::class, 'atividade_criar']);
 
 //overview
-Route::middleware(['auth:sanctum', 'verified'])->get('/overview', function () {
-    return view('users/overview');
-});
+Route::middleware(['auth:sanctum', 'verified'])->get('/overview', [OverviewController::class, 'show']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/overview/{id}', [OverviewController::class, 'atividades_show']);
 
 Route::get('/mural', [FullCalendarController::class, 'index']);
 
 Route::post('full-calender/action', [FullCalendarController::class, 'action']);
+
+Route::get('logout', function ()
+{
+    auth()->logout();
+    Session()->flush();
+
+    return Redirect::to('/');
+})->name('logout');

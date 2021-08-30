@@ -6,7 +6,7 @@
         <a href="{{ url('/empresa') }}" style="color: rgb(38, 109, 82);">Empresa</a>
         <a href="{{ url('/atividades') }}">Controle</a>
         <a class="log" href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" onmouseover="getElementById('descricao').style.display='block'" onmouseout="getElementById('descricao').style.display='none'"><i class="fas fa-sign-out-alt"></i></a>
-        <form id="logout-form" action="{{ url('/logout') }}" method="POST" style="display: none;">
+        <form id="logout-form" action="{{ url('/ponto_confirma') }}" method="POST" style="display: none;">
             {{ csrf_field() }}
         </form>
         <!--<div id="descricao" name="descricao">Sair</div>-->
