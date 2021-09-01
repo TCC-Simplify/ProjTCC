@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>How to Use Fullcalendar in Laravel 8</title>
+    <title>Mural - calendario</title>
     
     <meta name="csrf-token" content="{{ csrf_token() }}" />
 
@@ -15,7 +15,7 @@
   
 <div class="container">
     <br />
-    <h1 class="text-center text-primary"><u>MURAL - CALENDÁRIO</u></h1>
+    <h1 class="text-center text-primary"><u>Mural</u></h1>
     <br />
 
     <div id="calendar"></div>
@@ -42,23 +42,23 @@ $(document).ready(function () {
         events:'/full-calender',
         selectable:true,
         selectHelper: true,
-        select:function(inicio, fim, allDay)
+        select:function(start, end, allDay)
         {
-            var titulo = prompt('Event Title:');
+            var title = prompt('Event Title:');
 
-            if(titulo)
+            if(title)
             {
-                var inicio = $.fullCalendar.formatDate(inicio, 'DD-MM-Y HH:mm:ss');
+                var start = $.fullCalendar.formatDate(start, 'Y-MM-DD HH:mm:ss');
 
-                var fim = $.fullCalendar.formatDate(fim, 'DD-MM-Y HH:mm:ss');
+                var end = $.fullCalendar.formatDate(end, 'Y-MM-DD HH:mm:ss');
 
                 $.ajax({
                     url:"/full-calender/action",
                     type:"POST",
                     data:{
-                        titulo: titulo,
-                        inicio: inicio,
-                        fim: fim,
+                        title: title,
+                        start: start,
+                        end: end,
                         type: 'add'
                     },
                     success:function(data)
@@ -72,17 +72,17 @@ $(document).ready(function () {
         editable:true,
         eventResize: function(event, delta)
         {
-            var inicio = $.fullCalendar.formatDate(event.inicio, 'DD-MM-Y HH:mm:ss');
-            var fim = $.fullCalendar.formatDate(event.fim, 'DD-MM-Y HH:mm:ss');
-            var titulo = event.title;
+            var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
+            var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
+            var title = event.title;
             var id = event.id;
             $.ajax({
                 url:"/full-calender/action",
                 type:"POST",
                 data:{
-                    titulo: titulo,
-                    inicio: inicio,
-                    fim: fim,
+                    title: title,
+                    start: start,
+                    end: end,
                     id: id,
                     type: 'update'
                 },
@@ -95,17 +95,17 @@ $(document).ready(function () {
         },
         eventDrop: function(event, delta)
         {
-            var inicio = $.fullCalendar.formatDate(event.inicio, 'DD-MM-Y HH:mm:ss');
-            var fim = $.fullCalendar.formatDate(event.fim, 'DD-MM-Y HH:mm:ss');
-            var titulo = event.titulo;
+            var start = $.fullCalendar.formatDate(event.start, 'Y-MM-DD HH:mm:ss');
+            var end = $.fullCalendar.formatDate(event.end, 'Y-MM-DD HH:mm:ss');
+            var title = event.title;
             var id = event.id;
             $.ajax({
                 url:"/full-calender/action",
                 type:"POST",
                 data:{
-                    titulo: titulo,
-                    inicio: inicio,
-                    fim: fim,
+                    title: title,
+                    start: start,
+                    end: end,
                     id: id,
                     type: 'update'
                 },

@@ -3,33 +3,33 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-use App\Models\Eventos;
 
-class FullCalendarController extends Controller
+use App\Models\Event;
+
+class FullCalenderController extends Controller
 {
     public function index(Request $request)
     {
     	if($request->ajax())
     	{
-    		$data = Eventos::whereDate('inicio', '>=', $request->inicio)
-                       ->whereDate('fim',   '<=', $request->fim)
-                       ->get(['id', 'titulo', 'inicio', 'fim']);
+    		$data = Event::whereDate('start', '>=', $request->start)
+                       ->whereDate('end',   '<=', $request->end)
+                       ->get(['id', 'title', 'start', 'end']);
             return response()->json($data);
     	}
     	return view('full-calender');
     }
 
-    
     public function action(Request $request)
     {
     	if($request->ajax())
     	{
     		if($request->type == 'add')
     		{
-    			$event = Eventos::create([
-    				'titulo'		=>	$request->titulo,
-    				'inicio'		=>	$request->inicio,
-    				'fim'		=>	$request->fim
+    			$event = Event::create([
+    				'title'		=>	$request->title,
+    				'start'		=>	$request->start,
+    				'end'		=>	$request->end
     			]);
 
     			return response()->json($event);
@@ -37,10 +37,10 @@ class FullCalendarController extends Controller
 
     		if($request->type == 'update')
     		{
-    			$event = Eventos::find($request->id)->update([
-    				'titulo'		=>	$request->titulo,
-    				'inicio'		=>	$request->inicio,
-    				'fim'		=>	$request->fim
+    			$event = Event::find($request->id)->update([
+    				'title'		=>	$request->title,
+    				'start'		=>	$request->start,
+    				'end'		=>	$request->end
     			]);
 
     			return response()->json($event);
@@ -48,13 +48,11 @@ class FullCalendarController extends Controller
 
     		if($request->type == 'delete')
     		{
-    			$event = Eventos::find($request->id)->delete();
+    			$event = Event::find($request->id)->delete();
 
     			return response()->json($event);
     		}
     	}
     }
 }
-
-
 ?>
