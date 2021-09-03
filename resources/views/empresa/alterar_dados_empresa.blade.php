@@ -78,7 +78,9 @@
         </form>
     </div>
 
+  
     <script>
+        
             $('#form').on( 'viacep.ajax.complete', function () {
                 // remover o header para esta requisicao
                 delete $.ajaxSettings.headers["X-CSRF-TOKEN"];

@@ -9,6 +9,7 @@ use App\Models\Empresa;
 use App\Models\Equipes;
 use DB;
 use Illuminate\Support\Facades\Validator;
+use App\Helper\Helper;
 
 class EmpresaController extends Controller
 {
@@ -109,7 +110,11 @@ class EmpresaController extends Controller
     public function show(){
         $id = session()->get('id_empresa');
         $empresa = Empresa::find($id);
-         return view('empresa/empresa',compact('empresa'));
+        $msg=Helper::GetCustomMsg();
+         return view('empresa/empresa',[
+             'empresa'=>$empresa,
+             'msg'=>$msg
+         ]);
     }
 
     /**
@@ -166,6 +171,7 @@ class EmpresaController extends Controller
                 'estado' =>   $request['estado'],
                 'complemento' =>   $request['complemento'],
             ]);
+            Helper::setCustomMsg(['msg-success', 'Alterado com sucesso!']);
 
             return redirect('/empresa');
         }else{

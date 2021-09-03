@@ -21,6 +21,8 @@
 @endsection
 
 @section('direita')
+<div class="custom-msg" id="custom-msg">
+    </div>
     <div class="direita cad_user">
         <h1>Dados da empresa</h1>
         <div class="form-cad">
@@ -65,4 +67,9 @@
             <a href="{{ url('/del_empresa', $empresa->id) }}" <?php if(Auth::user()->permissao == 2 || Auth::user()->permissao == 3) echo 'style="display: none;"'?>><button class="btn-del-emp">Desativar</button></a>
         </div>
     </div>
+    @if ($msg != null)
+        <script>
+            customMsg('{{ $msg[1] }}', '{{ $msg[0] }}')
+        </script>
+    @endif
 @endsection

@@ -17,6 +17,7 @@
         <link href="{{ url('css/user_e_empresa/mostrar_todos.css') }}" rel="stylesheet">
         <link href="{{ url('css/atividades.css') }}" rel="stylesheet">
         <link href="{{ url('css/overview.css') }}" rel="stylesheet">
+        <link rel="stylesheet" href="{{asset(css/msg.css)}}">
 
         <!-- Scripts js -->
         <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
@@ -185,6 +186,7 @@
             </div>
             @yield('direita')
         </div>
+        <script src="{{asset(js/msg.js)}}"></script>
     </body>
 </html>
 
