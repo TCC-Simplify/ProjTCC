@@ -9,7 +9,7 @@ use App\Http\Controllers\OverviewController;
 use App\Http\Controllers\EmpresaController;
 use App\Http\Controllers\UsuarioController;
 use App\Http\Controllers\PontosController;
-use App\Http\Controllers\FullCalenderController;
+
 use App\Http\Controllers\JustificativaController;
 
 /*
@@ -125,9 +125,7 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/atividades/criar', [Ativ
 Route::middleware(['auth:sanctum', 'verified'])->get('/overview', [OverviewController::class, 'show']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/overview/{id}', [OverviewController::class, 'atividades_show']);
 
-Route::get('full-calender', [FullCalenderController::class, 'index']);
 
-Route::post('full-calender/action', [FullCalenderController::class, 'action']);
 
 Route::get('logout', function ()
 {
