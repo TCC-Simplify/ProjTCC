@@ -45,7 +45,7 @@
             @endforeach
                 <div class="lin">
                     <div class="posi">{{ $pos }}</div>
-                    <div class="nome"><a href="{{ url('/overview', $user->id)}}">{{ $user->name}}</a></div>
+                    <div class="nome"><a href="{{ url('/overview', $user->id)}}">{{$user->name}}</a></div>
                     <div class="ativ">
                         <div class="title">Atividades realizadas</div>
                         <div class="mod">

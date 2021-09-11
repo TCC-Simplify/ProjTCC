@@ -17,15 +17,14 @@
         <link href="{{ url('css/user_e_empresa/mostrar_todos.css') }}" rel="stylesheet">
         <link href="{{ url('css/atividades.css') }}" rel="stylesheet">
         <link href="{{ url('css/overview.css') }}" rel="stylesheet">
-        <link rel="stylesheet" href="{{asset(css/msg.css)}}">
+        <link href="{{ url('css/msg.css')}}" rel="stylesheet">
 
         <!-- Scripts js -->
         <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@vsilva472/jquery-viacep/dist/jquery-viacep.min.js"></script>
         <script src="<?php echo url('js/jquery.maskedinput-1.1.4.pack.js')?>" type="text/javascript"></script>
-        <script src="<?php echo url('js/funcs_cad_empresa.js')?>">
-         <script src="<?php echo url('js/funcs_cad_profissional.js')?>">
-        </script> 
+        <script src="<?php echo url('js/funcs_cad_empresa.js')?>"></script>
+        <script src="<?php echo url('js/funcs_cad_profissional.js')?>"></script> 
 
         <!-- Styles -->
         <style>
@@ -186,7 +185,7 @@
             </div>
             @yield('direita')
         </div>
-        <script src="{{asset(js/msg.js)}}"></script>
+        <script src="{{asset('js/msg.js')}}"></script>
     </body>
 </html>
 

@@ -23,26 +23,31 @@
     </div>
 @endsection
 
-@section('direita')
+@section('direita') 
     <div class="direita overview">
+        <div class="header">
+            <a href="{{ url()->previous() }}" class="volt"><p>&#8592;  Voltar</p></a>   
+        </div>
         <h1>Overview das atividades</h1>
 
         <h3>Individuais</h3>
+        <br>
         @foreach($atividade_user as $linha)
-        <div class="card" style="background-color:rgb(38, 109, 82);">
+        <div class="card-o">
             <div class="nome">{{ $linha->atividade }}</div>
-            <div class="nome" style="font-size:95%;">Responsável: {{ $nome }}</div>
-            <div class="nome" style="font-size:95%;">Descrição: {{ $linha->descricao }}</div>
-            <div class="nome" style="font-size:95%;">Prazo: {{ $linha->prazo }}</div>
+            <div style="margin-left: 10px;">Responsável: {{ $nome }}</div>
+            <div style="margin-left: 10px;">Descrição: {{ $linha->descricao }}</div>
+            <div style="margin-left: 10px;">Prazo: {{ $linha->prazo }}</div>
         </div>
         @endforeach
-        </br><h3>Em equipe</h3>
+        </br><br><h3>Em equipe</h3>
+        <br>
         @foreach($atividade_equipe as $linha)
-            <div class="card" style="background-color:rgb(38, 109, 82);">
+            <div class="card-o">
                 <div class="nome">{{ $linha->atividade }}</div>
-                <div class="nome" style="font-size:95%;">Responsável: {{ $nome_equipe }}</div>
-                <div class="nome" style="font-size:95%;">Descrição: {{ $linha->descricao }}</div>
-                <div class="nome" style="font-size:95%;">Prazo: {{ $linha->prazo }}</div>
+                <div style="margin-left: 10px;">Responsável: {{ $nome_equipe }}</div>
+                <div style="margin-left: 10px;">Descrição: {{ $linha->descricao }}</div>
+                <div style="margin-left: 10px;">Prazo: {{ $linha->prazo }}</div>
             </div>
         @endforeach
 @endsection

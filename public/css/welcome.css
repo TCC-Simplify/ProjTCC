@@ -96,7 +96,7 @@ html, body {
 
 #bloco-botao{
     text-align: center;
-    margin-top: 10vh
+    margin-top: 10vh;
 }
 
 #bloco-botao button {
@@ -109,6 +109,7 @@ html, body {
     font-size: 2rem;
     opacity: 0;
     border: 0;
+    outline: none;
 }
 
 #bloco-botao button:hover, .btn-emails:hover{
@@ -166,6 +167,7 @@ html, body {
     cursor: pointer;
     background-color: #555;
     opacity: 0;
+    outline: none;
 }
 
 #btn_comecar:hover{
@@ -232,6 +234,7 @@ html, body {
     background-color: rgb(95, 185, 151);
     cursor: pointer;
     color: white;
+    outline: none;
 }
 
 /* ANIMAÇÕES */

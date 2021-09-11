@@ -57,9 +57,10 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/log', [LogController::cla
 Route::middleware(['auth:sanctum', 'verified'])->post('/log/muda_senha', [LogController::class, 'muda']);
 
 //rotas usuario
-Route::middleware(['auth:sanctum', 'verified'])->get('/hom',function(){
-    return view('home_register');
-});
+Route::middleware(['auth:sanctum', 'verified'])->get('/hom', [LogController::class, 'hom']);
+
+Route::middleware(['auth:sanctum', 'verified'])->get('/pag_user', [OverviewController::class, 'pag_user']);
+
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/cadastro_user',function(){
     return view('users/cad_users');
@@ -67,8 +68,6 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/cadastro_user',function()
 Route::middleware(['auth:sanctum', 'verified'])->post('/cad_user', [UsuarioController::class, 'create']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/users', [UsuarioController::class, 'index']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/users_des', [UsuarioController::class, 'mostra']);
-
-Route::middleware(['auth:sanctum', 'verified'])->get('/pag_user', [UsuarioController::class, 'show']);
 
 Route::middleware(['auth:sanctum', 'verified'])->get('/alt_user/{id}', [UsuarioController::class, 'edit']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/del_user/{id}', [UsuarioController::class, 'del']);

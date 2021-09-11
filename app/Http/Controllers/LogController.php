@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use Auth;
 use App\Models\User;
+use App\Models\Ponto;
 use Illuminate\Support\Facades\Hash;
 use Illuminate\Contracts\Encryption\DecryptException;
 use DB;
@@ -83,6 +84,22 @@ class LogController extends Controller
 
         return view('users/area_ponto');
         
+    }
+
+    /**
+     * Show the application dashboard.
+     *
+     * @return \Illuminate\Http\Response
+     */
+    public function hom()
+    {
+        Ponto::create([
+            'users' =>  Auth::user()->id,
+            'motivo' =>  1,
+            'entrada_id' => null
+        ]);
+
+        return view('home_register');
     }
 
 
