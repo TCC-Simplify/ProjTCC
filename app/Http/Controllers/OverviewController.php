@@ -91,6 +91,9 @@ class OverviewController extends Controller
             $quant_med = Atividade::all()->where('destinatario', Auth::user()->id)->where('dificuldade', 2)->count();
             $quant_dif = Atividade::all()->where('destinatario', Auth::user()->id)->where('dificuldade', 3)->count();
 
-        return view('users/pag_user', compact('array_leg', 'array_quant', 'quant_fac', 'quant_med', 'quant_dif'));
+            $ativ_leg = ['Fácil', 'Médio', 'Difícil'];
+            $ativ_quant = [$quant_fac, $quant_med, $quant_dif];
+
+        return view('users/pag_user', compact('array_leg', 'array_quant', 'ativ_leg', 'ativ_quant'));
     } 
 }

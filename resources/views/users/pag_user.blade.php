@@ -199,8 +199,8 @@
                             pieSliceText: 'none',
                             is3D: true,
                             slices: {
-                                0: { color: 'orange' },
-                                1: { color: 'green' }
+                                0: { color: 'LightBlue' },
+                                1: { color: 'LightSalmon' }
                             },
                             titleTextStyle: {
                                 fontSize: 16,
@@ -215,11 +215,61 @@
                             'height':600};
 
                 // Instantiate and draw our chart, passing in some options.
-                var chart = new google.visualization.PieChart(document.getElementById('grafic_pizza'));
+                var chart = new google.visualization.PieChart(document.getElementById('grafic_pizza1'));
                 chart.draw(data, options);
             }
         </script>
 
+        <script type="text/javascript">
+            // Load the Visualization API and the corechart package.
+            google.charts.load('current', {'packages':['corechart']});
+
+            // Set a callback to run when the Google Visualization API is loaded.
+            google.charts.setOnLoadCallback(drawChart);
+
+            // Callback that creates and populates a data table,
+            // instantiates the pie chart, passes in the data and
+            // draws it.
+            function drawChart() {
+
+                // Create the data table.
+                var data = new google.visualization.DataTable();
+                data.addColumn('string', 'Topping');
+                data.addColumn('number', 'Slices');
+                data.addRows([
+                    <?php
+                        for($x3=0; $x3 < 3; $x3++){
+                            print_r("['".$ativ_leg[$x3]."', ".$ativ_quant[$x3]."],");
+                        }
+                    ?>
+                ]);
+
+                // Set chart options
+                var options = {'title':'Quantidade de atividades realizadas por dificuldade',
+                            pieSliceText: 'none',
+                            is3D: true,
+                            slices: {
+                                0: { color: 'DarkSeaGreen' },
+                                1: { color: 'Khaki' },
+                                2: { color: 'LightCoral'}
+                            },
+                            titleTextStyle: {
+                                fontSize: 16,
+                                bold: true,
+                                color: 'white'
+                            },
+                            backgroundColor: {
+                                fill: 'transparent',
+                            },
+                            legend: {textStyle: {color: 'white'}},
+                            'width': 700,
+                            'height':600};
+
+                // Instantiate and draw our chart, passing in some options.
+                var chart = new google.visualization.PieChart(document.getElementById('grafic_pizza2'));
+                chart.draw(data, options);
+            }
+        </script>
     </head>
     <body>
         <div class="cima"></div>
@@ -253,11 +303,13 @@
             </div>
             <div class="direita cad_user">
                 <h1>Página do usuário</h1>
-                <div class="graficos" style="display: flex;">
-                    <div id="grafic_pizza"></div>
-                    <div id="grafic_column" style="margin-top:60px;"></div>
+                <div class="graficos" style="display: grid; grid-template-columns: 1fr 1fr; padding:auto;">
+                    <div id="grafic_pizza1"></div>
+                    <div id="grafic_pizza2"></div>
                 </div>
-            </div>
+
+                <h1>Controle dos meus dados</h1>
+                <a href="{{ url('/alt_user', Auth::user()->id) }}"><button class="btn-paguser">Alterar meu dados</button></a>
         </div>
         <script src="{{asset('js/msg.js')}}"></script>
     </body>

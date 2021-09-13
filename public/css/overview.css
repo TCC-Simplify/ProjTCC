@@ -96,3 +96,16 @@
 .header .volt{
     margin-left: 100px;
 }
+
+.btn-paguser{
+    padding: 15px 30px;
+    color: white;
+    background-color: rgb(38, 109, 82);
+    border: none;
+    border-radius: 4px;
+    margin-top: 30px;
+    cursor: pointer;
+}
+.btn-paguser:hover{
+    background-color: rgb(34, 92, 70);
+}
