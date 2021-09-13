@@ -7,6 +7,7 @@ use App\Models\User;
 use Illuminate\Support\Facades\Hash;
 use App\Models\Empresa;
 use App\Models\Equipes;
+use App\Models\Atividade;
 use DB;
 use Illuminate\Support\Facades\Validator;
 use App\Helper\Helper;
@@ -208,7 +209,7 @@ class EmpresaController extends Controller
     //  public function equipe_show(){
     //     $equipes = Equipes::find();
     //     if(!$equipes)
-    //     {
+    //     { 
     //         return redirect()->back();
     //     }
     //     return view('empresa/equipes',compact('equipes'));
@@ -222,7 +223,15 @@ class EmpresaController extends Controller
             return redirect()->back();
         }
 
-        return view('empresa/equipe_dados', compact('usuarios'))->with('nome', $nome);
+        //Gráfico de ativ fáceis, medianas e difíceis
+        $quant_fac = Atividade::all()->where('destinatario', $id_equipe)->where('tipo_destinatario', 2)->where('dificuldade', 1)->count();
+        $quant_med = Atividade::all()->where('destinatario', $id_equipe)->where('tipo_destinatario', 2)->where('dificuldade', 2)->count();
+        $quant_dif = Atividade::all()->where('destinatario', $id_equipe)->where('tipo_destinatario', 2)->where('dificuldade', 3)->count();
+
+        $ativ_leg = ['Fácil', 'Médio', 'Difícil'];
+        $ativ_quant = [$quant_fac, $quant_med, $quant_dif];
+
+        return view('empresa/equipe_dados', compact('usuarios', 'ativ_leg', 'ativ_quant'))->with('nome', $nome);
     }
 
      public function equipe_show_all(){
