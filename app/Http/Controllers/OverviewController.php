@@ -76,7 +76,7 @@ class OverviewController extends Controller
                 }
             }
             $quant_ind = 0;
-            $array_ind = Atividade::all()->where('destinatario', Auth::user()->id)->where('tipo_destinatario', 1)->count();
+            $array_ind = Atividade::all()->where('destinatario', Auth::user()->id)->where('tipo_destinatario', 1)->where('finalizacao', 'sim')->count();
             if($array_ind == 0){
                 $quant_ind = 0;
             }else{
@@ -87,9 +87,9 @@ class OverviewController extends Controller
             $array_quant = [$quant_ind, $quant_equipe];
 
         //Gráfico de ativ fáceis, medianas e difíceis
-            $quant_fac = Atividade::all()->where('destinatario', Auth::user()->id)->where('dificuldade', 1)->count();
-            $quant_med = Atividade::all()->where('destinatario', Auth::user()->id)->where('dificuldade', 2)->count();
-            $quant_dif = Atividade::all()->where('destinatario', Auth::user()->id)->where('dificuldade', 3)->count();
+            $quant_fac = Atividade::all()->where('destinatario', Auth::user()->id)->where('dificuldade', 1)->where('finalizacao', 'sim')->count();
+            $quant_med = Atividade::all()->where('destinatario', Auth::user()->id)->where('dificuldade', 2)->where('finalizacao', 'sim')->count();
+            $quant_dif = Atividade::all()->where('destinatario', Auth::user()->id)->where('dificuldade', 3)->where('finalizacao', 'sim')->count();
 
             $ativ_leg = ['Fácil', 'Médio', 'Difícil'];
             $ativ_quant = [$quant_fac, $quant_med, $quant_dif];

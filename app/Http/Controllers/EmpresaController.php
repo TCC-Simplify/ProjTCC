@@ -224,9 +224,9 @@ class EmpresaController extends Controller
         }
 
         //Gráfico de ativ fáceis, medianas e difíceis
-        $quant_fac = Atividade::all()->where('destinatario', $id_equipe)->where('tipo_destinatario', 2)->where('dificuldade', 1)->count();
-        $quant_med = Atividade::all()->where('destinatario', $id_equipe)->where('tipo_destinatario', 2)->where('dificuldade', 2)->count();
-        $quant_dif = Atividade::all()->where('destinatario', $id_equipe)->where('tipo_destinatario', 2)->where('dificuldade', 3)->count();
+        $quant_fac = Atividade::all()->where('destinatario', $id_equipe)->where('tipo_destinatario', 2)->where('dificuldade', 1)->where('finalizacao', 'sim')->count();
+        $quant_med = Atividade::all()->where('destinatario', $id_equipe)->where('tipo_destinatario', 2)->where('dificuldade', 2)->where('finalizacao', 'sim')->count();
+        $quant_dif = Atividade::all()->where('destinatario', $id_equipe)->where('tipo_destinatario', 2)->where('dificuldade', 3)->where('finalizacao', 'sim')->count();
 
         $ativ_leg = ['Fácil', 'Médio', 'Difícil'];
         $ativ_quant = [$quant_fac, $quant_med, $quant_dif];
