@@ -49,7 +49,7 @@
                                             <h4>{{$atividade->atividade}}</h4>
                                             <span <?php
                                                 if($atividade->dificuldade == 1) echo 'style="background-color: rgb(83, 194, 83);"';
-                                                else if($atividade->dificuldade == 2) echo 'style="background-color: rgb(228, 74, 74);"';
+                                                else if($atividade->dificuldade == 3) echo 'style="background-color: rgb(228, 74, 74);"';
                                                 else echo 'style="background-color: rgb(250, 250, 100);"';
                                             ?>></span>
                                         </div>
@@ -83,7 +83,7 @@
                                     <h4>{{$atividade->atividade}}</h4>
                                     <span <?php
                                         if($atividade->dificuldade == 1) echo 'style="background-color: rgb(83, 194, 83);"';
-                                        else if($atividade->dificuldade == 2) echo 'style="background-color: rgb(228, 74, 74);"';
+                                        else if($atividade->dificuldade == 3) echo 'style="background-color: rgb(228, 74, 74);"';
                                         else echo 'style="background-color: rgb(250, 250, 100);"';
                                     ?>></span>
                                 </div>
