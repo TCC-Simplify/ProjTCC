@@ -3,12 +3,13 @@
 namespace App\Http\Controllers\Api;
 
 use App\Http\Controllers\Controller;
+use Illuminate\Http\Request;
+
 use Auth;
 use App\Models\Equipes;
-use Illuminate\Http\Request;
 use Symfony\Component\HttpFoundation\Response;
 
-class EquipesController extends Controller
+class EquipeController extends Controller
 {
     public function index(){
         $userLogged = Auth::user();

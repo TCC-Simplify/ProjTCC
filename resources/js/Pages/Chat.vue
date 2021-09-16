@@ -39,6 +39,18 @@
                             <li>
                                <p style="width: 50%; font-size:25px ; margin-top: 10%; font-weight: bold; margin-bottom: 2%; margin-left: 5%; color: black;">Equipes</p>
                             </li>
+
+                            <li 
+                                v-for = "equipe in equipes" :key="equipe.id"
+                                @click="() => {loadMessages(equipe.id)}"
+                                :class="(equipeActive && equipeActive.id == equipe.id) ? 'bg-gray-200 bg-opacity-50' : ''"
+                                class="p-6 text-lg leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200">
+                                
+                                <p class="flex item-center">
+                                    {{ equipe.equipe }}
+                                    <span v-if="equipe.notification" class="ml-2 mt-2.5 w-2 h-2 bg-white rounded-full"></span>
+                                </p>
+                            </li>
                         </ul>
                     </div>
 
@@ -97,8 +109,10 @@
         data(){
             return {
                 users: [],
+                equipes: [],
                 messages: [],
                 userActive: null,
+                equipeActive: null,
                 message: " ",
             }
         },
@@ -158,9 +172,13 @@
         },
         mounted(){
 
-
             axios.get('api/users').then(response => {
                 this.users = response.data.users
+            })
+
+            axios.get('api/equipes').then(response => {
+                this.equipes = response.data.equipes
+                console.log(response)
             })
 
             Echo.private(`user.${this.auth.user.id}`).listen('.SendMessage', async (e) => {

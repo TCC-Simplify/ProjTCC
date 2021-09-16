@@ -3,7 +3,7 @@
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
-use App\Http\Controllers\Api\EquipesController;
+use App\Http\Controllers\Api\EquipeController;
 use App\Http\Controllers\Api\MessageController;
 
 /* 
@@ -25,9 +25,11 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/users', [UserController::class, 'index'])->name('users.index');
     Route::get('/users/{user}', [UserController::class, 'show'])->name('users.show');
 
-    Route::get('/equipes', [EquipesController::class, 'index'])->name('equipes.index');
-    Route::get('/equipes/{equipe}', [EquipesController::class, 'show'])->name('equipes.show');
-
     Route::get('/messages/{user}', [MessageController::class, 'listMessages'])->name('message.listMessages');
     Route::post('/messages/store', [MessageController::class, 'store'])->name('message.store');
+});
+
+Route::group(['middleware' => ['auth:sanctum']], function(){
+    Route::get('/equipes', [EquipeController::class, 'index'])->name('equipes.index');
+    Route::get('/equipes/{equipe}', [EquipeController::class, 'show'])->name('equipes.show');
 });
