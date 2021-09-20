@@ -50,9 +50,12 @@ class OverviewController extends Controller
         // foreach($atividades as $linha){
         //     if($linha->tipo_destinatario == 1 && $linha->destinatario == $id)
         // }
-        error_log($nome. "uuuuu " . $id);
-        return view('users/overview_atividades', compact('atividade_user', 'atividade_equipe', 'nome', 'nome_equipe'));
-
+        // error_log($nome. "uuuuu " . $id);
+        if(count($atividade_user) > 0 || count($atividade_equipe) > 0){
+            return view('users/overview_atividades', compact('atividade_user', 'atividade_equipe', 'nome', 'nome_equipe'));
+        } else {
+            return redirect()->back();
+        }
     } 
 
     // public function show_own(){
