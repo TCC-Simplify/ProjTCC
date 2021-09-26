@@ -7,6 +7,7 @@
     font-family: 'Poppins', sans-serif;
     color: #fff;
 }
+
 body {
     background: linear-gradient(90deg, #edf2f4, #4a00e0);
     background-repeat: no-repeat;
@@ -17,11 +18,10 @@ body {
     align-items: center;
     justify-content: center;
     min-height: 100vh;
-    min-width: 100vw;
 }
 
 #navbar{
-    background-color: #fff;
+    background-color: transparent;
     position: fixed;
     width: 100%;
     color: white;
@@ -54,6 +54,47 @@ body {
     text-transform: uppercase;
     text-align: right;
 }
+#header {
+    display: flex;
+    flex-direction: column;
+}
+
+#header h3 {
+    margin-bottom: 1%;
+}
+
+#underline {
+    margin-top: 0;
+    content: '';
+    height: 4px;
+    width: 380px;
+    bottom: 3px;
+    left: 0;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #4a00e0, #edf2f4);
+    margin-bottom: 3%;
+}
+
+#underline2 {
+    margin-top: 0;
+    content: '';
+    height: 4px;
+    width: 523px;
+    bottom: 3px;
+    left: 0;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #4a00e0, #edf2f4);
+    margin-bottom: 3%;
+}
+#container {    
+    background: #212529;
+    margin-top: 2%;
+    margin-bottom: 2%;
+    width: 700px;
+    padding: 2rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+}
 
 .etapas{
     display: flex;
@@ -61,34 +102,11 @@ body {
 }
 
 .etapas h4{
-    margin-top: 15px;
-}
-
-#container {
-    margin-top: 10%;
-    margin-bottom: 4%;
-    background: #212529;
-    width: 50vw;
-    min-height: 70vh;
-    padding: 2rem;
-    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
-    border-radius: 20px;
+    margin-top: 20px;
 }
 
 #header {
     display: flex;
-}
-
-#header a {
-    margin-left: auto;
-    text-decoration: none;
-    font-size: 17px;
-    color: #edf2f4;
-    padding: 1rem;
-}
-
-#header a:hover {
-    color: #e0aaff;
 }
 
 #div-botao {
@@ -100,14 +118,13 @@ body {
 #div-botao input {
     align-items: center;
     align-content: center;
-    width: 40%;
+    width: 100%;
     height: 50px;
-    border-radius: 4px;
     color: #fff;
     background-color: rgb(95, 185, 151);
     border-radius: 12px;
     cursor: pointer;
-    font-size: 1.5rem;
+    font-size: 1.2rem;
     font-weight: 400;
     outline: none;
 }
@@ -123,7 +140,7 @@ body {
     border-radius: 5px;
     outline: none;
     padding: 12px 15px;
-    font-size: 18px;
+    font-size: 16px;
     transition: all .1s linear;
     -webkit-transition: all .1s linear;
     -moz-transition: all .1s linear;
@@ -215,4 +232,11 @@ select:-webkit-autofill {
         opacity: 1;
         transform: translateX(0px);
     }  
+}
+
+@media (max-height: 813px) {
+    #container {
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
 }

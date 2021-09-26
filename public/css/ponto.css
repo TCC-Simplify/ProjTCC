@@ -1,0 +1,148 @@
+* {
+    font-weight: 100;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+body {
+    background: linear-gradient(90deg, #edf2f4, #4a00e0);
+    background-repeat: no-repeat;
+}
+
+#navbar{
+    background-color: transparent;
+    position: fixed;
+    width: 100%;
+    color: white;
+    padding: 10px;
+    z-index: 1;
+}
+
+#nav-logo {
+    position: relative;
+    float: left;
+}
+
+#nav-logo img {
+    width: 200px;
+}
+
+#nav-link {
+    position: relative;
+    float: right;
+    margin-top: 1.5vh;
+}
+
+#nav-link a {
+    color: rgb(0, 0, 0);
+    margin: 0px;
+    padding: 10px 25px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+#fundo {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    min-height: 100vh;
+}
+
+#container {
+    margin-top: 2%;
+    margin-bottom: 2%;
+    background: #212529;
+    width: 600px;
+    padding: 2rem;
+    box-shadow: 5px 5px 15px rgba(0, 0, 0, 0.2);
+    border-radius: 20px;
+    color: white;
+}
+
+#header {
+    display: flex;
+    flex-direction: column;
+}
+
+#underline {
+    margin-top: 0;
+    content: '';
+    height: 4px;
+    width: 460px;
+    bottom: 3px;
+    left: 0;
+    border-radius: 8px;
+    background: linear-gradient(90deg, #4a00e0, #edf2f4);
+    margin-bottom: 3%;
+}
+
+.input-valor-fixo {
+    border: 1px solid #adb5bd;
+    border-radius: 5px;
+    outline: none;
+    padding: 12px 15px;
+    font-size: 18px;
+    font-weight: 200;
+    background: #adb5bd;
+    width: 100%;
+    color: white;
+}
+
+.titulo2 {
+    font-size: 1.3rem;
+    margin-top: 5%;
+}
+
+#div-select select {
+    border: 1px solid white;
+    border-radius: 5px;
+    outline: none;
+    padding: 12px 15px;
+    font-size: 18px;
+    font-weight: 200;
+    background: white;
+    color: black;
+    width: 100%;
+}
+
+#div-botao input{
+    margin-top: 10%;
+    border-radius: 12px;
+    outline: none;
+    padding: 12px 15px;
+    font-size: 1.2rem;
+    font-weight: 200;
+    background-color: rgb(95, 185, 151);
+    color: white;
+    width: 100%;
+}
+
+.animar {
+    animation-name: slide;
+    animation-duration: 1s;
+    animation-fill-mode: forwards;
+}
+
+@keyframes slide {
+    from {
+        opacity: 0;
+        transform: translateX(-100px);
+    }
+    to {
+        opacity: 1;
+        transform: translateX(0px);
+    }  
+}
+
+@media (max-height: 813px) {
+    #container {
+        margin-top: 5%;
+        margin-bottom: 5%;
+    }
+}

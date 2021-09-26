@@ -35,7 +35,8 @@
     <div id="fundo">
         <div id="container" class="animar">
             <div id="header">
-                <div><h2>Cadastro da empresa</h2></div>
+                <h3>Cadastro da empresa (1/2)</h3>
+                <div id="underline">
             </div>
             <form action="{{ url('/cadastro_empresa')}}" method="post"  enctype="multipart/form-data" data-viacep>
                 {{ csrf_field() }}

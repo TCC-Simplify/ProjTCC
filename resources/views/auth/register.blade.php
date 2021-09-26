@@ -45,7 +45,8 @@
     <div id="fundo">
         <div id="container" class="animar">
             <div id="header">
-                <div><h2>Cadastro do administrador</h2></div>
+                <div><h2>Cadastro do administrador (2/2) </h2></div>
+                <div id="underline2">
             </div>
             <form role="form" method="post" action="{{ url('register') }}">
                 {{ csrf_field() }}

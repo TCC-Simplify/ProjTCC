@@ -47,7 +47,8 @@
     <div id="fundo">
         <div id="container" class="animar">
             <div id="header">
-                <div><h2>Login</h2></div>
+                <h3>Login</h3>
+                <div id="underline"></div>
             </div>
             <form  role="form login" method="POST" action="{{ url('/login') }}">
                 {{ csrf_field() }}
@@ -59,7 +60,6 @@
                             <strong>{{ $errors->first('email') }}</strong>
                         </span>
                     @endif
-                    <div class="underline"></div>
                 </div>
                 <div class="label-float" id="input-2">
                     <input type="password"  placeholder="Digite sua senha" name="password" required>
@@ -69,15 +69,14 @@
                             <strong>{{ $errors->first('password') }}</strong>
                         </span>
                     @endif
-                    <div class="underline"></div>
                 </div>
                 <div id="lembrar">
                         <input id="checkbox-1" type="checkbox" name="remember" {{ old('remember') ? 'checked' : ''}}> 
                         <label for="checkbox-1">Lembre de mim</label>
                 </div>
-                <button id="entrar"type="submit">
-                    ENTRAR
-                </button>
+                <div id="div-botao">
+                    <input type="submit" name="botao" value="ENTRAR">
+                </div>
                 <div class="links">
                     <div class="link1">
                         <a href="{{ url('/forgot-password') }}">
