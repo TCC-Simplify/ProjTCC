@@ -15,7 +15,7 @@ use Illuminate\Support\Facades\DB;
 
 class MuralController extends Controller
 {
-    public function criar_aviso(Request $request, User $user)
+    public function criar_aviso(Request $request) //aviso é geral
     {
         $id_user = Auth::user()->id;
 
@@ -29,24 +29,48 @@ class MuralController extends Controller
 
         ] );
 
-        return redirect('/mural');
+        return redirect('/mural/avisos');
     }
 
     public function mostra_avisos()
     {
         $id_user = Auth::user()->id;
         $avisos = Avisos::all()->where('responsavel',$id_user);
-        return view('mural/avisos', compact('avisos'));
+        return view('controle.mural/avisos', compact('avisos'));
 
     }
 
-    public function criar_reuniao(Request $request, User $user)
+    public function criar_form_reuniao(User $user, Equipes $equipe)
     {
+        $id_empresa = session()->get('id_empresa');
+        $users = $user->all()->where('empresa',$id_empresa);
+        $equipes = $equipe->all()->where('empresa',$id_empresa);
 
+        return view('controle.mural/reuniao_cad', compact('users','equipes'));
     }
 
-    public function mostra_reuniao()
+    public function criar_reuniao(Request $request)
     {
+        $id_user = Auth::user()->id; //id do resposnavel pela reuniao
+        Reuniao::create([
+            'reuniao' =>  $request['titulo'],
+            'descricao' =>  $request['descricao'],
+            'destinatario' =>  $request['destinatario'],
+            'responsavel' =>  $id_user,
+            'tipo_destinatario' =>  $request['tipo_destinatario'],
+            'data' =>  $request['data'],
+            'horario' =>  $request['horario']
+
+        ]);
+
+        return redirect('controle.mural/reunioes');
+    }
+
+    public function mostra_reuniao(User $user, Reuniao $reuniao, Equipes $equipes )
+    {
+        $id_user = Auth::user()->id;
         
     }
+
+    
 }
