@@ -1819,6 +1819,9 @@ select {
 	--tw-text-opacity: 1;
 	color: rgba(209, 213, 219, var(--tw-text-opacity));
 }
+.text-transparent {
+	color: transparent;
+}
 .underline {
 	text-decoration: underline;
 }

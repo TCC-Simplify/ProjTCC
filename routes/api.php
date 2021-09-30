@@ -5,6 +5,7 @@ use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\Api\UserController;
 use App\Http\Controllers\Api\EquipeController;
 use App\Http\Controllers\Api\MessageController;
+use App\Http\Controllers\Api\MessageEqControler;
 
 /* 
 |--------------------------------------------------------------------------
@@ -32,4 +33,7 @@ Route::group(['middleware' => ['auth:sanctum']], function(){
 Route::group(['middleware' => ['auth:sanctum']], function(){
     Route::get('/equipes', [EquipeController::class, 'index'])->name('equipes.index');
     Route::get('/equipes/{equipe}', [EquipeController::class, 'show'])->name('equipes.show');
+
+    Route::get('/emessages/{equipe}', [MessageEqControler::class, 'listMessages'])->name('message.listMessages');
+    Route::post('/emessages/store', [MessageEqControler::class, 'store'])->name('message.store');
 });

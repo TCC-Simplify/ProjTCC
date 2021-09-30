@@ -19293,6 +19293,10 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
+var _methods;
+
+function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
+
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -19314,11 +19318,11 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       equipes: [],
       messages: [],
       userActive: null,
-      equipeActive: null,
-      message: " "
+      message: " ",
+      tipo: false
     };
   },
-  methods: {
+  methods: (_methods = {
     scrollToBottom: function scrollToBottom() {
       if (this.messages.length) {
         document.querySelectorAll('.message:last-child')[0].scrollIntoView();
@@ -19409,43 +19413,127 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
       return sendMessage;
     }(),
-    formatDate: function formatDate(date) {
-      return moment__WEBPACK_IMPORTED_MODULE_2___default()(date).format("DD/MM/YYYY HH:mm");
-    }
-  },
-  mounted: function mounted() {
-    var _this3 = this;
+    loadMessagesEq: function () {
+      var _loadMessagesEq = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(equipeId) {
+        var _this3 = this;
 
-    axios.get('api/users').then(function (response) {
-      _this3.users = response.data.users;
-    });
-    axios.get('api/equipes').then(function (response) {
-      _this3.equipes = response.data.equipes;
-      console.log(response);
-    });
-    Echo["private"]("user.".concat(this.auth.user.id)).listen('.SendMessage', /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee3(e) {
-        var user;
+        var equipe;
         return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee3$(_context3) {
           while (1) {
             switch (_context3.prev = _context3.next) {
               case 0:
-                if (!(_this3.userActive && _this3.userActive.id === e.message.from)) {
-                  _context3.next = 6;
+                axios.get("api/equipes/".concat(equipeId)).then(function (response) {
+                  _this3.userActive = response.data.equipe;
+                });
+                _context3.next = 3;
+                return axios.get("api/emessages/".concat(equipeId)).then(function (response) {
+                  _this3.messages = response.data.messages;
+                  _this3.tipo = response.data.tipo;
+                  console.log(_this3.messages);
+                });
+
+              case 3:
+                equipe = this.equipes.filter(function (equipe) {
+                  if (equipe.id === equipeId) {
+                    return equipe;
+                  }
+                });
+
+                if (equipe) {
+                  equipe[0].notification = false;
+                }
+
+                this.scrollToBottom();
+
+              case 6:
+              case "end":
+                return _context3.stop();
+            }
+          }
+        }, _callee3, this);
+      }));
+
+      function loadMessagesEq(_x2) {
+        return _loadMessagesEq.apply(this, arguments);
+      }
+
+      return loadMessagesEq;
+    }()
+  }, _defineProperty(_methods, "sendMessage", function () {
+    var _sendMessage2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
+      var _this4 = this;
+
+      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
+        while (1) {
+          switch (_context4.prev = _context4.next) {
+            case 0:
+              _context4.next = 2;
+              return axios.post('api/emessages/store', {
+                'content': this.message,
+                'to': this.userActive.id
+              }).then(function (response) {
+                _this4.messages.push({
+                  'from': _this4.auth.user.id,
+                  'to': _this4.userActive.id,
+                  'content': _this4.message,
+                  'created_at': new Date().toISOString(),
+                  'updated_at': new Date().toISOString()
+                });
+
+                _this4.message = '';
+              });
+
+            case 2:
+              this.scrollToBottom();
+
+            case 3:
+            case "end":
+              return _context4.stop();
+          }
+        }
+      }, _callee4, this);
+    }));
+
+    function sendMessage() {
+      return _sendMessage2.apply(this, arguments);
+    }
+
+    return sendMessage;
+  }()), _defineProperty(_methods, "formatDate", function formatDate(date) {
+    return moment__WEBPACK_IMPORTED_MODULE_2___default()(date).format("DD/MM/YYYY HH:mm");
+  }), _methods),
+  mounted: function mounted() {
+    var _this5 = this;
+
+    axios.get('api/users').then(function (response) {
+      _this5.users = response.data.users;
+    });
+    axios.get('api/equipes').then(function (response) {
+      _this5.equipes = response.data.equipes;
+    });
+    Echo["private"]("user.".concat(this.auth.user.id)).listen('.SendMessage', /*#__PURE__*/function () {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(e) {
+        var user;
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                if (!(_this5.userActive && _this5.userActive.id === e.message.from)) {
+                  _context5.next = 6;
                   break;
                 }
 
-                _context3.next = 3;
-                return _this3.messages.push(e.message);
+                _context5.next = 3;
+                return _this5.messages.push(e.message);
 
               case 3:
-                _this3.scrollToBottom();
+                _this5.scrollToBottom();
 
-                _context3.next = 8;
+                _context5.next = 8;
                 break;
 
               case 6:
-                user = _this3.users.filter(function (user) {
+                user = _this5.users.filter(function (user) {
                   if (user.id === e.message.from) {
                     return user;
                   }
@@ -19460,13 +19548,13 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 9:
               case "end":
-                return _context3.stop();
+                return _context5.stop();
             }
           }
-        }, _callee3);
+        }, _callee5);
       }));
 
-      return function (_x2) {
+      return function (_x3) {
         return _ref.apply(this, arguments);
       };
     }());
@@ -23418,9 +23506,9 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("li", {
       key: equipe.id,
       onClick: function onClick() {
-        $options.loadMessages(equipe.id);
+        $options.loadMessagesEq(equipe.id);
       },
-      "class": [$data.equipeActive && $data.equipeActive.id == equipe.id ? 'bg-gray-200 bg-opacity-50' : '', "p-6 text-lg leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200"]
+      "class": [$data.userActive && $data.userActive.id == equipe.id ? 'bg-gray-200 bg-opacity-50' : '', "p-6 text-lg leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200"]
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(equipe.equipe) + " ", 1
     /* TEXT */
     ), equipe.notification ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_10)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 10
@@ -23428,12 +23516,17 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
     , ["onClick"]);
   }), 128
   /* KEYED_FRAGMENT */
-  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Caixa de mensagens"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Mensagens"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.messages, function (message) {
+  ))])]), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Caixa de mensagens - USERS"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_11, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("Mensagens"), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("div", _hoisted_12, [((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)(vue__WEBPACK_IMPORTED_MODULE_0__.Fragment, null, (0,vue__WEBPACK_IMPORTED_MODULE_0__.renderList)($data.messages, function (message) {
     return (0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("div", {
       key: message.id,
       "class": [message.from == $props.auth.user.id ? 'text-right' : ' ', "w-full mb-3 message"]
-    }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
-      "class": [message.from == $props.auth.user.id ? 'bg-green-400' : 'bg-gray-500', "inline-block p-2 rounded-md bg-opacity-25 messageFromMe"],
+    }, [$data.tipo ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", {
+      key: 0,
+      "class": [message.from == $props.auth.user.id ? 'text-transparent' : ' ', "block mt-1 text-xs text-white-500"]
+    }, (0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(message.name), 3
+    /* TEXT, CLASS */
+    )) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", {
+      "class": [message.from == $props.auth.user.id || message.from == $data.userActive ? 'bg-green-400' : 'bg-gray-500', "inline-block p-2 rounded-md bg-opacity-25 messageFromMe"],
       style: {
         "max-width": "75%"
       }

@@ -42,8 +42,8 @@
 
                             <li 
                                 v-for = "equipe in equipes" :key="equipe.id"
-                                @click="() => {loadMessages(equipe.id)}"
-                                :class="(equipeActive && equipeActive.id == equipe.id) ? 'bg-gray-200 bg-opacity-50' : ''"
+                                @click="() => {loadMessagesEq(equipe.id)}"
+                                :class="(userActive && userActive.id == equipe.id) ? 'bg-gray-200 bg-opacity-50' : ''"
                                 class="p-6 text-lg leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200">
                                 
                                 <p class="flex item-center">
@@ -54,12 +54,12 @@
                         </ul>
                     </div>
 
-                    <!--Caixa de mensagens-->
+                    <!--Caixa de mensagens - USERS-->
                     <div class="w-9/12 flex flex-col justify-between"
-                    style="
-                        background-color: rgb(37, 37, 44);
-                        color: white;
-                    ">
+                        style="
+                            background-color: rgb(37, 37, 44);
+                            color: white;
+                        ">
 
                         <!--Mensagens-->
                         <div class="w-full p-6 flex flex-col overflow-y-auto">
@@ -68,8 +68,14 @@
                                 :class="(message.from == auth.user.id) ? 'text-right' : ' ' "
                                 class="w-full mb-3 message">
                                 
+                                <span v-if="tipo"
+                                    :class="(message.from == auth.user.id) ? 'text-transparent' : ' ' "
+                                    class="block mt-1 text-xs text-white-500"> 
+                                        {{ message.name }}
+                                </span>
+
                                 <p 
-                                    :class="(message.from == auth.user.id) ? 'bg-green-400' : 'bg-gray-500' "
+                                    :class="(message.from == auth.user.id || message.from == userActive) ? 'bg-green-400' : 'bg-gray-500' "
                                     class="inline-block p-2 rounded-md bg-opacity-25 messageFromMe" style="max-width: 75%;">
                                     {{ message.content }}
                                 </p>
@@ -112,8 +118,8 @@
                 equipes: [],
                 messages: [],
                 userActive: null,
-                equipeActive: null,
                 message: " ",
+                tipo: false,
             }
         },
         methods: {
@@ -166,6 +172,49 @@
                 this.scrollToBottom()
             },
 
+            loadMessagesEq: async function(equipeId) {
+                axios.get(`api/equipes/${equipeId}`).then(response => {
+                    this.userActive = response.data.equipe
+                })
+
+                await axios.get(`api/emessages/${equipeId}`).then(response => {
+                    this.messages = response.data.messages
+                    this.tipo = response.data.tipo
+                    console.log(this.messages)
+                })
+
+                const equipe = this.equipes.filter((equipe) => {
+                    if (equipe.id === equipeId) {
+                        return equipe
+                    }
+                })
+
+                if (equipe) {
+                    equipe[0].notification = false;
+                }
+
+                this.scrollToBottom()
+            },
+
+            sendMessage: async function(){
+                await axios.post('api/emessages/store', {
+                    'content': this.message,
+                    'to': this.userActive.id
+                }).then(response => {
+                    this.messages.push({
+                        'from': this.auth.user.id,
+                        'to': this.userActive.id,
+                        'content': this.message,
+                        'created_at': new Date().toISOString(),
+                        'updated_at': new Date().toISOString()
+                    })
+
+                    this.message = ''
+                })
+
+                this.scrollToBottom()
+            },
+
             formatDate: function (date) {
                 return moment(date).format("DD/MM/YYYY HH:mm");
             },
@@ -178,7 +227,6 @@
 
             axios.get('api/equipes').then(response => {
                 this.equipes = response.data.equipes
-                console.log(response)
             })
 
             Echo.private(`user.${this.auth.user.id}`).listen('.SendMessage', async (e) => {
