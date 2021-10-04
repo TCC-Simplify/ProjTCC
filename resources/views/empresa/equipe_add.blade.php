@@ -20,9 +20,12 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Adicionar Usuário</h1>
+@endsection
+
 @section('direita')
     <div class="direita cad_user">
-        <h1>Adicionar Usuário</h1>
         <form action="{{ url('/equipe/add/processing', $nome)}}" method="POST" enctype="multipart/form-data" class="form-cad">
         {!! csrf_field() !!}
             <div class="form-group" style="text-align: left;">

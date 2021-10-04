@@ -23,9 +23,12 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Overview das atividades</h1>
+@endsection
+
 @section('direita')
     <div class="direita overview">
-        <h1>Overview das atividades</h1>
 
         <div class="container">
         <?php $pos = 1; $red = 0; $yellow = 0; $green = 0; ?>

@@ -20,11 +20,14 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Dados da empresa</h1>
+@endsection
+
 @section('direita')
 <div class="custom-msg" id="custom-msg">
     </div>
     <div class="direita cad_user">
-        <h1>Dados da empresa</h1>
         <div class="form-cad">
             <div class="form-group">
             <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome:" value="{{ $empresa->nome }}" required disabled>

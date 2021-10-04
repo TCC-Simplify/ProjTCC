@@ -21,10 +21,13 @@
     </div>
 @endsection
 
+@section('titulo')
+        <h1>Página de atividades</h1>
+@endsection
+
 @section('direita')
     <div class="direita m-users">
         @if ($id == null)
-            <h1>Página de atividades</h1>
             <div class="header">
                 <a href="{{ url('/atividades/criar_form') }}" class="ir"><p>Nova atividade &#8594;</p></a>   
             </div>

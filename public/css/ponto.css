@@ -9,8 +9,9 @@
 body {
     background: linear-gradient(90deg, #edf2f4, #4a00e0);
     background-repeat: no-repeat;
+    
 }
-
+  
 #navbar{
     background-color: transparent;
     position: fixed;

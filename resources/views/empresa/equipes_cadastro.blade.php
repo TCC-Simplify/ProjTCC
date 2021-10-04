@@ -20,9 +20,12 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Cadastro de Equipes</h1>
+@endsection
+
 @section('direita')
     <div class="direita cad_user">
-        <h1>Cadastro de Equipes</h1>
         <form action="{{ url('/criar_equipe')}}" method="POST" enctype="multipart/form-data" class="form-cad">
         {!! csrf_field() !!}
             <div class="form-group">

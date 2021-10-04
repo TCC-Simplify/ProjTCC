@@ -23,13 +23,16 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Desativando usuário</h1>
+@endsection
+
 @section('direita')
     <div class="direita cad_user">
         <div class="header">
             <a href="{{ url()->previous() }}" class="volt"><p>&#8592;  Voltar</p></a>   
         </div>
 
-        <h1>Desativando usuário</h1>
 
         <form action="{{ url('/delete_user', $usuario->id)}}" method="POST" enctype="multipart/form-data" class="form-cad"> 
             <div class="form-group">

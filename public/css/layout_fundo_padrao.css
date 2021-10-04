@@ -1,0 +1,314 @@
+*, html {
+    font-weight: 100;
+    margin: 0;
+    border: 0;
+    padding: 0;
+    box-sizing: border-box;
+    font-family: 'Poppins', sans-serif;
+}
+
+body {
+    background-color: #1b2029;
+    background-repeat: no-repeat;
+    display: flex;
+    width: 100vw;
+    min-height: 100vh;
+    color: black;
+}
+
+#navbar{
+    padding: 10px;
+    padding-left: 120px;
+    background-color: white;
+    position: absolute;
+    width: 100%;
+    display: flex;
+    z-index: 1;
+}
+
+#nav-logo img {
+    width: 200px;
+}
+
+#navbar h1 {
+    padding-top: 5px;
+    padding-left: 17px;
+    color: gray;
+}
+
+#nav-link {
+    position: relative;
+    float: right;
+    margin-top: 1.5vh;
+}
+
+#nav-link a {
+    color: rgb(0, 0, 0);
+    margin: 0px;
+    padding: 10px 25px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+    text-align: right;
+}
+
+#logout {
+    padding: 15px;
+    margin-left: auto;
+}
+#logout a i {
+    font-size: 28px;
+    color: black;
+}
+
+#menu_lateral {
+    /*padding-top: 10vh;*/
+    width: 80px;
+    height: auto;
+    background-color: #EFF3F6;
+    /*background-color: rgb(114, 41, 230);*/
+    z-index: 1;
+    display: flex;
+    flex-direction: column;
+}
+
+#menu_lateral ul li {
+    display: flex;
+    width: 100%;
+    height: 70px;
+    border-radius: 10px;
+    position: relative;
+    float: right;
+}
+
+#menu_lateral ul li:hover {
+    background-color: white;
+}
+#menu_lateral ul li img {
+    margin-top: 10px;
+    margin-left: 15px;
+    width: 50px;
+    height: 50px;
+}
+
+#menu_lateral ul li a {
+    text-decoration: none;
+    padding-top: 18px;
+    padding-left: 10px;
+    font-size: 1.5rem;
+    font-weight: 600;
+    opacity: 0;
+    color: black;
+}
+
+#menu_lateral ul li a span {
+    padding-top: 0;
+    font-size: 30px;
+    position: absolute;
+    right: 10px;
+    transition: 0.4s;
+}
+
+#menu_lateral ul li a span.gira {
+    transform: rotate(180deg);
+}
+
+#menu_lateral ul ul{
+    display: none;
+    transition: 0.4s;
+}
+
+#menu_lateral ul .itens_usuario.mostra {
+    display: block;
+}
+
+#menu_lateral ul .itens_empresa.mostra {
+    display: block;
+}
+
+#menu_lateral ul .itens_controle.mostra {
+    display: block;
+}
+
+#menu_lateral ul ul li i {
+    margin-top: 20px;
+    margin-left: 28px;
+    font-size: 1.5rem;
+    width: 30px;
+}
+#menu_lateral ul ul li a {
+    opacity: 1;
+    font-size: 1.1rem;
+    right: 10px;
+}
+#menu_lateral ul .mostra2 {
+    opacity: 0;
+}
+
+#tudo {
+    min-width: 92%;    
+    height: auto;
+    overflow: hidden;
+    z-index: 0;
+    position: absolute;
+    background-color: #1b2029;
+    margin-left: 80px;
+    color: white;
+    text-align: center;
+    padding-top: 50px;
+}
+
+#menu_lateral.expandir {
+    width: 260px;
+    transition: 0.2s;
+}
+
+.expandir_menu {
+    animation-name: expandir_menu;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+}
+
+.fechar_menu {
+    animation-name: fechar_menu;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+}
+
+.aparecer {
+    animation-name: aparecer;
+    animation-duration: 0.2s;
+    animation-fill-mode: forwards;
+}
+
+
+@keyframes expandir_menu {
+    from {
+        width: 80px;
+    }
+    to {
+        width: 300px;
+    }  
+}
+
+@keyframes fechar_menu {
+    from {
+        width: 300px;
+    }
+    to {
+        width: 80px;
+    }
+}
+@keyframes aparecer {
+    from {
+        opacity: 0;
+    }
+    to {
+        opacity: 1;
+    }
+}
+/*
+.links > a{
+    color: rgb(0, 0, 0);
+    padding: 0 25px;
+    font-size: 25px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+.links > a:hover{
+    border-bottom: 1px solid rgb(155, 155, 155);
+}
+
+.links{
+    text-align: right;
+}
+
+.opcoes > .a > a{
+    color: rgb(0, 0, 0);
+    font-size: 40px;
+    font-weight: 600;
+    letter-spacing: .1rem;
+    text-decoration: none;
+    text-transform: uppercase;
+}
+
+.opcoes > .a > a:hover{
+    color: rgb(37, 37, 44);
+}
+
+.users{
+    text-align: center;
+    display: grid;
+    grid-template-rows: 15vh 15vh 15vh 15vh;
+}
+
+.empresa{
+    text-align: center;
+    display: grid;
+    grid-template-rows: 20vh 20vh;
+    margin-top: 80px;
+}
+
+.cima{
+    background-color: red;
+}
+
+.esquerda{
+    background-color: rgb(38, 109, 82);
+    padding-top: 10vh;
+}
+
+.direita{
+    overflow: auto;
+    text-align: center;
+}
+
+
+
+.es{
+    color: rgb(212, 212, 212);
+}
+
+
+
+chat {
+    list-style: none;
+    margin: 0;
+    padding: 0;
+}
+
+.chat li {
+    margin-bottom: 10px;
+    padding-bottom: 5px;
+    border-bottom: 1px dotted #B3A9A9;
+}
+
+.chat li .chat-body p {
+    margin: 0;
+    color: #777777;
+}
+
+.panel-body {
+    overflow-y: scroll;
+    height: 350px;
+}
+
+::-webkit-scrollbar-track {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar {
+    width: 12px;
+    background-color: #F5F5F5;
+}
+
+::-webkit-scrollbar-thumb {
+    -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
+    background-color: #555;
+}
+*/

@@ -20,9 +20,12 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Desativar empresa</h1>
+@endsection
+
 @section('direita')
     <div class="direita cad_user">
-        <h1>Desativar empresa</h1>
         <form action="{{ url('/delete_empresa', $empresa->id)}}" method="POST" enctype="multipart/form-data" class="form-cad">
             <div class="form-group">
             {{ csrf_field() }}

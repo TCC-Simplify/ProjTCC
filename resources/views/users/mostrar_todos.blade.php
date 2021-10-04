@@ -23,6 +23,10 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Usuários cadastrados</h1>
+@endsection
+
 @section('direita')
     <div class="direita m-users">
         <?php
@@ -37,7 +41,6 @@
             <a href="{{ url('/users_des') }}" class="ir" <?php if($aux == 0) echo 'style="display: none;"'?>><p>Usuários desativados &#8594;</p></a>   
         </div>
  
-        <h1>Usuários cadastrados</h1>
 
         <table class="table table-striped">
             <thead>

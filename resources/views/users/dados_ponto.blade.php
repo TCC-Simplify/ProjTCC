@@ -23,9 +23,12 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Dados do Ponto</h1>
+@endsection
+
 @section('direita')
     <div class="direita cad_user">
-        <h1>Dados do Ponto</h1>
         <br><br>
         <h3>Último ponto registrado: {{$ponto->created_at}}</h3>
         <h3>{{$status}}</h3>

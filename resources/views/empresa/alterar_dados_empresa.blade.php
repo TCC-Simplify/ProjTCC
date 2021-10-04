@@ -20,9 +20,12 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Alterar dados da empresa</h1>
+@endsection
+
 @section('direita')
     <div class="direita cad_user">
-        <h1>Alterar dados da empresa</h1>
         
         <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@vsilva472/jquery-viacep/dist/jquery-viacep.min.js"></script>

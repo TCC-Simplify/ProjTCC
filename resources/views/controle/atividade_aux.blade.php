@@ -21,9 +21,12 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Página de atividades</h1>
+@endsection
+
 @section('direita')
     <div class="direita cad_user">
-        <h1>Página de atividades</h1>
         <br>
         {{-- ======================== CASO O USUÁRIO SEJA FUNCIONÁRIO APENAS ======================== --}}
         @if ($id == null && $permissao == 3)

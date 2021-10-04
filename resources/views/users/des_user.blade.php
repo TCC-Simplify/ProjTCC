@@ -23,13 +23,16 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Usuários desativados</h1>
+@endsection
+
 @section('direita')
     <div class="direita m-users">
         <div class="header">
             <a href="{{ url()->previous() }}" class="volt"><p>&#8592;  Voltar</p></a>   
         </div>
 
-        <h1>Usuários desativados</h1>
 
         <table class="table table-striped table-red">
             <thead>

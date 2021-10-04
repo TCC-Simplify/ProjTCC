@@ -23,12 +23,15 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Overview das atividades</h1>
+@endsection
+
 @section('direita') 
     <div class="direita overview">
         <div class="header">
             <a href="{{ url()->previous() }}" class="volt"><p>&#8592;  Voltar</p></a>   
         </div>
-        <h1>Overview das atividades</h1>
 
         <h3>Individuais</h3>
         <br>

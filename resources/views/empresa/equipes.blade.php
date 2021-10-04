@@ -20,12 +20,15 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Equipes</h1>
+@endsection
+
 @section('direita')
     <div class="direita m-users">
         <div class="header">
             <a href="{{ url('/form_criar_equipe') }}" class="ir"><p>Nova Equipe &#8594;</p></a>   
         </div>
-        <h1>Equipes</h1>
         <table class="table table-striped">
             <thead>
                 <th>Nome</th>

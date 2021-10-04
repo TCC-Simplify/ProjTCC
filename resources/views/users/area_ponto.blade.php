@@ -14,7 +14,7 @@
     <title>Simplify</title>
   </head>
 
-  <body>
+  <body class="color-change-2x">
     <div id="navbar">
         <div id="nav-logo">
             <a href="{{ url('/') }}"><img src="{{ url('/imgs/logo_simplify.png') }}" alt="Logo Simplify"></a>

@@ -23,13 +23,16 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Alteração de usuário</h1>
+@endsection
+
 @section('direita')
     <div class="direita cad_user">
         <div class="header">
             <a href="{{ url()->previous() }}" class="volt"><p>&#8592;  Voltar</p></a>   
         </div>
 
-        <h1>Alteração de usuário</h1>
         
         <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@vsilva472/jquery-viacep/dist/jquery-viacep.min.js"></script>
