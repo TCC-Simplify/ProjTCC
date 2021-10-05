@@ -11,6 +11,6 @@ class Aviso extends Model
     protected $table = 'avisos';
     
     protected $fillable = [
-        'titulo', 'descricao', 'responsavel', 'img', 'video', 'duracao'
+        'titulo', 'descricao', 'responsavel', 'empresa','img', 'video', 'duracao'
     ];
 }

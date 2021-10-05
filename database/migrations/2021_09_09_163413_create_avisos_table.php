@@ -18,6 +18,7 @@ class CreateAvisosTable extends Migration
             $table->string('titulo');
             $table->string('descricao');
             $table->integer('responsavel');
+            $table->integer('empresa');
             $table->string('img');
             $table->string('video');
             $table->string('duracao');

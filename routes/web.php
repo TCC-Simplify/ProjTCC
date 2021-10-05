@@ -147,7 +147,5 @@ Route::middleware(['auth:sanctum', 'verified'])->post('/justificativa', [Justifi
 
 //rotas mural
 Route::middleware(['auth:sanctum', 'verified'])->get('/mural', [MuralController::class, 'mostra_avisos']);
-Route::middleware(['auth:sanctum', 'verified'])->get('/mural/reuniao/criar_form', [MuralController::class, 'criar_form_reuniao']);
-Route::middleware(['auth:sanctum', 'verified'])->get('mural/reuniao', [MuralController::class, 'mostra_reuniao']);
 
 
