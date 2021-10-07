@@ -271,7 +271,7 @@
             }
         </script>
     </head>
-    <body>
+    <body> 
         <div class="cima"></div>
         <div class="navbar fixed-top bg-light">
             <div class="logo">
