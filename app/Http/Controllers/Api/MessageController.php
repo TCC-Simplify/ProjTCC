@@ -5,12 +5,14 @@ namespace App\Http\Controllers\Api;
 use App\Http\Controllers\Controller;
 use App\Models\User;
 use App\Models\Message;
+use App\Models\EMenssage;
 use Illuminate\Http\Request;
 use Auth;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades;
 
 use App\Events\Chat\SendMessage;
+use App\Events\Chat\EqSendMessage;
 
 class MessageController extends Controller
 {
@@ -46,7 +48,8 @@ class MessageController extends Controller
         ]);
 
         return response()->json([
-            'messages' => $messages
+            'messages' => $messages,
+            'tipo' => false
         ], Response::HTTP_OK);
     }
 
@@ -68,14 +71,26 @@ class MessageController extends Controller
      */
     public function store(Request $request)
     {
-        $message = new Message();
-        $message->from = Auth::user()->id;
-        $message->to = $request->to;
-        $message->content = filter_var($request->content, FILTER_SANITIZE_STRIPPED);
-        $message->visto = true;
-        $message->save();
+        if($request->tipo){
+            $message = new EMenssage();
+            $message->from = Auth::user()->id;
+            $message->to = $request->to;
+            $message->content = filter_var($request->content, FILTER_SANITIZE_STRIPPED);
+            $message->visto = true;
+            $message->save();
 
-        SendMessage::dispatch($message, $request->to);
+            //EqSendMessage::dispatch($message, $request->to);
+        }
+        else{
+            $message = new Message();
+            $message->from = Auth::user()->id;
+            $message->to = $request->to;
+            $message->content = filter_var($request->content, FILTER_SANITIZE_STRIPPED);
+            $message->visto = true;
+            $message->save();
+
+            SendMessage::dispatch($message, $request->to);
+        }
     }
 
     /**

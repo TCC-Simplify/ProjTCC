@@ -28,7 +28,7 @@
                             <li 
                                 v-for = "user in users" :key="user.id"
                                 @click="() => {loadMessages(user.id)}"
-                                :class="(userActive && userActive.id == user.id) ? 'bg-gray-200 bg-opacity-50' : ''"
+                                :class="(userActive && userActive.id == user.id && tipo == false) ? 'bg-gray-200 bg-opacity-50' : ''"
                                 class="p-6 text-lg leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200">
                                 
                                 <p class="flex item-center">
@@ -43,7 +43,7 @@
                             <li 
                                 v-for = "equipe in equipes" :key="equipe.id"
                                 @click="() => {loadMessagesEq(equipe.id)}"
-                                :class="(userActive && userActive.id == equipe.id) ? 'bg-gray-200 bg-opacity-50' : ''"
+                                :class="(userActive && userActive.id == equipe.id && tipo == true) ? 'bg-gray-200 bg-opacity-50' : ''"
                                 class="p-6 text-lg leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200">
                                 
                                 <p class="flex item-center">
@@ -138,6 +138,7 @@
 
                 await axios.get(`api/messages/${userId}`).then(response => {
                     this.messages = response.data.messages
+                    this.tipo = response.data.tipo
                 })
 
                 const user = this.users.filter((user) => {
@@ -156,7 +157,8 @@
             sendMessage: async function(){
                 await axios.post('api/messages/store', {
                     'content': this.message,
-                    'to': this.userActive.id
+                    'to': this.userActive.id,
+                    'tipo': this.tipo
                 }).then(response => {
                     this.messages.push({
                         'from': this.auth.user.id,
@@ -196,14 +198,14 @@
                 this.scrollToBottom()
             },
 
-            sendMessage: async function(){
+            /*sendMessageEq: async function(){
                 await axios.post('api/emessages/store', {
                     'content': this.message,
-                    'to': this.userActive.id
+                    'to': this.equipeActive.id
                 }).then(response => {
                     this.messages.push({
                         'from': this.auth.user.id,
-                        'to': this.userActive.id,
+                        'to': this.equipeActive.id,
                         'content': this.message,
                         'created_at': new Date().toISOString(),
                         'updated_at': new Date().toISOString()
@@ -213,7 +215,7 @@
                 })
 
                 this.scrollToBottom()
-            },
+            },*/
 
             formatDate: function (date) {
                 return moment(date).format("DD/MM/YYYY HH:mm");
@@ -223,10 +225,6 @@
 
             axios.get('api/users').then(response => {
                 this.users = response.data.users
-            })
-
-            axios.get('api/equipes').then(response => {
-                this.equipes = response.data.equipes
             })
 
             Echo.private(`user.${this.auth.user.id}`).listen('.SendMessage', async (e) => {
@@ -245,6 +243,14 @@
                         user[0].notification = true;
                     }
                 }
+                console.log(e)
+            })
+
+            axios.get('api/equipes').then(response => {
+                this.equipes = response.data.equipes
+            })
+
+            Echo.private(`user.${this.auth.user.id}`).listen('.EqSendMessage', async (e) => {
                 console.log(e)
             })
         },

@@ -19293,10 +19293,6 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var vue__WEBPACK_IMPORTED_MODULE_1__ = __webpack_require__(/*! vue */ "./node_modules/vue/dist/vue.esm-bundler.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2__ = __webpack_require__(/*! moment */ "./node_modules/moment/moment.js");
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_2___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_2__);
-var _methods;
-
-function _defineProperty(obj, key, value) { if (key in obj) { Object.defineProperty(obj, key, { value: value, enumerable: true, configurable: true, writable: true }); } else { obj[key] = value; } return obj; }
-
 
 
 function asyncGeneratorStep(gen, resolve, reject, _next, _throw, key, arg) { try { var info = gen[key](arg); var value = info.value; } catch (error) { reject(error); return; } if (info.done) { resolve(value); } else { Promise.resolve(value).then(_next, _throw); } }
@@ -19322,7 +19318,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       tipo: false
     };
   },
-  methods: (_methods = {
+  methods: {
     scrollToBottom: function scrollToBottom() {
       if (this.messages.length) {
         document.querySelectorAll('.message:last-child')[0].scrollIntoView();
@@ -19343,6 +19339,7 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context.next = 3;
                 return axios.get("api/messages/".concat(userId)).then(function (response) {
                   _this.messages = response.data.messages;
+                  _this.tipo = response.data.tipo;
                 });
 
               case 3:
@@ -19383,7 +19380,8 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
                 _context2.next = 2;
                 return axios.post('api/messages/store', {
                   'content': this.message,
-                  'to': this.userActive.id
+                  'to': this.userActive.id,
+                  'tipo': this.tipo
                 }).then(function (response) {
                   _this2.messages.push({
                     'from': _this2.auth.user.id,
@@ -19458,82 +19456,57 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
       }
 
       return loadMessagesEq;
-    }()
-  }, _defineProperty(_methods, "sendMessage", function () {
-    var _sendMessage2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4() {
-      var _this4 = this;
+    }(),
 
-      return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
-        while (1) {
-          switch (_context4.prev = _context4.next) {
-            case 0:
-              _context4.next = 2;
-              return axios.post('api/emessages/store', {
+    /*sendMessageEq: async function(){
+        await axios.post('api/emessages/store', {
+            'content': this.message,
+            'to': this.equipeActive.id
+        }).then(response => {
+            this.messages.push({
+                'from': this.auth.user.id,
+                'to': this.equipeActive.id,
                 'content': this.message,
-                'to': this.userActive.id
-              }).then(function (response) {
-                _this4.messages.push({
-                  'from': _this4.auth.user.id,
-                  'to': _this4.userActive.id,
-                  'content': _this4.message,
-                  'created_at': new Date().toISOString(),
-                  'updated_at': new Date().toISOString()
-                });
-
-                _this4.message = '';
-              });
-
-            case 2:
-              this.scrollToBottom();
-
-            case 3:
-            case "end":
-              return _context4.stop();
-          }
-        }
-      }, _callee4, this);
-    }));
-
-    function sendMessage() {
-      return _sendMessage2.apply(this, arguments);
+                'created_at': new Date().toISOString(),
+                'updated_at': new Date().toISOString()
+            })
+              this.message = ''
+        })
+          this.scrollToBottom()
+    },*/
+    formatDate: function formatDate(date) {
+      return moment__WEBPACK_IMPORTED_MODULE_2___default()(date).format("DD/MM/YYYY HH:mm");
     }
-
-    return sendMessage;
-  }()), _defineProperty(_methods, "formatDate", function formatDate(date) {
-    return moment__WEBPACK_IMPORTED_MODULE_2___default()(date).format("DD/MM/YYYY HH:mm");
-  }), _methods),
+  },
   mounted: function mounted() {
-    var _this5 = this;
+    var _this4 = this;
 
     axios.get('api/users').then(function (response) {
-      _this5.users = response.data.users;
-    });
-    axios.get('api/equipes').then(function (response) {
-      _this5.equipes = response.data.equipes;
+      _this4.users = response.data.users;
     });
     Echo["private"]("user.".concat(this.auth.user.id)).listen('.SendMessage', /*#__PURE__*/function () {
-      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(e) {
+      var _ref = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee4(e) {
         var user;
-        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee4$(_context4) {
           while (1) {
-            switch (_context5.prev = _context5.next) {
+            switch (_context4.prev = _context4.next) {
               case 0:
-                if (!(_this5.userActive && _this5.userActive.id === e.message.from)) {
-                  _context5.next = 6;
+                if (!(_this4.userActive && _this4.userActive.id === e.message.from)) {
+                  _context4.next = 6;
                   break;
                 }
 
-                _context5.next = 3;
-                return _this5.messages.push(e.message);
+                _context4.next = 3;
+                return _this4.messages.push(e.message);
 
               case 3:
-                _this5.scrollToBottom();
+                _this4.scrollToBottom();
 
-                _context5.next = 8;
+                _context4.next = 8;
                 break;
 
               case 6:
-                user = _this5.users.filter(function (user) {
+                user = _this4.users.filter(function (user) {
                   if (user.id === e.message.from) {
                     return user;
                   }
@@ -19548,14 +19521,37 @@ function _asyncToGenerator(fn) { return function () { var self = this, args = ar
 
               case 9:
               case "end":
+                return _context4.stop();
+            }
+          }
+        }, _callee4);
+      }));
+
+      return function (_x3) {
+        return _ref.apply(this, arguments);
+      };
+    }());
+    axios.get('api/equipes').then(function (response) {
+      _this4.equipes = response.data.equipes;
+    });
+    Echo["private"]("user.".concat(this.auth.user.id)).listen('.EqSendMessage', /*#__PURE__*/function () {
+      var _ref2 = _asyncToGenerator( /*#__PURE__*/_babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().mark(function _callee5(e) {
+        return _babel_runtime_regenerator__WEBPACK_IMPORTED_MODULE_0___default().wrap(function _callee5$(_context5) {
+          while (1) {
+            switch (_context5.prev = _context5.next) {
+              case 0:
+                console.log(e);
+
+              case 1:
+              case "end":
                 return _context5.stop();
             }
           }
         }, _callee5);
       }));
 
-      return function (_x3) {
-        return _ref.apply(this, arguments);
+      return function (_x4) {
+        return _ref2.apply(this, arguments);
       };
     }());
   },
@@ -23494,7 +23490,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick() {
         $options.loadMessages(user.id);
       },
-      "class": [$data.userActive && $data.userActive.id == user.id ? 'bg-gray-200 bg-opacity-50' : '', "p-6 text-lg leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200"]
+      "class": [$data.userActive && $data.userActive.id == user.id && $data.tipo == false ? 'bg-gray-200 bg-opacity-50' : '', "p-6 text-lg leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200"]
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_6, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(user.name) + " ", 1
     /* TEXT */
     ), user.notification ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_7)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 10
@@ -23508,7 +23504,7 @@ function render(_ctx, _cache, $props, $setup, $data, $options) {
       onClick: function onClick() {
         $options.loadMessagesEq(equipe.id);
       },
-      "class": [$data.userActive && $data.userActive.id == equipe.id ? 'bg-gray-200 bg-opacity-50' : '', "p-6 text-lg leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200"]
+      "class": [$data.userActive && $data.userActive.id == equipe.id && $data.tipo == true ? 'bg-gray-200 bg-opacity-50' : '', "p-6 text-lg leading-7 font-semibold border-b border-gray-200 hover:bg-opacity-50 hover:cursor-pointer hover:bg-gray-200"]
     }, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createVNode)("p", _hoisted_9, [(0,vue__WEBPACK_IMPORTED_MODULE_0__.createTextVNode)((0,vue__WEBPACK_IMPORTED_MODULE_0__.toDisplayString)(equipe.equipe) + " ", 1
     /* TEXT */
     ), equipe.notification ? ((0,vue__WEBPACK_IMPORTED_MODULE_0__.openBlock)(), (0,vue__WEBPACK_IMPORTED_MODULE_0__.createBlock)("span", _hoisted_10)) : (0,vue__WEBPACK_IMPORTED_MODULE_0__.createCommentVNode)("v-if", true)])], 10
@@ -25019,6 +25015,7 @@ __webpack_require__.r(__webpack_exports__);
 /* harmony import */ var moment__WEBPACK_IMPORTED_MODULE_3___default = /*#__PURE__*/__webpack_require__.n(moment__WEBPACK_IMPORTED_MODULE_3__);
 /* harmony import */ var _store__WEBPACK_IMPORTED_MODULE_4__ = __webpack_require__(/*! ./store */ "./resources/js/store.js");
 __webpack_require__(/*! ./bootstrap */ "./resources/js/bootstrap.js"); // Import modules...
+
 
 
 

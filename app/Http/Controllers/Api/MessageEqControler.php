@@ -11,6 +11,8 @@ use Auth;
 use Symfony\Component\HttpFoundation\Response;
 use Illuminate\Support\Facades;
 
+use App\Events\Chat\SendMessage;
+
 class MessageEqControler extends Controller
 {
     public function listMessages(Equipes $equipe){
