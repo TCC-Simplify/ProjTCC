@@ -35,21 +35,12 @@
         </script>
     </head>
     <body>
-            
-        <div id="navbar">
-            <div id="nav-logo">
-                <a href="{{ url('/mural') }}"><img src="{{ url('/imgs/logo_simplify.png') }}" alt="Logo Simplify"></a>
-            </div>
-            @yield('titulo')
-            <div id="logout">
-                <a class="log" href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();"><i class="fas fa-sign-out-alt"></i></a>
-                <form id="logout-form" action="{{ url('/ponto_confirma') }}" method="POST" style="display: none;">
-                    {{ csrf_field() }}
-                </form> 
-            </div>
-        </div>
         <div id="menu_lateral">
             <ul>
+                <div id="logo">
+                    <img src="{{url('/imgs/desenho_simplify.png') }}" alt="logo">
+                    <img id="letras_logo" src="{{ url('/imgs/letras_simplify.png') }}" alt="Logo Simplify"></a>
+                </div>
                 <li>
                     <img id="img_usuario" src="{{ url('/imgs/layout/usuario.png') }}" alt="Icone Usuario">
                         <a href="#" id="label_usuario" class="usuario">
@@ -146,10 +137,20 @@
                         </a>
                     </li>
                 </ul>
+                
             </ul>
-            
+            <div id="logout">
+                <a class="log" href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <p class="mostra2">SAIR</p>
+                </a>
+                <form id="logout-form" action="{{ url('/ponto_confirma') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form> 
+            </div>
         </div>
         <div id="tudo">
+            @yield('titulo')
             @yield('direita')
         </div>
         
@@ -167,6 +168,8 @@
             label_empresa.classList.add("aparecer")
             label_controle.classList.add("aparecer")
             $('#menu_lateral ul .itens').toggleClass('mostra2')
+            $('#logo img:nth-child(2)').toggleClass('mostra')
+            $('#logout a p').toggleClass('mostra2')
         })
         $('#menu_lateral').mouseout(function() {
             menu_lateral.classList.remove("expandir_menu")
@@ -175,6 +178,8 @@
             label_empresa.classList.remove("aparecer")
             label_controle.classList.remove("aparecer")
             $('#menu_lateral ul .itens').toggleClass('mostra2')
+            $('#logo img:nth-child(2)').toggleClass('mostra')
+            $('#logout a p').toggleClass('mostra2')
         })
         $('.usuario').click(function() {
             $('#menu_lateral ul .itens_usuario').toggleClass('mostra')
