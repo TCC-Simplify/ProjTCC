@@ -39,74 +39,88 @@
                 <br>
             @endif
 
-            {{-- ======================== ATIVIDADES INDIVIDUAIS ======================== --}}
-            <h3>Individuais</h3>
-            <div class="cards">
-                @foreach ($ativ as $atividade)
-                        @if ( $atividade->tipo_destinatario == 1 && $atividade->finalizacao == "Confirmar" && $atividade->destinatario != $id_user)
-                                <div class="card">
-                                <a href="funcs{{$atividade->id}}">
-                                        {{$id;}}
-                                        <br>
-                                        <div class="nome">
-                                            <h4>{{$atividade->atividade}}</h4>
-                                            <span <?php
-                                                if($atividade->dificuldade == 1) echo 'style="background-color: rgb(83, 194, 83);"';
-                                                else if($atividade->dificuldade == 3) echo 'style="background-color: rgb(228, 74, 74);"';
-                                                else echo 'style="background-color: rgb(250, 250, 100);"';
-                                            ?>></span>
+            @if(!$tem_ind && !$tem_eq)
+                <br><br><br><br>
+                <h3>Seus funcionários não tem atividades em andamento.</h3>
+            @endif
+
+            @if($tem_ind)
+                {{-- ======================== ATIVIDADES INDIVIDUAIS ======================== --}}
+                <h3>Individuais</h3>
+                <div class="cards">
+                    @foreach ($ativ as $atividade)
+                            @if ( $atividade->tipo_destinatario == 1 && $atividade->finalizacao == "Confirmar" && $atividade->destinatario != $id_user && $atividade->empresa == Auth::user()->empresa)
+                                <div class="wrapper">
+                                    <div class="card">
+                                        <div class="front" <?php if($atividade->dificuldade == 1) echo 'style="background-image: linear-gradient(180deg, rgb(182, 229, 194) 0%, rgba(92,91,94,0) 100%);"';
+                                                    else if($atividade->dificuldade == 3) echo 'style="background-image: linear-gradient(180deg, rgb(216, 165, 165) 0%, rgba(92,91,94,0) 100%);"';
+                                                    else echo 'style="background-image: linear-gradient(180deg, rgb(229, 224, 182) 0%, rgba(92,91,94,0) 100%);"';?>>
+                                            <h1>{{$atividade->atividade}}</h1>
+                                            <p><span><?php echo str_replace('-', '/', date( 'd-m-Y' , strtotime( $atividade->prazo ) ));?></span></p>
                                         </div>
-                                        <br>
-                                        <p>Destinatário: 
-                                            @foreach ($users as $user)
-                                                @if ($user->id == $atividade->destinatario)
-                                                    {{$user->name}}
+                                        <div class="right" <?php if($atividade->dificuldade == 1) echo 'style="background-image: linear-gradient(0deg, rgb(182, 229, 194)  0%, rgba(92,91,94,0) 100%);"';
+                                                    else if($atividade->dificuldade == 3) echo 'style="background-image: linear-gradient(0deg, rgb(216, 165, 165)  0%, rgba(92,91,94,0) 100%);"';
+                                                    else echo 'style="background-image: linear-gradient(0deg, rgb(229, 224, 182)  0%, rgba(92,91,94,0) 100%);"';?>>
+                                            <h2>{{$atividade->atividade}}</h2>
+                                            <ul>
+                                                <li><?php echo str_replace('-', '/', date( 'd-m-Y' , strtotime( $atividade->prazo ) ));?></li>
+                                                <li>Descrição: {{$atividade->descricao}}</li>
+                                                <li>Destinatário: 
+                                                    @foreach ($users as $user)
+                                                        @if ($user->id == $atividade->destinatario)
+                                                            {{$user->name}}
+                                                        @endif
+                                                    @endforeach
+                                                </li>
+                                            </ul>
+                                            <a href="{{ url('/atividades/marcar_concluido', $atividade->id) }}"><button>Concluir</button></a>
+                                        </div>
+                                    </div>
+                                </div>
+                            @endif
+                    @endforeach
+                </div>
+            @endif
+
+            <br>
+
+            @if($tem_eq)
+                {{-- ======================== ATIVIDADES EM GRUPO ======================== --}}
+                <h3>Em grupo</h3>
+                <div class="cards">
+                    @foreach ($ativ as $atividade)
+                        @if ( $atividade->tipo_destinatario == 2 && $atividade->finalizacao == "Confirmar" && $atividade->destinatario != $id_user && $atividade->empresa == Auth::user()->empresa)
+                            <div class="wrapper">
+                                <div class="card">
+                                    <div class="front" <?php if($atividade->dificuldade == 1) echo 'style="background-image: linear-gradient(180deg, rgb(182, 229, 194) 0%, rgba(92,91,94,0) 100%);"';
+                                                else if($atividade->dificuldade == 3) echo 'style="background-image: linear-gradient(180deg, rgb(216, 165, 165) 0%, rgba(92,91,94,0) 100%);"';
+                                                else echo 'style="background-image: linear-gradient(180deg, rgb(229, 224, 182) 0%, rgba(92,91,94,0) 100%);"';?>>
+                                        <h1>{{$atividade->atividade}}</h1>
+                                        <p><span><?php echo str_replace('-', '/', date( 'd-m-Y' , strtotime( $atividade->prazo ) ));?></span></p>
+                                    </div>
+                                    <div class="right" <?php if($atividade->dificuldade == 1) echo 'style="background-image: linear-gradient(0deg, rgb(182, 229, 194)  0%, rgba(92,91,94,0) 100%);"';
+                                                else if($atividade->dificuldade == 3) echo 'style="background-image: linear-gradient(0deg, rgb(216, 165, 165)  0%, rgba(92,91,94,0) 100%);"';
+                                                else echo 'style="background-image: linear-gradient(0deg, rgb(229, 224, 182)  0%, rgba(92,91,94,0) 100%);"';?>>
+                                        <h2>{{$atividade->atividade}}</h2>
+                                        <ul>
+                                            <li><?php echo str_replace('-', '/', date( 'd-m-Y' , strtotime( $atividade->prazo ) ));?></li>
+                                            <li>Descrição: {{$atividade->descricao}}</li>
+                                            <li>Equipe: 
+                                            @foreach ($equipes as $equipe)
+                                                @if ($equipe->id == $atividade->destinatario)
+                                                    {{$equipe->equipe}}
                                                 @endif
                                             @endforeach
-                                        </p>
-                                        <p>Descrição: {{$atividade->descricao}}</p>
-                                        <p>Data de entrega: {{$atividade->prazo}}</p>
-                                        <br>
-                                    </a>
+                                            </li>
+                                        </ul>
+                                        <a href="{{ url('/atividades/marcar_concluido', $atividade->id) }}"><button>Concluir</button></a>
+                                    </div>
                                 </div>
+                            </div>
                         @endif
-                @endforeach
-            </div>
-            {{-- ======================== ATIVIDADES EM GRUPO ======================== --}}
-            <br>
-            <h3>Em grupo</h3>
-            <div class="cards">
-                @foreach ($ativ as $atividade)
-                    @if ( $atividade->tipo_destinatario == 2 && $atividade->finalizacao == "Confirmar" && $atividade->destinatario != $id_user)
-                        <div class="card">
-                            <a href="funcs{{$atividade->id}}">
-                                {{$id;}}
-                                <br>
-                                <div class="nome">
-                                    <h4>{{$atividade->atividade}}</h4>
-                                    <span <?php
-                                        if($atividade->dificuldade == 1) echo 'style="background-color: rgb(83, 194, 83);"';
-                                        else if($atividade->dificuldade == 3) echo 'style="background-color: rgb(228, 74, 74);"';
-                                        else echo 'style="background-color: rgb(250, 250, 100);"';
-                                    ?>></span>
-                                </div>
-                                <br>
-                                <p>Equipe:
-                                    @foreach ($equipes as $equipe)
-                                        @if ($equipe->id == $atividade->destinatario)
-                                            {{$equipe->equipe}}
-                                        @endif
-                                    @endforeach
-                                </p>
-                                <p>Descrição: {{$atividade->descricao}}</p>
-                                <p>Data de entrega: {{$atividade->prazo}}</p>
-                                <br>
-                            </a>
-                        </div>
-                    @endif
-                @endforeach
-            </div>
-
+                    @endforeach
+                </div>
+            @endif
         @else
             {{-- ======================== DETALHES DA ATIVIDADE ======================== --}}
             @foreach ($ativ as $atividade)

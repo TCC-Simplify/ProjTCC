@@ -23,6 +23,20 @@ class AtividadesController extends Controller
 
     public function atividade_show($id = null, Atividade $atividade, User $user, Equipes $equipe)
     {
+        $array_equipe = Atividade::all()->where('destinatario', Auth::user()->equipe)->where('tipo_destinatario', 2)->where('finalizacao', 'Confirmar')->count();
+        if($array_equipe == 0){
+            $tem_eq = false;
+        }else{
+            $tem_eq = true;
+        }
+
+        $array_ind = Atividade::all()->where('destinatario', Auth::user()->id)->where('tipo_destinatario', 1)->where('finalizacao', 'Confirmar')->count();
+        if($array_ind == 0){
+            $tem_ind = false;
+        }else{
+            $tem_ind = true;
+        }
+
         if($id == null)
         {
             $id_empresa = session()->get('id_empresa');
@@ -33,7 +47,7 @@ class AtividadesController extends Controller
             $id_user = Auth::user()->id;
             
 
-            return view('controle.atividades', compact('ativ', 'id', 'permissao','id_user', 'users', 'equipes', 'id_empresa'));
+            return view('controle.atividades', compact('ativ', 'id', 'permissao','id_user', 'users', 'equipes', 'id_empresa','tem_eq', 'tem_ind'));
         }
         else
         {
@@ -52,8 +66,22 @@ class AtividadesController extends Controller
 
     public function atividade_funcs_show($id = null, Atividade $atividade, User $user, Equipes $equipe)
     {
+        $array_equipe = Atividade::all()->where('destinatario', '!=', Auth::user()->equipe)->where('tipo_destinatario', 2)->where('finalizacao', 'Confirmar')->where('empresa', Auth::user()->empresa)->count();
+        if($array_equipe == 0){
+            $tem_eq = false;
+        }else{
+            $tem_eq = true;
+        }
+
+        $array_ind = Atividade::all()->where('destinatario', '!=', Auth::user()->id)->where('tipo_destinatario', 1)->where('finalizacao', 'Confirmar')->where('empresa', Auth::user()->empresa)->count();
+        if($array_ind == 0){
+            $tem_ind = false;
+        }else{
+            $tem_ind = true;
+        }
+
         if($id == null)
-        {
+        {            
             $id_empresa = session()->get('id_empresa');
             $ativ = $atividade->all();
             $users = $user->all()->where('empresa',$id_empresa);
@@ -62,7 +90,7 @@ class AtividadesController extends Controller
             $id_user = Auth::user()->id;
             
 
-            return view('controle.atividades_funcs', compact('ativ', 'id', 'permissao','id_user', 'users', 'equipes', 'id_empresa'));
+            return view('controle.atividades_funcs', compact('ativ', 'id', 'permissao','id_user', 'users', 'equipes', 'id_empresa', 'tem_eq', 'tem_ind'));
         }
         else
         {
@@ -88,6 +116,7 @@ class AtividadesController extends Controller
         // dd($request->except(['_token']));
         // dd($request->input('nome'));
         $dataForm = $request->except(['_token','botao']);
+        $dataForm += ["empresa" => Auth::user()->empresa];
         $insert = $atividade->insert($dataForm);
         if($insert)
         {

@@ -10,6 +10,7 @@
 
         <!-- Fonts -->
         <link href="https://fonts.googleapis.com/css2?family=Poppins:wght@200;300;400;600;800&display=swap" rel="stylesheet">
+        <link href="https://fonts.googleapis.com/icon?family=Material+Icons" rel="stylesheet">
         <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.15.3/css/all.css" integrity="sha384-SZXxX4whJ79/gErwcOYf+zWLeJdY/qpuqC4cAa9rOGUstPomtqpuNWT9wdPEn2fk" crossorigin="anonymous">
         <link href="{{ url('css/user_e_empresa/home_register.css') }}" rel="stylesheet">
@@ -23,145 +24,11 @@
         <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
         <script src="https://cdn.jsdelivr.net/npm/@vsilva472/jquery-viacep/dist/jquery-viacep.min.js"></script>
         <script src="<?php echo url('js/jquery.maskedinput-1.1.4.pack.js')?>" type="text/javascript"></script>
-        <script src="<?php echo url('js/funcs_cad_empresa.js')?>"></script> 
+        <script src="<?php echo url('js/funcs_cad_empresa.js')?>"></script>
         <script src="<?php echo url('js/funcs_cad_profissional.js')?>"></script> 
+        <link href="{{ asset('css/layout_fundo_padrao.css') }}" rel="stylesheet">
+        
         <script type="text/javascript" src="https://www.gstatic.com/charts/loader.js"></script>
-
-        <!-- Styles -->
-        <style>
-            html, body {
-                background-color: rgb(37, 37, 44); 
-                color: #fff;
-                font-family: 'Poppins', sans-serif;
-                font-weight: 100;
-                height: 100vh;
-                width: 100vw;
-                margin: 0;
-                display: grid;
-                grid-template-rows: 10vh 90vh;
-            }
-
-            .links > a{
-                color: rgb(0, 0, 0);
-                padding: 0 25px;
-                font-size: 25px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-            .links > a:hover{
-                border-bottom: 1px solid rgb(155, 155, 155);
-            }
-
-            .links{
-                text-align: right;
-            }
-
-            .opcoes > .a > a{
-                color: rgb(0, 0, 0);
-                font-size: 40px;
-                font-weight: 600;
-                letter-spacing: .1rem;
-                text-decoration: none;
-                text-transform: uppercase;
-            }
-
-            .opcoes > .a > a:hover{
-                color: rgb(37, 37, 44);
-            }
-
-            .users{
-                text-align: center;
-                display: grid;
-                grid-template-rows: 15vh 15vh 15vh 15vh;
-            }
-
-            .empresa{
-                text-align: center;
-                display: grid;
-                grid-template-rows: 20vh 20vh;
-                margin-top: 80px;
-            }
-
-            .cima{
-                background-color: red;
-            }
-
-            .tudo{
-                background-color: green;
-                display: grid;
-                grid-template-columns: 90px auto;
-            }
-
-            .esquerda{
-                background-color: rgb(38, 109, 82);
-                padding-top: 10vh;
-            }
-
-            .direita{
-                background-color: rgb(37, 37, 44);
-                overflow: auto;
-                text-align: center;
-            }
-
-            .navbar{
-                height: 10vh;
-            }
-
-            .es{
-                color: rgb(212, 212, 212);
-            }
-
-            #descricao{
-                display:none; 
-                position:absolute;
-                width:100px; 
-                background-color: rgba(150, 150, 150, 0.500);
-                color: black;
-                top:10px; 
-                left: 1490px;
-                text-align: center;
-                border-radius: 4px;
-            }
-
-            chat {
-                list-style: none;
-                margin: 0;
-                padding: 0;
-            }
-
-            .chat li {
-                margin-bottom: 10px;
-                padding-bottom: 5px;
-                border-bottom: 1px dotted #B3A9A9;
-            }
-
-            .chat li .chat-body p {
-                margin: 0;
-                color: #777777;
-            }
-
-            .panel-body {
-                overflow-y: scroll;
-                height: 350px;
-            }
-
-            ::-webkit-scrollbar-track {
-                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,0.3);
-                background-color: #F5F5F5;
-            }
-
-            ::-webkit-scrollbar {
-                width: 12px;
-                background-color: #F5F5F5;
-            }
-
-            ::-webkit-scrollbar-thumb {
-                -webkit-box-shadow: inset 0 0 6px rgba(0,0,0,.3);
-                background-color: #555;
-            }
-        </style>
 
         <script>
             window.Laravel = <?php echo json_encode([
@@ -271,46 +138,212 @@
             }
         </script>
     </head>
-    <body> 
-        <div class="cima"></div>
-        <div class="navbar fixed-top bg-light">
-            <div class="logo">
-                <a href="{{ url('/mural') }}"><img src="{{ url('/imgs/logo_simplify.png') }}" alt="Logo Simplify"  width="250px"></a>
-            </div>
-
-            <div class="links">
-                <div class="links">
-                    <a href="{{ url('/pag_user') }}" style="color: rgb(38, 109, 82);">Usuários</a>
-                    <a href="{{ url('/empresa') }}">Empresa</a>
-                    <a href="{{ url('/atividades') }}">Controle</a>
-                    <a class="log" href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();" onmouseover="getElementById('descricao').style.display='block'" onmouseout="getElementById('descricao').style.display='none'"><i class="fas fa-sign-out-alt"></i></a>
-                    <form id="logout-form" action="{{ url('/ponto_confirma') }}" method="POST" style="display: none;">
-                        {{ csrf_field() }}
-                    </form>
-                    <!--<div id="descricao" name="descricao">Sair</div>-->
+    <body>
+        <div id="menu_lateral">
+            <ul>
+                <div id="logo">
+                    <img src="{{url('/imgs/desenho_simplify.png') }}" alt="logo">
+                    <img id="letras_logo" src="{{ url('/imgs/letras_simplify.png') }}" alt="Logo Simplify"></a>
                 </div>
+                <li>
+                    <img id="img_usuario" src="{{ url('/imgs/layout/usuario.png') }}" alt="Icone Usuario">
+                        <a href="#" id="label_usuario" class="usuario">
+                            USUÁRIOS
+                            <span class="material-icons seta1">keyboard_arrow_down</span>
+                        </a>
+                </li>
+                <ul class="itens_usuario">
+                    <li>
+                        <i class="fas fa-user"></i>
+                        <a href="{{ url('/pag_user') }}" class="itens mostra2">
+                            Perfil do usuário
+                        </a>
+                    </li>
+                    <li <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>>
+                        <i class="fas fa-user-plus es"></i>
+                        <a href="{{ url('/cadastro_user') }}" class="itens mostra2">
+                            Cadastro de usuários
+                        </a>
+                    </li>
+                    <li <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>>
+                        <i class="fas fa-users"></i>
+                        <a href="{{ url('/users') }}" class="itens mostra2">
+                            Painel de usuários
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fas fa-chart-area"></i>
+                        <a href="{{ url('/overview') }}" class="itens mostra2">
+                            Overview das atividades
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fas fa-user-clock"></i>
+                        <a href="{{ url('/dados_ponto') }}" class="itens mostra2">
+                            Página ponto
+                        </a>
+                    </li>
+                </ul>
+
+                <li>
+                    <img id="img_empresa" src="{{url('/imgs/layout/empresa.png') }}" alt="Icone Empresa">
+                    <a href="#" id="label_empresa" class="empresa">
+                        EMPRESA
+                        <span class="material-icons seta2">keyboard_arrow_down</span>
+                    </a>
+                    
+                </li>
+                <ul class="itens_empresa">
+                    <li>
+                        <i class="fas fa-city es"></i>
+                        <a href="{{ url('/empresa') }}" class="itens mostra2">
+                            Perfil da empresa
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fas fa-users"></i>
+                        <a href="{{ url('/equipes') }}" class="itens mostra2" <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>>
+                            Equipes
+                        </a>
+                    </li>
+                </ul>
+
+                <li>
+                    <img id="img_controle" src="{{url('/imgs/layout/controle.png') }}" alt="Icone Controle">
+                    <a href="#" id="label_controle" class="controle">
+                        CONTROLE
+                        <span class="material-icons seta3">keyboard_arrow_down</span>
+                    </a>
+                </li>
+                <ul class="itens_controle">
+                    <li>
+                        <i class="fas fa-calendar-alt"></i>
+                        <a href="{{ url('/mural') }}" class="itens mostra2">
+                            Mural
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fas fa-list-ul es"></i>
+                        <a href="{{ url('/atividades') }}" class="itens mostra2">
+                            Atividades
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fas fa-comments"></i>
+                        <a href="{{ url('/chat') }}" class="itens mostra2">
+                            Chat
+                        </a>
+                    </li>
+                    <li>
+                        <i class="fas fa-info"></i>
+                        <a href="{{ url('/justificativa') }}" class="itens mostra2">
+                            Justificativa
+                        </a>
+                    </li>
+                </ul>
+                
+            </ul>
+            <div id="logout">
+                <a class="log" href="{{ url('/logout') }}" onclick="event.preventDefault();document.getElementById('logout-form').submit();">
+                    <i class="fas fa-sign-out-alt"></i>
+                    <p class="mostra2">SAIR</p>
+                </a>
+                <form id="logout-form" action="{{ url('/ponto_confirma') }}" method="POST" style="display: none;">
+                    {{ csrf_field() }}
+                </form> 
             </div>
         </div>
-        <div class="tudo">
-            <div class="esquerda">
-                <div class="opcoes users">
-                    <div class="a"><a href="{{ url('/pag_user') }}"><i class="fas fa-user es"></i></a></div>
-                    <div class="a" <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>><a href="{{ url('/cadastro_user') }}"><i class="fas fa-user-plus"></i></a></div>
-                    <div class="a" <?php if(Auth::user()->permissao == 3) echo 'style="display: none;"'?>><a href="{{ url('/users') }}"><i class="fas fa-users"></i></a></div>
-                    <div class="a"><a href="{{ url('/overview') }}"><i class="fas fa-chart-area"></i></a></div>
-                    <div class="a"><a href="{{ url('/dados_ponto') }}"><i class="fas fa-user-clock"></i></a></div>
-                </div>
+        <div id="tudo">
+            <div class="titulo">
+                <h1>Página do usuário</h1>
             </div>
             <div class="direita cad_user">
-                <h1>Página do usuário</h1>
-                <div class="graficos" style="display: grid; grid-template-columns: 1fr 1fr; padding:auto;">
-                    <div id="grafic_pizza1"></div>
-                    <div id="grafic_pizza2"></div>
-                </div>
+                @if($tem)
+                    <div class="graficos" style="display: grid; grid-template-columns: 1fr 1fr; padding:auto;">
+                        <div id="grafic_pizza1"></div>
+                        <div id="grafic_pizza2"></div>
+                    </div>
+
+                @else
+
+                    <div class="graficos" style="margin: auto; margin-bottom: 50px; color: #8FBC8F;">
+                        <h5>Você não tem atividades concluídas ainda.</h5>
+                    </div>
+
+                @endif 
 
                 <h1>Controle dos meus dados</h1>
                 <a href="{{ url('/alt_user', Auth::user()->id) }}"><button class="btn-paguser">Alterar meu dados</button></a>
+            </div>
         </div>
+        
         <script src="{{asset('js/msg.js')}}"></script>
     </body>
+
+    <script>
+        
+        $('#menu_lateral').mouseover(function() {
+            menu_lateral.classList.remove("fechar_menu")
+            menu_lateral.classList.add("expandir_menu")
+            label_usuario.classList.add("aparecer")
+            label_empresa.classList.add("aparecer")
+            label_controle.classList.add("aparecer")
+            $('#menu_lateral ul .itens').toggleClass('mostra2')
+            $('#logo img:nth-child(2)').toggleClass('mostra')
+            $('#logout a p').toggleClass('mostra2')
+        })
+        $('#menu_lateral').mouseout(function() {
+            menu_lateral.classList.remove("expandir_menu")
+            menu_lateral.classList.add("fechar_menu")
+            label_usuario.classList.remove("aparecer")
+            label_empresa.classList.remove("aparecer")
+            label_controle.classList.remove("aparecer")
+            $('#menu_lateral ul .itens').toggleClass('mostra2')
+            $('#logo img:nth-child(2)').toggleClass('mostra')
+            $('#logout a p').toggleClass('mostra2')
+        })
+        $('.usuario').click(function() {
+            $('#menu_lateral ul .itens_usuario').toggleClass('mostra')
+            $('#menu_lateral ul .seta1').toggleClass('gira')
+            const div = document.querySelector('.itens_empresa')
+            const div2 = document.querySelector('.itens_controle')
+            if(div.classList.contains('mostra')) {
+                $('#menu_lateral ul .itens_empresa').toggleClass('mostra')
+                $('#menu_lateral ul .seta2').toggleClass('gira')
+            }
+            if(div2.classList.contains('mostra')) {
+                $('#menu_lateral ul .itens_controle').toggleClass('mostra')
+                $('#menu_lateral ul .seta3').toggleClass('gira')
+            }
+        })
+        $('.empresa').click(function() {
+            $('#menu_lateral ul .itens_empresa').toggleClass('mostra')
+            $('#menu_lateral ul .seta2').toggleClass('gira')
+            const div = document.querySelector('.itens_usuario')
+            const div2 = document.querySelector('.itens_controle')
+            if(div.classList.contains('mostra')) {
+                $('#menu_lateral ul .itens_usuario').toggleClass('mostra')
+                $('#menu_lateral ul .seta1').toggleClass('gira')
+            }
+            if(div2.classList.contains('mostra')) {
+                $('#menu_lateral ul .itens_controle').toggleClass('mostra')
+                $('#menu_lateral ul .seta3').toggleClass('gira')
+            }
+        })
+        $('.controle').click(function() {
+            $('#menu_lateral ul .itens_controle').toggleClass('mostra')
+            $('#menu_lateral ul .seta3').toggleClass('gira')
+            const div = document.querySelector('.itens_usuario')
+            const div2 = document.querySelector('.itens_empresa')
+            if(div.classList.contains('mostra')) {
+                $('#menu_lateral ul .itens_usuario').toggleClass('mostra')
+                $('#menu_lateral ul .seta1').toggleClass('gira')
+            }
+            if(div2.classList.contains('mostra')) {
+                $('#menu_lateral ul .itens_empresa').toggleClass('mostra')
+                $('#menu_lateral ul .seta2').toggleClass('gira')
+            }
+        })
+     </script>
 </html>
+

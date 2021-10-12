@@ -106,6 +106,7 @@ class UsuarioController extends Controller
     public function show(){
         $id = session()->get('id_user');
         $usuario = User::find($id);
+        
         // carrega o registro (realiza um select e um fetch internamente)
         return view('users/pag_user',compact('usuario'));
     }

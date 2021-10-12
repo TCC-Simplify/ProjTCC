@@ -68,6 +68,10 @@ class OverviewController extends Controller
     //ÁREA DE GRÁFICOS PÁG USER-------------------------------------
     public function pag_user(){
         //Gráfico de ativ em equipes e individuais
+            $tem_ind = false;
+            $tem_eq = false;
+            $tem = false;
+
             $quant_equipe = 0;
             $equipe = DB::table('users')->where('id', Auth::user()->id)->value('equipe');
             if($equipe != null){
@@ -76,6 +80,7 @@ class OverviewController extends Controller
                     $quant_equipe = 0;
                 }else{
                     $quant_equipe = $array_equipe;
+                    $tem_eq = true;
                 }
             }
             $quant_ind = 0;
@@ -84,6 +89,7 @@ class OverviewController extends Controller
                 $quant_ind = 0;
             }else{
                 $quant_ind = $array_ind;
+                $tem_ind = true;
             }
 
             $array_leg = ['Individual', 'Equipe'];
@@ -97,6 +103,12 @@ class OverviewController extends Controller
             $ativ_leg = ['Fácil', 'Médio', 'Difícil'];
             $ativ_quant = [$quant_fac, $quant_med, $quant_dif];
 
-        return view('users/pag_user', compact('array_leg', 'array_quant', 'ativ_leg', 'ativ_quant'));
+            if($tem_ind || $tem_eq){
+                $tem = true;
+            }else{
+                $tem = false;
+            }
+
+        return view('users/pag_user', compact('array_leg', 'array_quant', 'ativ_leg', 'ativ_quant', 'tem'));
     } 
 }

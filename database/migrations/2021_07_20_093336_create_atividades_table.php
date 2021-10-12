@@ -22,6 +22,7 @@ class CreateAtividadesTable extends Migration
             $table->integer('dificuldade');
 	        $table->integer('tipo_destinatario'); // 1 - ind e 2 - equipe
             $table->integer('destinatario');
+            $table->integer('empresa');
             $table->timestamps();
         });
     }

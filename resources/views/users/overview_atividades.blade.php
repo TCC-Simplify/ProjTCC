@@ -34,6 +34,7 @@
         </div>
 
         <h3>Individuais</h3>
+
         <br>
         @foreach($atividade_user as $linha)
         <div class="card-o">
