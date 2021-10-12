@@ -130,12 +130,6 @@
                             Chat
                         </a>
                     </li>
-                    <li>
-                        <i class="fas fa-info"></i>
-                        <a href="{{ url('/justificativa') }}" class="itens mostra2">
-                            Justificativa
-                        </a>
-                    </li>
                 </ul>
                 
             </ul>

@@ -51,6 +51,7 @@ class CreateNewUser implements CreatesNewUsers
             'aux' => 1,
             'equipe' => 0
         ]);
+
     }
 
     /**

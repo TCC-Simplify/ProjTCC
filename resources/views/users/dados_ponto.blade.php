@@ -37,9 +37,9 @@
             <form action="{{ url('/saida_ponto') }}" method="POST" enctype="multipart/form-data" class="form-cad">
             {!! csrf_field() !!}
             @if ($status == 'Entrada')
-                <input type="submit" name="botao" value="Encerrar Ponto" style="padding-left:25px;padding-right:25px;margin-right:60px;background-color:rgb(38, 109, 82);color:white;"/>
+                <input type="submit" name="botao" class="botaopont" value="Encerrar Ponto" style="padding-left:25px;padding-right:25px;margin-right:60px;background-color:rgb(38, 109, 82);color:white;"/>
             @endif
-                <a href="{{ url('/historico_ponto') }}"><input type="button" name="botao" value="Histórico de Pontos" style="background-color:rgb(38, 109, 82);color:white;"/></a>
+                <a href="{{ url('/historico_ponto') }}"><input type="button" class="botaopont" name="botao" value="Histórico de Pontos" style="background-color:rgb(38, 109, 82);color:white;"/></a>
             </form>   
         </div>
     </div>

@@ -122,13 +122,13 @@
 
                 <div class="filled">
                     <div class="input-cinquenta">
-                        <button type="button" onclick="mostrarSenha3()" class="ver"><i id="botao" class="fas fa-eye"></i></button>
+                        <button type="button" onclick="mostrarSenha()" class="ver"><i id="botao" class="fas fa-eye"></i></button>
                     </div>
 
                     &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
 
                     <div class="input-cinquenta">
-                        <button type="button" onclick="mostrarSenha4()"class="ver"><i id="botao2" class="fas fa-eye"></i></button>  
+                        <button type="button" onclick="mostrarSenha2()"class="ver"><i id="botao2" class="fas fa-eye"></i></button>  
                     </div>
                 </div>
                 <div id="div-botao">

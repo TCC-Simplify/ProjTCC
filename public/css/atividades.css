@@ -63,7 +63,7 @@
     width: 900px;
 }
 
-.btn-fim {
+.btn-fim, .botaopont{
     border-radius: 5px;
     color: white;
     background-color: rgb(67, 167, 67);
@@ -73,6 +73,6 @@
     border: none;
 }
 
-.btn-fim:hover {
+.btn-fim:hover, .botaopont:hover {
     background-color: rgb(58, 155, 58);
 }

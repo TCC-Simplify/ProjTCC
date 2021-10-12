@@ -40,7 +40,7 @@
           </div>
           <div class="modal-footer">
             <button type="submit" class="btn btn-primary">Sair</button>
-            <a href="{{ URL::previous() }}"><button type="button" class="btn btn-primary">Voltar</button></a>
+            <a href="{{ url('/dados_ponto') }}"><button type="button" class="btn btn-primary">Voltar</button></a>
           </div>
         </div>
       </div>

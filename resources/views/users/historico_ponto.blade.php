@@ -46,7 +46,7 @@
               <div class="form-group">
                 <label for="historico">Histórico: </label></br>
                     @foreach ($hist as $linha)
-                        <a href=""><label style="color:blue;">Justificar</label> &nbsp;</a>
+                        <a href="{{ url('/justificativa') }}"><label style="color:blue;">Justificar</label> &nbsp;</a>
                         <label>{{ $linha->created_at }}</label>&nbsp;
                         @if ($linha->motivo == 1)
                         <label>Entrada</label>

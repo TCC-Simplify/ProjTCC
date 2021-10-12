@@ -17,7 +17,7 @@ class CreateJustificativasTable extends Migration
             $table->id();
             $table->foreignId('users')->unsigned();
             $table->string('justificativa');
-            $table->integer('tipo');
+            $table->string('tipo');
             $table->timestamps();
         });
     }
