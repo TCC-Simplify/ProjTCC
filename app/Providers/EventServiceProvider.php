@@ -9,8 +9,6 @@ use Illuminate\Support\Facades\Event;
 
 use App\Events\Chat\SendMessage;
 use App\Listeners\ListenerSendMessage;
-use App\Events\Chat\EqSendMessage;
-use App\Listeners\EqListenerSendMessage;
 
 class EventServiceProvider extends ServiceProvider
 {
@@ -26,9 +24,6 @@ class EventServiceProvider extends ServiceProvider
         SendMessage::class => [
             ListenerSendMessage::class,
         ],
-        EqSendMessage::class => [
-            ListenerEqSendMessage::class,
-        ]
     ];
 
     /**

@@ -19,6 +19,7 @@ createApp({
             initialPage: JSON.parse(el.dataset.page),
             resolveComponent: (name) => require(`./Pages/${name}`).default,
         }),
+
 })
     .mixin({ methods: { route } })
     .use(InertiaPlugin)
