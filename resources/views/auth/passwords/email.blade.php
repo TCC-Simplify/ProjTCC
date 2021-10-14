@@ -10,7 +10,7 @@
             </div>
         @endif
 
-        <form class="form email" role="form" method="POST" action="{{ url('/password/email') }}">
+        <form class="form email" role="form" method="POST" action="{{ route('password.email') }}">
             {{ csrf_field() }}
 
             <div class="header">

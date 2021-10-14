@@ -9,19 +9,19 @@
             </div>
         @endif
 
-        <form class="form email" role="form" method="POST" action="{{ url('/password/reset') }}">
+        <form class="form email" role="form" method="POST" action="{{ route('password.update') }}">
             {{ csrf_field() }}
 
             <div class="header">
                 <a href="{{ url('/') }}"><img src="{{ url('/imgs/logo_simplify.png') }}" alt="Logo Simplify"  width="150px"></a>   
             </div>
 
-            <input type="hidden" name="token" value="{{ $token }}">
+            <input type="hidden" name="token" value="{{ $request['token'] }}">
 
             <div class="form-group{{ $errors->has('email') ? ' has-error' : '' }}">
 
                 <div class="col-md-6">
-                    <input id="email" type="email" class="form-control tam inp-reset" placeholder="Email:" name="email" value="{{ $email or old('email') }}" required autofocus>
+                    <input id="email" type="email" class="form-control tam inp-reset" placeholder="Email:" name="email" value="{{ $request['email'] }}" required autofocus>
 
                     @if ($errors->has('email'))
                         <span class="help-block">

@@ -45,6 +45,10 @@ Route::get('/emails', function () {
     return view('emails');
 });
 
+Route::get('/esqueceu-senha', function () {
+    return view('auth.passwords.email');
+});
+
 Route::middleware(['auth:sanctum', 'verified'])->get('/dashboard', function () {
     return Inertia::render('Dashboard');
 })->name('dashboard');

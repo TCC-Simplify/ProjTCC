@@ -50,6 +50,13 @@
                 <h3>Login</h3>
                 <div id="underline"></div>
             </div>
+
+            @if (session('status'))
+                <div class="alert alert-success">
+                    {{ session('status') }}
+                </div>
+            @endif
+
             <form  role="form login" method="POST" action="{{ url('/login') }}">
                 {{ csrf_field() }}
                 <div class="label-float">
@@ -79,7 +86,7 @@
                 </div>
                 <div class="links">
                     <div class="link1">
-                        <a href="{{ url('/forgot-password') }}">
+                        <a href="{{ url('/esqueceu-senha') }}">
                             Esqueceu sua senha?
                         </a>
                     </div>
