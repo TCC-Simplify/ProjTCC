@@ -20,7 +20,6 @@ class MuralController extends Controller
     {
         $id_user = Auth::user()->id;
         $id_empresa = session()->get('id_empresa');
-
         Aviso::create([
          'titulo' =>  $request['titulo'],
          'descricao' =>  $request['descricao'],
@@ -29,20 +28,42 @@ class MuralController extends Controller
          'imagem' =>  $request['imagem'],
          'video' =>  $request['video'],
          'duracao' =>  $request['duracao']
-
         ] );
-
-        return redirect('/mural/avisos');
+        return redirect('/mural');
     }
 
-    public function mostra_avisos()
+    public function mostra_avisos($id = null)
     {
         $id_empresa = session()->get('id_empresa');
-        $avisos = Avisos::all()->where('empresa',$id_empresa);
-        return view('controle.mural/avisos', compact('avisos'));
+        $array_aviso = Aviso::all()->where('empresa',$id_empresa)->count();
+        if($array_aviso == 0){
+            $tem_aviso = false;
+        } else {
+            $tem_aviso = true;
+        }
+        
+
+        if($id == null)
+        {
+            $avisos = Aviso::all()->where('empresa',$id_empresa);
+            $user = User::all();
+
+        }else{
+            $avisos = Aviso::all()->where('id',$id);
+        }
+        return view('controle.mural', compact('id','avisos','user', 'tem_aviso'));
 
     }
 
-    
+    public function form_aviso_criar()
+    {
+        return view('controle.mural_cadastro');
+    }
+
+    public function destroy($id)
+    {
+        Aviso::find($id)->delete();
+        return redirect('/mural');
+    }
     
 }

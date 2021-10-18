@@ -98,7 +98,7 @@
 
                 </style> 
 
-
+                        
                 {{-- ============================== Mostrando todos os usuários ============================== --}}
                 @if(Auth::user()->permissao == 3)
                     <div class="form-group" id="ativ_ind">

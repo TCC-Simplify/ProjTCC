@@ -127,6 +127,12 @@ Route::middleware(['auth:sanctum', 'verified'])->get('/atividades/funcs{id?}', [
 Route::middleware(['auth:sanctum', 'verified'])->get('/atividades/criar_form', [AtividadesController::class, 'atividade_criar_form']);
 Route::middleware(['auth:sanctum', 'verified'])->post('/atividades/criar', [AtividadesController::class, 'atividade_criar']);
 
+//rotas mural
+Route::middleware(['auth:sanctum', 'verified'])->get('/mural', [MuralController::class, 'mostra_avisos']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/mural/marcar_concluido/{id}', [MuralController::class, 'destroy']);
+Route::middleware(['auth:sanctum', 'verified'])->get('/mural/form_criar_aviso', [MuralController::class, 'form_aviso_criar']);
+Route::middleware(['auth:sanctum', 'verified'])->post('/mural/criar', [MuralController::class, 'criar_aviso']);
+
 //overview
 Route::middleware(['auth:sanctum', 'verified'])->get('/overview', [OverviewController::class, 'show']);
 Route::middleware(['auth:sanctum', 'verified'])->get('/overview/{id}', [OverviewController::class, 'atividades_show']);
@@ -149,7 +155,5 @@ Route::get('/justificativa', function () {
 Route::middleware(['auth:sanctum', 'verified'])->post('/justificativa', [JustificativaController::class, 'create']);
 
 
-//rotas mural
-Route::middleware(['auth:sanctum', 'verified'])->get('/mural', [MuralController::class, 'mostra_avisos']);
 
 

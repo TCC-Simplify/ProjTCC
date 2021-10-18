@@ -21,10 +21,59 @@
     </div>
 @endsection
 
+@section('titulo')
+    <h1>Página do Mural</h1>
+@endsection
+
 @section('direita')
     <div class="direita cad_user">
-        <h1>Página de mural</h1>
         <br>
-        <p>Aqui estará disponível todos os avisos, além de um calendário onde contará as datas de reuniões.</p>
+        
+        @if(Auth::user()->permissao == 2 || Auth::user()->permissao == 1)
+            <div class="header">
+                <a href="{{ url('/mural/form_criar_aviso') }}" class="ir"><p>Novo aviso &#8594;</p></a>   
+            </div>
+        @endif
+        <br>
+        <br>
+        {{-- ======================== EXIBE TODOS OS AVISOS ======================== --}}
+        <div name="exibe_todos_avisos" id="exibe_todos_avisos">
+            
+            
+            @if ($tem_aviso)
+                @foreach ($avisos as $aviso)
+                    <div class="card-o">
+                        <div name="avisos" id="avisos">
+                            <div style="text-align: center;font-size: 22px;font-weight: bold;">{{$aviso->titulo}}</div>
+                            @foreach ($user as $responsavel)
+                                @if ($responsavel->id == $aviso->responsavel)
+                                    <div style="margin-left: 10px;text-align: center;"><b>Responsável:</b> {{$responsavel->name}}</div>
+                                @endif
+                            @endforeach
+                            <br>
+                            <div style="margin-left: 10px;"><b>Descrição:</b> {{$aviso->descricao}}</div>
+                            <br>
+                            @if ($aviso->duracao != null && $aviso->video) 
+                                <div style="margin-left: 10px;"><b>Link:</b> {{$aviso->video}}</div>
+                                <br>
+                                <div style="margin-left: 10px;"><b>Duração:</b> {{$aviso->duracao}} minutos</div>
+                            @endif
+                            @if ($aviso->imagem != null)
+                                {{$aviso->imagem}}
+                            @endif
+                            <!--<div style="margin-left: 10px;"><b>Duração:</b> {{$aviso->duracao}} horas </div>-->
+                            <div style = "text-align: right">
+                                <a href="{{ url('/mural/marcar_concluido', $aviso->id) }}"><b>Concluir</b></a>
+                            </div>
+                        </div>
+                    </div>
+                @endforeach
+            @else
+                <p>No momento não há nenhum aviso</p>
+            @endif
+        </div>
+        
+        
+        <!-- <p>Aqui estará disponível todos os avisos, além de um calendário onde contará as datas de reuniões.</p> -->
     </div>
 @endsection
