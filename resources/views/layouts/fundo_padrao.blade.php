@@ -19,6 +19,7 @@
         <link href="{{ url('css/atividades.css') }}" rel="stylesheet">
         <link href="{{ url('css/overview.css') }}" rel="stylesheet">
         <link href="{{ url('css/msg.css')}}" rel="stylesheet">
+        <link href="{{ url('css/historico_ponto.css')}}" rel="stylesheet">
 
         <!-- Scripts js -->
         <script src="https://code.jquery.com/jquery-3.0.0.min.js"></script>
