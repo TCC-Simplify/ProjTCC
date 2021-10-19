@@ -6,7 +6,7 @@
 
 @section('direita')
     <div class="direita cad_user">
-        <form action="{{ url('/justificativa')}}" method="get" enctype="multipart/form-data" id="modalPonto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form action="{{ url('/justificativa)}}" method="get" enctype="multipart/form-data" id="modalPonto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             {{ csrf_field() }}  
 
             <div id="container">
@@ -14,7 +14,7 @@
                     <h3>Nome Completo: </h3>
                     <br>
                     <input class="input-valor-fixo" type="text" name="fnome" value="{{ Auth::user()->name }}" disabled>    
-                </div>
+                </div> 
                 <div id="historico">
                     <h3>Histórico: </h3></br>
                     @foreach ($hist as $linha)
@@ -37,7 +37,7 @@
                             </div>
                             <div id="sublinha2">
                                 <div id="data">
-                                    <label>{{ $linha->created_at }}</label>&nbsp;
+                                    <label><?php echo str_replace('-', '/', date( 'd-m-Y H:i:s' , strtotime( $linha->created_at ) ));?></label>&nbsp;
                                 </div>
                                 
                                 <div id="div-botao">

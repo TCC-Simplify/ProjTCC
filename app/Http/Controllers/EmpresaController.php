@@ -224,6 +224,11 @@ class EmpresaController extends Controller
         }
 
         //Gráfico de ativ fáceis, medianas e difíceis
+        $tem_eq = false;
+        $conta = Atividade::all()->where('destinatario', $id_equipe)->where('tipo_destinatario', 2)->where('finalizacao', 'sim')->count();
+        if($conta > 0){
+            $tem_eq = true;
+        }
         $quant_fac = Atividade::all()->where('destinatario', $id_equipe)->where('tipo_destinatario', 2)->where('dificuldade', 1)->where('finalizacao', 'sim')->count();
         $quant_med = Atividade::all()->where('destinatario', $id_equipe)->where('tipo_destinatario', 2)->where('dificuldade', 2)->where('finalizacao', 'sim')->count();
         $quant_dif = Atividade::all()->where('destinatario', $id_equipe)->where('tipo_destinatario', 2)->where('dificuldade', 3)->where('finalizacao', 'sim')->count();
@@ -231,7 +236,7 @@ class EmpresaController extends Controller
         $ativ_leg = ['Fácil', 'Médio', 'Difícil'];
         $ativ_quant = [$quant_fac, $quant_med, $quant_dif];
 
-        return view('empresa/equipe_dados', compact('usuarios', 'ativ_leg', 'ativ_quant'))->with('nome', $nome);
+        return view('empresa/equipe_dados', compact('usuarios', 'ativ_leg', 'ativ_quant', 'tem_eq'))->with('nome', $nome);
     }
 
      public function equipe_show_all(){

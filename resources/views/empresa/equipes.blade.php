@@ -27,8 +27,9 @@
 @section('direita')
     <div class="direita m-users">
         <div class="header">
-            <a href="{{ url('/form_criar_equipe') }}" class="ir"><p>Nova Equipe &#8594;</p></a>   
+            <a href="{{ url('/form_criar_equipe') }}" class="ir"><p>Nova Equipe &#8594;</p></a> 
         </div>
+        <br><br>
         <table class="table table-striped">
             <thead>
                 <th>Nome</th>
