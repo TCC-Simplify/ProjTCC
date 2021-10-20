@@ -6,7 +6,7 @@
 
 @section('direita')
     <div class="direita cad_user">
-        <form action="{{ url('/justificativa)}}" method="get" enctype="multipart/form-data" id="modalPonto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form action="{{ url('/justificativa')}}" method="get" enctype="multipart/form-data" id="modalPonto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             {{ csrf_field() }}  
 
             <div id="container">

@@ -34,26 +34,48 @@ class OverviewController extends Controller
     }
         
     public function show(){
-        $users = User::all()->where('ativo', 's');
+        $tem = false;
+        $results = DB::table('atividades')
+            ->join('users', 'users.empresa', '=', 'atividades.empresa')
+            ->orderBy('users.pontos_atividades', 'desc')
+            ->select('users.*', 'atividades.destinatario', 'atividades.tipo_destinatario', 'atividades.dificuldade')
+            ->where('atividades.finalizacao', 'sim')
+            ->get();
+
+        $users = User::orderBy('pontos_atividades', 'DESC')->where('ativo', 's')->get();
         $atividades = Atividade::all()->where('finalizacao', 'sim');
-        return view('users/overview',compact('users', 'atividades'));
+
+        if($results->count() > 0){
+            $tem = true;
+        }
+        return view('users/overview',compact('results', 'tem' ,'users', 'atividades'));
     } 
 
     public function atividades_show($id){
+        $tem_eq = false;
+        $tem_ind = false;
         $user_equipe = DB::table('users')->where('id', $id)->value('equipe');
         $nome = DB::table('users')->where('id', $id)->value('name');
         if($user_equipe != null) $nome_equipe = Equipes::find($user_equipe)->value('equipe');
         else $nome_equipe = null;
-        $atividade_user = Atividade::all()->where('destinatario', $id)->where('tipo_destinatario', 1);
-        $atividade_equipe = Atividade::all()->where('destinatario', $user_equipe)->where('tipo_destinatario', 2);
+        $atividade_user = Atividade::all()->where('destinatario', $id)->where('tipo_destinatario', 1)->where('finalizacao', 'sim');
+        $atividade_equipe = Atividade::all()->where('destinatario', $user_equipe)->where('tipo_destinatario', 2)->where('finalizacao', 'sim');
         // $overview = array();
         // foreach($atividades as $linha){
         //     if($linha->tipo_destinatario == 1 && $linha->destinatario == $id)
         // }
         // error_log($nome. "uuuuu " . $id);
-        if(count($atividade_user) > 0 || count($atividade_equipe) > 0){
-            return view('users/overview_atividades', compact('atividade_user', 'atividade_equipe', 'nome', 'nome_equipe'));
-        } else {
+        if(count($atividade_user) > 0 && count($atividade_equipe) > 0){
+            $tem_eq = true;
+            $tem_ind = true;
+            return view('users/overview_atividades', compact('atividade_user', 'atividade_equipe', 'nome', 'nome_equipe', 'tem_eq', 'tem_ind'));
+        }else if(count($atividade_user) == 0 && count($atividade_equipe) > 0){
+            $tem_eq = true;
+            return view('users/overview_atividades', compact('atividade_user', 'atividade_equipe', 'nome', 'nome_equipe', 'tem_eq', 'tem_ind'));
+        }else if(count($atividade_user) > 0 && count($atividade_equipe) == 0){
+            $tem_ind = true;
+            return view('users/overview_atividades', compact('atividade_user', 'atividade_equipe', 'nome', 'nome_equipe', 'tem_eq', 'tem_ind'));
+        }else {
             return redirect()->back();
         }
     } 

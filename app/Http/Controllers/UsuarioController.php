@@ -90,7 +90,8 @@ class UsuarioController extends Controller
              'ativo'=> 's',
              'empresa'=> $id,
              'aux' => 0,
-             'equipe' => 0
+             'equipe' => 0,
+             'pontos_atividades' => 0
          ]);
  
          return redirect('/users');

@@ -212,13 +212,13 @@ span{
 }
 
 .right li:before{
-  content: 'x';
+  content: 'x'; 
   position: absolute;
   left: -25px;
   opacity: .55;
 }
 
-button{
+.right button{
   position: absolute;
   right: 21px; 
   bottom: 34px;
@@ -252,7 +252,7 @@ button{
 opacity: 0;
 }
 
-button:hover{
+.right button:hover{
   background-position: left;
 }
 

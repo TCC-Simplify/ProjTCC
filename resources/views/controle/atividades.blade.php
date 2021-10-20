@@ -42,7 +42,9 @@
 
             @if(!$tem_ind && !$tem_eq)
                 <br><br><br><br>
-                <h3>Você não tem atividades em andamento.</h3>
+                <div class="graficos" style="margin: auto; margin-bottom: 50px; color: #8FBC8F;">
+                    <h5>Você não tem atividades atribuídas.</h5>
+                </div>
             @endif
 
             @if($tem_ind)
@@ -74,7 +76,7 @@
                                 </div>
                             @endif
                     @endforeach
-                </div>
+                </div> 
             @endif
             <br>
 
@@ -84,7 +86,7 @@
                 <br>
                 <div class="cards">
                     @foreach ($ativ as $atividade)
-                        @if ( $atividade->tipo_destinatario == 2 && $atividade->destinatario == $id_user && $atividade->finalizacao == "Confirmar")
+                        @if ( $atividade->tipo_destinatario == 2 && $atividade->destinatario == Auth::user()->equipe && $atividade->finalizacao == "Confirmar")
                             <div class="wrapper">
                                 <div class="card">
                                     <div class="front" <?php if($atividade->dificuldade == 1) echo 'style="background-image: linear-gradient(180deg, rgb(182, 229, 194) 0%, rgba(92,91,94,0) 100%);"';

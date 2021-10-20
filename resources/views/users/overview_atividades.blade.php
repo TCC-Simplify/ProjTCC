@@ -33,44 +33,31 @@
             <a href="{{ url()->previous() }}" class="volt"><p>&#8592;  Voltar</p></a>   
         </div>
 
-        <h3>Individuais</h3>
+        @if($tem_ind)
+            <h3>Individuais</h3>
 
-        <br>
-        @foreach($atividade_user as $linha)
-        <div class="card-o">
-            <div class="nome">{{ $linha->atividade }}</div>
-            <div style="margin-left: 10px;">Responsável: {{ $nome }}</div>
-            <div style="margin-left: 10px;">Descrição: {{ $linha->descricao }}</div>
-            <div style="margin-left: 10px;">Prazo: {{ $linha->prazo }}</div>
-        </div>
-        @endforeach
-        </br><br><h3>Em equipe</h3>
-        <br>
-        @foreach($atividade_equipe as $linha)
+            <br>
+            @foreach($atividade_user as $linha)
             <div class="card-o">
                 <div class="nome">{{ $linha->atividade }}</div>
-                <div style="margin-left: 10px;">Responsável: {{ $nome_equipe }}</div>
+                <div style="margin-left: 10px;">Responsável: {{ $nome }}</div>
                 <div style="margin-left: 10px;">Descrição: {{ $linha->descricao }}</div>
                 <div style="margin-left: 10px;">Prazo: {{ $linha->prazo }}</div>
             </div>
-        @endforeach
+            @endforeach
+        @endif
+        </br><br>
+        
+        @if($tem_eq)
+            <h3>Em equipe</h3>
+            <br>
+            @foreach($atividade_equipe as $linha)
+                <div class="card-o">
+                    <div class="nome">{{ $linha->atividade }}</div>
+                    <div style="margin-left: 10px;">Responsável: {{ $nome_equipe }}</div>
+                    <div style="margin-left: 10px;">Descrição: {{ $linha->descricao }}</div>
+                    <div style="margin-left: 10px;">Prazo: {{ $linha->prazo }}</div>
+                </div>
+            @endforeach
+        @endif
 @endsection
-
-<!-- <div class="ativ">
-                        <div class="title">Dificuldade</div>
-                        <div class="mod">
-                            @if ($linha->dificuldade == 3)
-                            <div class="dificil">
-                                <span class="span" style="background-color: rgb(228, 74, 74);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            </div>
-                            @elseif ($linha->dificuldade == 2)
-                            <div class="medio">
-                                <span class="span" style="background-color: rgb(250, 250, 100);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            </div>
-                            @elseif ($linha->dificuldade == 1)
-                            <div class="facil">
-                                <span class="span" style="background-color: rgb(83, 194, 83);">&nbsp;&nbsp;&nbsp;&nbsp;</span>
-                            </div>
-                            @endif
-                        </div>
-                    </div> -->

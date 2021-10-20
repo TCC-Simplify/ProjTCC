@@ -49,7 +49,8 @@ class CreateNewUser implements CreatesNewUsers
             'ativo'=> 's', 
             'empresa' => $id,
             'aux' => 1,
-            'equipe' => 0
+            'equipe' => 0,
+            'pontos_atividades' => 0
         ]);
 
     }
@@ -92,7 +93,8 @@ class CreateNewUser implements CreatesNewUsers
             'ativo'=> 's', 
             'empresa' => $id,
             'aux' => 1,
-            'equipe' => 0
+            'equipe' => 0,
+            'pontos_atividades' => 0
         ]);
     }
 }

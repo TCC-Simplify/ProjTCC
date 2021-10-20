@@ -137,9 +137,57 @@ class AtividadesController extends Controller
 
     public function marcar_concluido($id)
     {
+        $soma = 0;
+        $atividade = Atividade::find($id);
+        if($atividade->tipo_destinatario == 1){
+            $user = User::find($atividade->destinatario);
+
+            if($atividade->dificuldade == 1){
+                $soma = $user->pontos_atividades + 1;
+                User::find($user->id)->update([
+                    'pontos_atividades' => $soma
+                ]);
+            }else if($atividade->dificuldade == 2){
+                $soma = $user->pontos_atividades + 2;
+                User::find($user->id)->update([
+                    'pontos_atividades' => $soma
+                ]);
+            }else{
+                $soma = $user->pontos_atividades + 3;
+                User::find($user->id)->update([
+                    'pontos_atividades' => $soma
+                ]);
+            }
+        }else{
+            $users = DB::table('users')
+            ->select('users.*')
+            ->where('equipe', $atividade->destinatario)
+            ->get();
+
+            foreach($users as $user){
+                if($atividade->dificuldade == 1){
+                    $soma = $user->pontos_atividades + 1;
+                    User::find($user->id)->update([
+                        'pontos_atividades' => $soma
+                    ]);
+                }else if($atividade->dificuldade == 2){
+                    $soma = $user->pontos_atividades + 2;
+                    User::find($user->id)->update([
+                        'pontos_atividades' => $soma
+                    ]);
+                }else{
+                    $soma = $user->pontos_atividades + 3;
+                    User::find($user->id)->update([
+                        'pontos_atividades' => $soma
+                    ]);
+                }
+            }
+        }
+
         Atividade::find($id)->update([
             'finalizacao' => 'sim'
         ]);
+
         return redirect('/atividades');
     }
 }

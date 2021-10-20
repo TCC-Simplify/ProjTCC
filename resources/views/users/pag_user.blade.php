@@ -17,7 +17,6 @@
         <link href="{{ url('css/user_e_empresa/cad_user.css') }}" rel="stylesheet">
         <link href="{{ url('css/user_e_empresa/mostrar_todos.css') }}" rel="stylesheet">
         <link href="{{ url('css/atividades.css') }}" rel="stylesheet">
-        <link href="{{ url('css/overview.css') }}" rel="stylesheet">
         <link href="{{ url('css/msg.css')}}" rel="stylesheet">
 
         <!-- Scripts js -->

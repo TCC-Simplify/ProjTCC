@@ -30,6 +30,7 @@ class CreateUsersTable extends Migration
             $table->string('ativo');
             $table->integer('aux');
             $table->foreignId('equipe');
+            $table->integer('pontos_atividades');
 
             $table->foreignId('current_team_id')->nullable();
             $table->string('profile_photo_path', 2048)->nullable();

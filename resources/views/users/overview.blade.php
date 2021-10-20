@@ -29,23 +29,23 @@
 
 @section('direita')
     <div class="direita overview">
-
         <div class="container">
-        <?php $pos = 1; $red = 0; $yellow = 0; $green = 0; ?>
-        @foreach($users as $user)
-            @foreach($atividades as $linha)
-                @if ($linha->tipo_destinatario == 1 && $linha->destinatario == $user->id)
-                    @if ($linha->dificuldade == 1) <?php $green++; ?>
-                    @elseif ($linha->dificuldade == 2) <?php $yellow++; ?>
-                    @elseif ($linha->dificuldade == 3) <?php $red++; ?>
+        @if($tem)
+            <?php $pos = 1; $red = 0; $yellow = 0; $green = 0;?>
+            @foreach($users as $user)
+                @foreach($atividades as $linha)
+                    @if ($linha->tipo_destinatario == 1 && $linha->destinatario == $user->id)
+                        @if ($linha->dificuldade == 1) <?php $green++; ?>
+                        @elseif ($linha->dificuldade == 2) <?php $yellow++; ?>
+                        @elseif ($linha->dificuldade == 3) <?php $red++; ?>
+                        @endif
+                    @elseif ($linha->tipo_destinatario == 2 && $linha->destinatario == $user->equipe)
+                        @if ($linha->dificuldade == 1) <?php $green++; ?>
+                        @elseif ($linha->dificuldade == 2) <?php $yellow++; ?>
+                        @elseif ($linha->dificuldade == 3) <?php $red++; ?>
+                        @endif
                     @endif
-                @elseif ($linha->tipo_destinatario == 2 && $linha->destinatario == $user->equipe)
-                    @if ($linha->dificuldade == 1) <?php $green++; ?>
-                    @elseif ($linha->dificuldade == 2) <?php $yellow++; ?>
-                    @elseif ($linha->dificuldade == 3) <?php $red++; ?>
-                    @endif
-                @endif
-            @endforeach
+                @endforeach
                 <div class="lin">
                     <div class="posi">{{ $pos }}</div>
                     <div class="nome"><a href="{{ url('/overview', $user->id)}}">{{$user->name}}</a></div>
@@ -69,6 +69,11 @@
                 </div>
                 <?php $pos++; $red = 0; $yellow = 0; $green = 0;?>
             @endforeach
+        @else
+            <div class="graficos" style="margin: auto; margin-bottom: 50px; color: #8FBC8F;">
+                <h5>Nenhum usuário finalizou atividades.</h5>
+            </div>
+        @endif 
         </div>
     </div>
 @endsection
