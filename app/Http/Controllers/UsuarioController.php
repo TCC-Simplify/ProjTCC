@@ -34,7 +34,9 @@ class UsuarioController extends Controller
      
      public function index()
      {
-        $todos = User::where('empresa', session()->get('id_empresa'))->latest()->paginate(15);
+        $filtro = '';
+        if($_GET) $filtro = $_GET['user_filtro'];
+        $todos = User::where('empresa', session()->get('id_empresa'))->where('name', 'like', '%' . $filtro . '%')->latest()->paginate(15);
         return view('users/mostrar_todos', [
             'todos' => $todos,
         ]);

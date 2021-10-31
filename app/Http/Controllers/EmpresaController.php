@@ -249,34 +249,40 @@ class EmpresaController extends Controller
     }
 
     public function equipe_create_form(){
+        $filtro = '';
+        if(session('user_filtro')) $filtro = session('user_filtro');
         $usuarios = User::all();
         if(!$usuarios)
         {
             return redirect()->back();
         }
-        return view('empresa/equipes_cadastro', compact('usuarios'));
+        return view('empresa/equipes_cadastro', compact('usuarios', 'filtro'));
     }
 
     public function equipe_create(Request $request){
-        $users = count($request['users']);
-        $vuser = $request['users'];
+        if(!$request['filter']){
+            $users = count($request['users']);
+            $vuser = $request['users'];
 
-        $id_empresa = session()->get('id_empresa');
-        Equipes::create([
-            'aux' =>  1,
-            'equipe' => $request['nome'],
-            'ativo' =>  's',
-            'empresa' =>  $id_empresa,
-        ]);
-        $id_equipe = DB::table('equipes')->where('equipe', $request['nome'])->value('id');
-
-        for($i=0; $i < $users; $i++){
-            User::find($vuser[$i])->update([
-                'equipe' => $id_equipe
+            $id_empresa = session()->get('id_empresa');
+            Equipes::create([
+                'aux' =>  1,
+                'equipe' => $request['nome'],
+                'ativo' =>  's',
+                'empresa' =>  $id_empresa,
             ]);
-        }
+            $id_equipe = DB::table('equipes')->where('equipe', $request['nome'])->value('id');
 
-        return redirect('/equipes');
+            for($i=0; $i < $users; $i++){
+                User::find($vuser[$i])->update([
+                    'equipe' => $id_equipe
+                ]);
+            }
+
+            return redirect('/equipes');
+        } else {
+            return redirect('/form_criar_equipe')->with('user_filtro', $request['user_filtro']);
+        }
     }
 
     public function equipe_delete(Request $request){
@@ -291,10 +297,11 @@ class EmpresaController extends Controller
     }
 
     public function equipe_add_form($nome){
+        $filtro = '';
+        if($_GET) $filtro = $_GET['user_filtro'];
         $id_equipe = DB::table('equipes')->where('equipe', $nome)->value('id');
         $usuarios = User::all()->where('equipe', '!=', $id_equipe);
-
-        return view('empresa/equipe_add', compact('usuarios'))->with('nome', $nome);
+        return view('empresa/equipe_add', compact('usuarios', 'nome', 'filtro'))->with('nome', $nome);
     }
 
     public function equipe_add(Request $request, $nome){

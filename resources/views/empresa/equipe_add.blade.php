@@ -25,12 +25,20 @@
 @endsection
 
 @section('direita')
+    <form action="{{ url('/equipe/add', $nome) }}" method="GET">
+        <div class="filter" > 
+            <input type="text" name="user_filtro" placeholder="Pesquise um usuário"></input>
+            <button type="submit" class="filter-button"><i class="fa fa-search"></i></button>
+        </div>
+    </form>
     <div class="direita cad_user">
         <form action="{{ url('/equipe/add/processing', $nome)}}" method="POST" enctype="multipart/form-data" class="form-cad">
         {!! csrf_field() !!}
             <div class="form-group" style="text-align: left;">
                 @foreach ($usuarios as $usuario)
-                    <input type="checkbox" name="users[]" value="{{ $usuario->id }}">&nbsp;&nbsp;{{ $usuario->name }} <br>
+                    @if(str_contains(strtolower($usuario->name), $filtro))
+                        <input type="checkbox" name="users[]" value="{{ $usuario->id }}">&nbsp;&nbsp;{{ $usuario->name }} <br>
+                    @endif
                 @endforeach
             </div>
             <div id="botao">
@@ -38,4 +46,16 @@
             </div>
         </form>
     </div>
+
+    <style>
+        .filter{
+            float: center;
+            margin-top: 20px;
+        }
+
+        .filter-button{
+            margin-left: 0px;
+            width: 30px;
+        }
+    </style>
 @endsection

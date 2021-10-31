@@ -41,8 +41,14 @@
             </div>-->
             <br><h3>Selecione os participantes</h3> <br>
             <div class="form-group" style="text-align: left;">
+                <div class="filter" > 
+                    <input type="text" name="user_filtro" placeholder="Pesquise um usuário"></input>
+                    <button type="submit" class="filter-button" name="filter" value="filter"><i class="fa fa-search"></i></button>
+                </div>
                 @foreach ($usuarios as $usuario)
-                    <input type="checkbox" name="users[]" value="{{ $usuario->id }}">&nbsp;&nbsp;{{ $usuario->name }} <br>
+                    @if(str_contains(strtolower($usuario->name), $filtro))
+                        <input type="checkbox" name="users[]" value="{{ $usuario->id }}">&nbsp;&nbsp;{{ $usuario->name }} <br>
+                    @endif
                 @endforeach
             </div>
             <div id="botao">
@@ -50,4 +56,16 @@
             </div>
         </form>
     </div>
+
+    <style>
+        .filter{
+            float: center;
+            margin-left: 30%;
+        }
+
+        .filter-button{
+            margin-left: 0px;
+            width: 30px;
+        }
+    </style>
 @endsection

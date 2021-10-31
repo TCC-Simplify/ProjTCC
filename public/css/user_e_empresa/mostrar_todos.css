@@ -74,3 +74,13 @@
     color: #8f8c8c;
     text-decoration: none;
 }
+
+.filter{
+    float: center;
+    margin-bottom: 10px;
+}
+
+.filter-button{
+    margin-left: 0px;
+    width: 30px;
+}

@@ -37,10 +37,18 @@
                 }
             }
         ?>
+
+        <form action="{{ url('/users') }}" method="GET">
+            {!! csrf_field() !!}
+            <div class="filter" > 
+                <input type="text" name="user_filtro" placeholder="Pesquise um usuário"></input>
+                <button type="submit" class="filter-button"><i class="fa fa-search"></i></button>
+            </div>
+        </form>
+
         <div class="header">
             <a href="{{ url('/users_des') }}" class="ir" <?php if($aux == 0) echo 'style="display: none;"'?>><p>Usuários desativados &#8594;</p></a>   
         </div>
- 
 
         <table class="table table-striped">
             <thead>
