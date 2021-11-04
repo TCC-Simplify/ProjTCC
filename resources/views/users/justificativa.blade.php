@@ -38,8 +38,9 @@
                 <div class="form-group">
 
                     {{ csrf_field() }}
+                    <input type="hidden" name="ponto" value="{{$ponto->id}}">
 
-                    <input type="text" class="form-control cad-tam" name="name" placeholder="Nome:" value="22222" disabled>
+                    <input type="text" class="form-control cad-tam" name="name" placeholder="Nome:" value=" Ponto: {{$ponto->created_at}}" disabled>
                 </div>
 
                 <div class="form-group">

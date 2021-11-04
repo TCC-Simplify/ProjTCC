@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Ponto;
+use App\Models\Justificativa;
 use App\Http\Controllers\Controller;
 use Illuminate\Support\Facades\Validator;
 use Illuminate\Http\Request;
@@ -66,8 +67,9 @@ class PontosController extends Controller
       {        
 
         $hist = Ponto::all()->where('users', Auth::user()->id);
+        $just = Justificativa::all()->where('users', Auth::user()->id);
 
-        return view('users/historico_ponto', compact('hist'));
+        return view('users/historico_ponto', compact('hist', 'just'));
       }
 
       public function confirma()

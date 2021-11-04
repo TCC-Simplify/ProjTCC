@@ -16,6 +16,7 @@ class CreateJustificativasTable extends Migration
         Schema::create('justificativas', function (Blueprint $table) {
             $table->id();
             $table->foreignId('users')->unsigned();
+            $table->integer('ponto');
             $table->string('justificativa');
             $table->string('tipo');
             $table->timestamps();

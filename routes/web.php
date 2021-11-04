@@ -150,9 +150,10 @@ Route::get('logout', function ()
 //rotas zaneta
 
 Route::get('/justificativa', function () {
-    return view('controle/justificativa');
+    return view('users/justificativa');
 });
 Route::middleware(['auth:sanctum', 'verified'])->post('/justificativa', [JustificativaController::class, 'create']);
+Route::middleware(['auth:sanctum', 'verified'])->post('/justificativa/form', [JustificativaController::class, 'show']);
 
 
 

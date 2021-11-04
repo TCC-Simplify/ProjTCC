@@ -6,7 +6,7 @@
 
 @section('direita')
     <div class="direita cad_user">
-        <form action="{{ url('/justificativa')}}" method="get" enctype="multipart/form-data" id="modalPonto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+        <form action="{{ url('/justificativa/form')}}" method="post" enctype="multipart/form-data" id="modalPonto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
             {{ csrf_field() }}  
 
             <div id="container">
@@ -41,7 +41,14 @@
                                 </div>
                                 
                                 <div id="div-botao">
-                                    <input type="submit" name="botao" value="JUSTIFICAR">
+                                    <input type="hidden" name="ponto" value="{{$linha->id}}">
+                                    @foreach ($just as $aux)
+                                        @if($aux->ponto != $linha->id)
+                                            <input type="submit" name="botao" value="Justificar">
+                                        @else
+                                            <p>Justificado</p>
+                                        @endif
+                                    @endforeach
                                 </div>
                             </div>
                             

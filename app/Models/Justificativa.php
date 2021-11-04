@@ -8,6 +8,6 @@ use Illuminate\Database\Eloquent\Model;
 class Justificativa extends Model
 {
     protected $fillable = [
-        'users', 'justificativa', 'tipo'
+        'users', 'ponto', 'justificativa', 'tipo'
     ];
 }
