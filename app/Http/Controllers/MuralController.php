@@ -20,13 +20,24 @@ class MuralController extends Controller
     {
         $id_user = Auth::user()->id;
         $id_empresa = session()->get('id_empresa');
+        $blob_imagem = null;
+
+        if($request['imagem']){
+           $path = $request->file('imagem')->getRealPath();
+           $file = file_get_contents($path);
+           $blob_imagem = base64_encode($file);
+        }
+        // if($request['video']){
+            
+        // }
+
         Aviso::create([
          'titulo' =>  $request['titulo'],
          'descricao' =>  $request['descricao'],
          'responsavel' =>  $id_user,
          'empresa'=> $id_empresa,
-         'imagem' =>  $request['imagem'],
-         'video' =>  $request['video'],
+         'img' =>  $blob_imagem,
+         'video' =>  'bbb',
          'duracao' =>  $request['duracao']
         ] );
         return redirect('/mural');

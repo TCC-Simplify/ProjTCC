@@ -52,6 +52,9 @@
                             @endforeach
                             <br>
                             <div style="margin-left: 10px;"><b>Descrição:</b> {{$aviso->descricao}}</div>
+                            @if($aviso->img)
+                                  <img src="data:image/jpeg;base64, <?= $aviso->img ?>"></img>
+                            @endif
                             <br>
                             @if ($aviso->duracao != null && $aviso->video) 
                                 <div style="margin-left: 10px;"><b>Link:</b> {{$aviso->video}}</div>
