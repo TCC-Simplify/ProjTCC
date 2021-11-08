@@ -56,10 +56,10 @@
                                   <img src="data:image/jpeg;base64, <?= $aviso->img ?>"></img>
                             @endif
                             <br>
-                            @if ($aviso->duracao != null && $aviso->video) 
-                                <div style="margin-left: 10px;"><b>Link:</b> {{$aviso->video}}</div>
-                                <br>
-                                <div style="margin-left: 10px;"><b>Duração:</b> {{$aviso->duracao}} minutos</div>
+                            @if ($aviso->video) 
+                            <video width="320" height="240" controls>
+                                <source src="data:video/mp4;base64, <?= $aviso->video ?>" type="video/mp4">
+                            </video>
                             @endif
                             @if ($aviso->imagem != null)
                                 {{$aviso->imagem}}

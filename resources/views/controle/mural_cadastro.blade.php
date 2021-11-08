@@ -112,9 +112,8 @@
                 </div>
 
                 <div class="form-group mostra" id="div-video">
-                    <input type="text" class="form-control" id="video" name="video" placeholder="Insira o link do vídeo">
                     <br>
-                    <input type="number" class="form-control" id="duracao" name="duracao" placeholder="Duração em minutos">
+                    <input type="file" name="video" id="video"> 
                 </div>
     
                 <div id="botao">
