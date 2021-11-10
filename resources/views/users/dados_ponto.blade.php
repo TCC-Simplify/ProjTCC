@@ -30,7 +30,7 @@
 @section('direita')
     <div class="direita cad_user">
         <br><br>
-        <h3>Último ponto registrado: {{$ponto->created_at}}</h3>
+        <h3>Último ponto registrado: <?php echo str_replace('-', '/', date( 'd-m-Y H:i:s' , strtotime( $ponto->created_at ) ));?></h3>
         <h3>{{$status}}</h3>
         <br>
         <div id="botao">

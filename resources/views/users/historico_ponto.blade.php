@@ -42,13 +42,17 @@
                                 
                                 <div id="div-botao">
                                     <input type="hidden" name="ponto" value="{{$linha->id}}">
-                                    @foreach ($just as $aux)
-                                        @if($aux->ponto != $linha->id)
-                                            <input type="submit" name="botao" value="Justificar">
-                                        @else
-                                            <p>Justificado</p>
-                                        @endif
-                                    @endforeach
+                                    @if($tem)
+                                        @foreach ($just as $aux) 
+                                            @if($aux->ponto != $linha->id)
+                                                <input type="submit" name="botao" value="Justificar">
+                                            @else
+                                                <h2 style="color: coral; font-weight: bold;">Justificado</h2>
+                                            @endif
+                                        @endforeach
+                                    @else
+                                        <input type="submit" name="botao" value="Justificar">
+                                    @endif
                                 </div>
                             </div>
                             

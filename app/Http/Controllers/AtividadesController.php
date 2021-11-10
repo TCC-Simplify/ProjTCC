@@ -40,7 +40,7 @@ class AtividadesController extends Controller
         if($id == null)
         {
             $id_empresa = session()->get('id_empresa');
-            $ativ = $atividade->all();
+            $ativ = $atividade->orderBy('prazo')->get();
             $users = $user->all()->where('empresa',$id_empresa);
             $equipes = $equipe->all()->where('ativo','s');
             $permissao = Auth::user()->permissao;
@@ -52,7 +52,7 @@ class AtividadesController extends Controller
         else
         {
             $id_empresa = session()->get('id_empresa');
-            $ativ = $atividade->all();
+            $ativ = $atividade->orderBy('prazo')->get();
             $users = $user->all()->where('empresa',$id_empresa);
             $equipes = $equipe->all();
             $permissao = Auth::user()->permissao;
@@ -83,7 +83,7 @@ class AtividadesController extends Controller
         if($id == null)
         {            
             $id_empresa = session()->get('id_empresa');
-            $ativ = $atividade->all();
+            $ativ = $atividade->orderBy('prazo')->get();
             $users = $user->all()->where('empresa',$id_empresa);
             $equipes = $equipe->all();
             $permissao = Auth::user()->permissao;
@@ -95,7 +95,7 @@ class AtividadesController extends Controller
         else
         {
             $id_empresa = session()->get('id_empresa');
-            $ativ = $atividade->all();
+            $ativ = $atividade->orderBy('prazo')->get();
             $users = $user->all()->where('empresa',$id_empresa);
             $equipes = $equipe->all();
             $permissao = Auth::user()->permissao;

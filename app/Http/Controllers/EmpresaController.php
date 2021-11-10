@@ -245,7 +245,13 @@ class EmpresaController extends Controller
         {
             return redirect()->back();
         }
-        return view('empresa/equipes',compact('equipes'));
+
+        $tem = true;
+        if($equipes->count() == 0){
+            $tem = false;
+        }
+
+        return view('empresa/equipes',compact('equipes', 'tem'));
     }
 
     public function equipe_create_form(){

@@ -68,8 +68,14 @@ class PontosController extends Controller
 
         $hist = Ponto::all()->where('users', Auth::user()->id);
         $just = Justificativa::all()->where('users', Auth::user()->id);
+        $tem = false;
 
-        return view('users/historico_ponto', compact('hist', 'just'));
+        if($just->count() == 0){
+          return view('users/historico_ponto', compact('hist', 'tem'));
+        }else{
+          $tem = true;
+          return view('users/historico_ponto', compact('hist', 'just', 'tem'));
+        }
       }
 
       public function confirma()

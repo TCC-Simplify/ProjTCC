@@ -72,7 +72,9 @@
                     </div>
                 @endforeach
             @else
-                <p>No momento não há nenhum aviso</p>
+                <div class="graficos" style="margin: auto; margin-bottom: 50px; color: #8FBC8F;">
+                    <h5>Não existem avisos no momento.</h5>
+                </div>
             @endif
         </div>
         

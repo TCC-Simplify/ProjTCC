@@ -84,3 +84,31 @@
     margin-left: 0px;
     width: 30px;
 }
+
+.buscar{
+    border-bottom: 1px solid lightgrey;
+    background-color: transparent;
+    width: 600px;
+    outline: none;
+    padding: 12px 15px;
+    font-size: 16px;
+    transition: all .1s linear;
+    -webkit-transition: all .1s linear;
+    -moz-transition: all .1s linear;
+    -webkit-appearance:none;
+    font-weight: 200;
+    color: white;
+}
+
+.buscar:focus{
+    border-bottom: 2px solid #3951b2;
+}
+
+.butbuscar{
+    background-color: transparent;
+    border: none;
+    font-size: 30px;
+    margin-left: 10px;
+    cursor: pointer;
+    color: #3951b2;
+}

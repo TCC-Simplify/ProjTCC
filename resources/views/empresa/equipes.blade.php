@@ -29,25 +29,30 @@
         <div class="header">
             <a href="{{ url('/form_criar_equipe') }}" class="ir"><p>Nova Equipe &#8594;</p></a> 
         </div>
-        <br><br>
+        <br><br> 
+        @if($tem)
         <table class="table table-striped">
             <thead>
                 <th>Nome</th>
                 <th>Controle</th>
             </thead>
-
-            @foreach ($equipes as $equipe)
-                <tbody>
-                    <td>{{ $equipe->equipe }}</td>
-                    <td>
-                        <form method="post" action="{{ url('/deletar_equipe') }}">{!! csrf_field() !!}
-                            <a href="{{ url('/equipe', $equipe->equipe) }}" style="color:white;text-decoration:none;"><i class="fas fa-eye ed"></i></a>&nbsp;&nbsp;
-                            <input type="hidden" name="equipe" value="{{ $equipe->id }}">
-                            <button type="submit" name="submit" class="de" style="border: none; background-color: transparent; cursor: pointer; outline:none;"><i class="fas fa-trash-alt"></i></button>
-                        </form>
-                    </td>
-                </tbody>
-            @endforeach
+                @foreach ($equipes as $equipe)
+                    <tbody>
+                        <td>{{ $equipe->equipe }}</td>
+                        <td>
+                            <form method="post" action="{{ url('/deletar_equipe') }}">{!! csrf_field() !!}
+                                <a href="{{ url('/equipe', $equipe->equipe) }}" style="color:white;text-decoration:none;"><i class="fas fa-eye ed"></i></a>&nbsp;&nbsp;
+                                <input type="hidden" name="equipe" value="{{ $equipe->id }}">
+                                <button type="submit" name="submit" class="de" style="border: none; background-color: transparent; cursor: pointer; outline:none;"><i class="fas fa-trash-alt"></i></button>
+                            </form>
+                        </td>
+                    </tbody>
+                @endforeach
+            @else
+                <div class="graficos" style="margin: auto; margin-bottom: 50px; color: #8FBC8F;">
+                    <h5>Não existem equipes cadastradas.</h5>
+                </div>
+            @endif
         </table>
     </div>
 @endsection

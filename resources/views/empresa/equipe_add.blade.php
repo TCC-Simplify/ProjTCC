@@ -26,9 +26,10 @@
 
 @section('direita')
     <form action="{{ url('/equipe/add', $nome) }}" method="GET">
-        <div class="filter" > 
-            <input type="text" name="user_filtro" placeholder="Pesquise um usuário"></input>
-            <button type="submit" class="filter-button"><i class="fa fa-search"></i></button>
+        <br>
+        <div class="filter" style="margin-bottom: -30px;"> 
+            <input type="text" class="buscar" autocomplete="off" name="user_filtro" placeholder="Pesquise um usuário"></input>
+            <button type="submit" class="butbuscar"><i class="fa fa-search"></i></button>
         </div>
     </form>
     <div class="direita cad_user">
