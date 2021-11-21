@@ -239,8 +239,14 @@ class EmpresaController extends Controller
         return view('empresa/equipe_dados', compact('usuarios', 'ativ_leg', 'ativ_quant', 'tem_eq'))->with('nome', $nome);
     }
 
-     public function equipe_show_all(){
-        $equipes = Equipes::all()->where('ativo', 's');
+    public function equipe_show_all(){
+        $filtro = '';
+        if($_GET){
+            $filtro = $_GET['equipe_filtro'];
+            $equipes = Equipes::where('empresa', session()->get('id_empresa'))->where('equipe', 'like', '%' . $filtro . '%')->where('ativo','s')->latest()->paginate(15);//->latest()->paginate(15)
+        } else {
+            $equipes = Equipes::all()->where('ativo', 's');
+        }
         if(!$equipes)
         {
             return redirect()->back();

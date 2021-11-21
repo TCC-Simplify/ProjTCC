@@ -30,6 +30,15 @@
             <a href="{{ url('/form_criar_equipe') }}" class="ir"><p>Nova Equipe &#8594;</p></a> 
         </div>
         <br><br> 
+
+        <form action="{{ url('/equipes') }}" method="GET">
+            {!! csrf_field() !!}
+            <div class="filter" > 
+                <input type="text" name="equipe_filtro" placeholder="Pesquise uma equipe"></input>
+                <button type="submit" class="filter-button"><i class="fa fa-search"></i></button>
+            </div>
+        </form>
+
         @if($tem)
         <table class="table table-striped">
             <thead>

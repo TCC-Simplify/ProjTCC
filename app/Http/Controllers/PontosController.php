@@ -63,10 +63,22 @@ class PontosController extends Controller
         return redirect('/dados_ponto');
       }
 
-      public function historico()
+      public function historico(Request $request)
       {        
+        if(!empty($request["data_inicial"]) && !empty($request["data_final"]) ){
+          $hist = DB::select('SELECT * FROM pontos WHERE created_at BETWEEN :data_inicial AND :data_final + INTERVAL 1 DAY', [ 'data_inicial' => $request["data_inicial"], 'data_final' => $request["data_final"] ]);
 
-        $hist = Ponto::all()->where('users', Auth::user()->id);
+        } else if( !empty($request["data_inicial"]) && empty($request["data_final"]) ) {
+          $hist = DB::select('SELECT * FROM pontos WHERE created_at >= :data_inicial', [ 'data_inicial' => $request["data_inicial"] ]);
+
+        } else if( empty($request["data_inicial"]) && !empty($request["data_final"]) ){
+          $hist = DB::select('SELECT * FROM pontos WHERE created_at <= :data_final + INTERVAL 1 DAY', [ 'data_final' => $request["data_final"] ]);
+
+        } else { 
+          $hist = Ponto::all()->where('users', Auth::user()->id);
+        }
+
+
         $just = Justificativa::all()->where('users', Auth::user()->id);
         $tem = false;
 

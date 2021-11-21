@@ -6,17 +6,34 @@
 
 @section('direita')
     <div class="direita cad_user">
-        <form action="{{ url('/justificativa/form')}}" method="post" enctype="multipart/form-data" id="modalPonto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-            {{ csrf_field() }}  
+        <div id="container">
+            <div id="nome">
+                <h3>Nome Completo: </h3>
+                <br>
+                <input class="input-valor-fixo" type="text" name="fnome" value="{{ Auth::user()->name }}" disabled>    
+            </div> 
+            
+            <div id="historico">
+    
+                <form action="{{ url('/historico_ponto')}}" method="get">
+                    <div class="filter">
+                        <div class="form-group">
+                            <label for="prazo">Data inicial:</label>
+                            <input type="date" class="form-control" id="data_inicial" name="data_inicial">
+                        </div>
+                        <div class="form-group">
+                            <label for="prazo">Data final:</label>
+                            <input type="date" class="form-control" id="data_final" name="data_final">
+                        </div>
+                        <div class="form-group">
+                            <button type="submit" class="filter-button" name="filter" value="filter"><i class="fa fa-search"></i></button>
+                        </div>
+                    </div>
+                </form>
+                <h3>Histórico: </h3></br>
+                <form action="{{ url('/justificativa/form')}}" method="post" enctype="multipart/form-data" id="modalPonto" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+                    {{ csrf_field() }}  
 
-            <div id="container">
-                <div id="nome">
-                    <h3>Nome Completo: </h3>
-                    <br>
-                    <input class="input-valor-fixo" type="text" name="fnome" value="{{ Auth::user()->name }}" disabled>    
-                </div> 
-                <div id="historico">
-                    <h3>Histórico: </h3></br>
                     @foreach ($hist as $linha)
                         <div id="linha">
                             <div id="sublinha1">
@@ -58,12 +75,11 @@
                             
                         </div>
                     @endforeach
-                </div>
+                </form>
+            </div>
                 
-            </div>
-            </div>
+        </div>
             
-        </form>
     </div>
 
   <script>
