@@ -16,17 +16,19 @@
             <div id="historico">
     
                 <form action="{{ url('/historico_ponto')}}" method="get">
-                    <div class="filter">
+                    <div class="filter" style="display:flex;">
                         <div class="form-group">
                             <label for="prazo">Data inicial:</label>
                             <input type="date" class="form-control" id="data_inicial" name="data_inicial">
                         </div>
+                        &nbsp; &nbsp; &nbsp; &nbsp; 
                         <div class="form-group">
                             <label for="prazo">Data final:</label>
                             <input type="date" class="form-control" id="data_final" name="data_final">
                         </div>
-                        <div class="form-group">
-                            <button type="submit" class="filter-button" name="filter" value="filter"><i class="fa fa-search"></i></button>
+                        &nbsp; &nbsp; 
+                        <div class="form-group" style="margin-top: 25px;">
+                            <button type="submit" class="filter-button butbuscar" name="filter" value="filter"><i class="fa fa-search"></i></button>
                         </div>
                     </div>
                 </form>

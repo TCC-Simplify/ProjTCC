@@ -34,10 +34,12 @@
         <form action="{{ url('/equipes') }}" method="GET">
             {!! csrf_field() !!}
             <div class="filter" > 
-                <input type="text" name="equipe_filtro" placeholder="Pesquise uma equipe"></input>
-                <button type="submit" class="filter-button"><i class="fa fa-search"></i></button>
+                <input type="text" class="buscar" name="equipe_filtro" placeholder="Pesquise uma equipe"></input>
+                <button type="submit" class="butbuscar"><i class="fa fa-search"></i></button>
             </div>
         </form>
+
+        <br>
 
         @if($tem)
         <table class="table table-striped">

@@ -42,7 +42,7 @@
                 <div class="nome">{{ $linha->atividade }}</div>
                 <div style="margin-left: 10px;">Responsável: {{ $nome }}</div>
                 <div style="margin-left: 10px;">Descrição: {{ $linha->descricao }}</div>
-                <div style="margin-left: 10px;">Prazo: {{ $linha->prazo }}</div>
+                <div style="margin-left: 10px;">Prazo: <?php echo str_replace('-', '/', date( 'd-m-Y' , strtotime( $linha->prazo ) ));?></div>
             </div>
             @endforeach
         @endif
@@ -56,7 +56,7 @@
                     <div class="nome">{{ $linha->atividade }}</div>
                     <div style="margin-left: 10px;">Responsável: {{ $nome_equipe }}</div>
                     <div style="margin-left: 10px;">Descrição: {{ $linha->descricao }}</div>
-                    <div style="margin-left: 10px;">Prazo: {{ $linha->prazo }}</div>
+                    <div style="margin-left: 10px;">Prazo: <?php echo str_replace('-', '/', date( 'd-m-Y' , strtotime( $linha->prazo ) ));?></div>
                 </div>
             @endforeach
         @endif
