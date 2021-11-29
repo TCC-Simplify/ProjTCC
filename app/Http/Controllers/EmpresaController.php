@@ -263,12 +263,14 @@ class EmpresaController extends Controller
     public function equipe_create_form(){
         $filtro = '';
         if(session('user_filtro')) $filtro = session('user_filtro');
-        $usuarios = User::all();
+        $usuarios = User::all()->where('ativo', 's');
+        $nome_equipe = session('nome');
+        echo "<script>console.log('Nome da equipe: ".$nome_equipe."')</script>";
         if(!$usuarios)
         {
             return redirect()->back();
         }
-        return view('empresa/equipes_cadastro', compact('usuarios', 'filtro'));
+        return view('empresa/equipes_cadastro', compact('usuarios', 'filtro', 'nome_equipe'));
     }
 
     public function equipe_create(Request $request){
@@ -293,7 +295,7 @@ class EmpresaController extends Controller
 
             return redirect('/equipes');
         } else {
-            return redirect('/form_criar_equipe')->with('user_filtro', $request['user_filtro']);
+            return redirect('/form_criar_equipe')->with('user_filtro', $request['user_filtro'])->with('nome', $request['nome']);
         }
     }
 
@@ -312,7 +314,7 @@ class EmpresaController extends Controller
         $filtro = '';
         if($_GET) $filtro = $_GET['user_filtro'];
         $id_equipe = DB::table('equipes')->where('equipe', $nome)->value('id');
-        $usuarios = User::all()->where('equipe', '!=', $id_equipe);
+        $usuarios = User::all()->where('equipe', '!=', $id_equipe)->where('ativo', 's');
         return view('empresa/equipe_add', compact('usuarios', 'nome', 'filtro'))->with('nome', $nome);
     }
 

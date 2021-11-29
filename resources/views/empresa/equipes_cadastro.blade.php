@@ -29,7 +29,7 @@
         <form action="{{ url('/criar_equipe')}}" method="POST" enctype="multipart/form-data" class="form-cad">
         {!! csrf_field() !!}
             <div class="form-group">
-                <input type="text" class="form-control" id="nome" name="nome" placeholder="Nome da Equipe:" required>
+                <input type="text" class="form-control" id="nome" name="nome" value="{{ $nome_equipe }}" placeholder="Nome da Equipe:" required>
             </div>
             <!--<div class="form-group">
                 <select id="usuario" name="usuario" style="height:40px;">
@@ -42,12 +42,12 @@
             <br><h3>Selecione os participantes</h3> <br>
             <div class="form-group" style="text-align: left;">
                 <div> 
-                    <input type="text" name="user_filtro" autocomplete="off" style="width: 550px;" class="buscar" placeholder="Pesquise um usuário"></input>
+                    <input type="text" name="user_filtro" autocomplete="off" style="width: 550px;" class="buscar" placeholder="Pesquise um usuário" value="{{ $filtro }}"></input>
                     <button type="submit" class="butbuscar" name="filter" value="filter"><i class="fa fa-search"></i></button>
                 </div>
                 <br>
                 @foreach ($usuarios as $usuario)
-                    @if(str_contains(strtolower($usuario->name), $filtro))
+                    @if(str_contains(strtolower($usuario->name), strtolower($filtro)))
                         <input type="checkbox" name="users[]" value="{{ $usuario->id }}">&nbsp;&nbsp;{{ $usuario->name }} <br>
                     @endif
                 @endforeach

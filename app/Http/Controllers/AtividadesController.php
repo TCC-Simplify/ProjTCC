@@ -128,8 +128,8 @@ class AtividadesController extends Controller
     public function atividade_criar_form(User $user, Atividade $atividade, Equipes $equipe)
     {
         $id_empresa = session()->get('id_empresa');
-        $users = $user->all()->where('empresa',$id_empresa);
-        $equipes = $equipe->all()->where('empresa',$id_empresa);
+        $users = $user->all()->where('empresa',$id_empresa)->where('ativo', 's');
+        $equipes = $equipe->all()->where('empresa',$id_empresa)->where('ativo', 's');
         
         return view('controle.atividades_cadastro', compact('users', 'equipes'));
     }
